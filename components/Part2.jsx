@@ -211,7 +211,7 @@ const StatsBlock = () => (
 );
 
 const Testimonials = () => (
-  <section className="section section--paper">
+  <section className="section section--paper" id="testimonials">
     <div className="container">
       <div className="section-head">
         <div><div className="section-head-num">S.06.1 — 고객 후기</div></div>

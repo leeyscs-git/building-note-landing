@@ -129,7 +129,7 @@ const Compare = () => (
 );
 
 const Story = () => (
-  <section className="section section--white">
+  <section className="section section--white" id="story">
     <div className="container">
       <div className="section-head">
         <div>

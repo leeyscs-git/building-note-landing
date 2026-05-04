@@ -295,8 +295,41 @@ const Diagnose = () => {
   const [answers, setAnswers] = React.useState({
     units: null, hours: null, type: null, contact: ''
   });
+  // 공감 체크리스트 토글 상태 (기본: 첫 항목만 on 데모)
+  const [empathy, setEmpathy] = React.useState({ '0-0': true });
+  const toggleEmpathy = (key) => {
+    setEmpathy((prev) => {
+      const next = { ...prev };
+      if (next[key]) delete next[key];
+      else next[key] = true;
+      return next;
+    });
+  };
+  const onCount = Object.keys(empathy).length;
+  const EMPATHY_CATS = [
+    { name: '임차인 응대', items: [
+      '한밤중에도 카톡으로 연락이 온다',
+      '같은 민원을 매번 반복해서 받는다',
+      '응대가 늦어 임차인 만족도가 떨어진다',
+    ] },
+    { name: '검침·청구·세무', items: [
+      '매월 검침·청구 작업에 반나절이 사라진다',
+      '임차인별 세금계산서 발행이 늘 부담이다',
+      '누락·실수가 종종 발생한다',
+    ] },
+    { name: '시설·유지보수', items: [
+      '작은 고장도 직접 업체를 알아봐야 한다',
+      '견적·일정 조율로 일과가 통째로 날아간다',
+      '사후 관리가 안 돼 같은 문제가 반복된다',
+    ] },
+    { name: '운영 가시성', items: [
+      '빌딩 상황이 한눈에 파악되지 않는다',
+      '자료가 흩어져 의사결정이 느려진다',
+      '중요한 변동을 놓치는 일이 잦다',
+    ] },
+  ];
 
-  const totalSteps = 4;
+  const totalSteps = 5;
 
   const setAns = (key, val) => {
     setAnswers(prev => ({ ...prev, [key]: val }));
@@ -328,6 +361,7 @@ const Diagnose = () => {
             <div className="eyebrow eyebrow-red" style={{ marginBottom: 24 }}>진행 상황</div>
             <div className="diagnose-stepper">
               {[
+                '체크리스트',
                 '보유 세대수',
                 '주간 운영 시간',
                 '운영 형태',
@@ -353,6 +387,46 @@ const Diagnose = () => {
           <div className="diagnose-form">
             {step === 0 && (
               <>
+                <h3 className="diagnose-q">"대표님 빌딩, 몇 개나 해당되시나요?"</h3>
+                <p className="diagnose-q-sub">체크해 보시면 빌딩 운영의 진짜 문제가 금방 보입니다.</p>
+                <div className="diag-checklist-inline">
+                  {EMPATHY_CATS.map((cat, i) => (
+                    <div className="diag-empathy-block" key={cat.name}>
+                      <div className="diag-empathy-cat-pill">{cat.name}</div>
+                      {cat.items.map((it, j) => {
+                        const k = `${i}-${j}`;
+                        const isOn = !!empathy[k];
+                        return (
+                          <div className="diag-empathy-row" key={j}>
+                            <span className="diag-empathy-row-text">{it}</span>
+                            <button
+                              type="button"
+                              className={`diag-toggle${isOn ? ' is-on' : ''}`}
+                              onClick={() => toggleEmpathy(k)}
+                              aria-pressed={isOn}
+                              aria-label={`${it} ${isOn ? '체크됨' : '체크되지 않음'}`}
+                            >
+                              <span className="diag-toggle-handle"></span>
+                            </button>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ))}
+                </div>
+                <button
+                  className="btn btn-primary btn-lg"
+                  style={{ marginTop: 24, width: '100%', justifyContent: 'center' }}
+                  onClick={() => setStep(1)}
+                >
+                  다음 단계로
+                  <span className="btn-arrow"></span>
+                </button>
+              </>
+            )}
+
+            {step === 1 && (
+              <>
                 <h3 className="diagnose-q">보유하신 세대 수는 어느 정도이신가요?</h3>
                 <p className="diagnose-q-sub">상가·오피스텔·임대주택 합산 기준</p>
                 <div className="diagnose-options">
@@ -370,7 +444,7 @@ const Diagnose = () => {
               </>
             )}
 
-            {step === 1 && (
+            {step === 2 && (
               <>
                 <h3 className="diagnose-q">매주 빌딩 운영에 쓰시는 시간은 어느 정도인가요?</h3>
                 <p className="diagnose-q-sub">정산 주간 평균 기준</p>
@@ -389,7 +463,7 @@ const Diagnose = () => {
               </>
             )}
 
-            {step === 2 && (
+            {step === 3 && (
               <>
                 <h3 className="diagnose-q">현재 운영 형태에 가장 가까운 것은?</h3>
                 <p className="diagnose-q-sub">중복 선택 가능</p>
@@ -414,7 +488,7 @@ const Diagnose = () => {
               </>
             )}
 
-            {step === 3 && (
+            {step === 4 && (
               <>
                 <h3 className="diagnose-q">진단 결과를 받을 연락처를 알려주세요.</h3>
                 <p className="diagnose-q-sub">카톡 또는 휴대폰 번호. 영업 전화 없습니다.</p>
@@ -466,6 +540,67 @@ const Diagnose = () => {
               </div>
             )}
           </div>
+        </div>
+
+        {/* Reframe transition (진단 폼 아래로 이동) */}
+        <div className="diag-reframe">
+          <h3 className="diag-reframe-title">대표님만 그런 게 아니었습니다.</h3>
+          <p className="diag-reframe-sub">
+            50명의 임대인을 직접 만나 들어봤더니..<br/>
+            놀랍게도 모두, <span className="diag-reframe-highlight">같은 고민</span>을 안고 계셨습니다.
+          </p>
+        </div>
+
+        {/* Persona testimonials with cartoon avatars (가상 — DiceBear 자동 생성) */}
+        <div className="diag-testimonials-stack">
+          <blockquote className="diag-quote-row">
+            <img
+              className="diag-quote-avatar"
+              src="https://api.dicebear.com/7.x/notionists/svg?seed=MisterParkChairman"
+              alt="박OO 대표님"
+              loading="lazy"
+            />
+            <div className="diag-quote-body">
+              <p>
+                "낮엔 본업에 집중해야 하는데, <strong>임차인 카톡이 끊임없이 옵니다.</strong>
+                '보일러가 안 돼요', '도어락 건전지', '인터넷 문제'… 매번 같은 응대인데
+                매번 시간이 듭니다. <strong>한 달에 빌딩에 빼앗기는 시간이 30시간이 넘어요.</strong>"
+              </p>
+              <cite>— <strong>5세대 빌딩 박OO 대표님</strong> · 서울 마포구</cite>
+            </div>
+          </blockquote>
+          <blockquote className="diag-quote-row reverse">
+            <div className="diag-quote-body">
+              <p>
+                "관리인을 두자니 <strong>인건비가 부담</strong>이고, 위탁업체는 저희 같은 작은 빌딩은
+                <strong> 안 받아준다고 합니다.</strong> 결국 직접 검침하고 청구서 만들고 세금계산서 발행하고…
+                <strong> 어느새 부동산이 본업이 되어 버렸어요.</strong>"
+              </p>
+              <cite>— <strong>12세대 빌딩 이OO 대표님</strong> · 수도권</cite>
+            </div>
+            <img
+              className="diag-quote-avatar"
+              src="https://api.dicebear.com/7.x/notionists/svg?seed=MissLeeChairwoman"
+              alt="이OO 대표님"
+              loading="lazy"
+            />
+          </blockquote>
+          <blockquote className="diag-quote-row">
+            <img
+              className="diag-quote-avatar"
+              src="https://api.dicebear.com/7.x/notionists/svg?seed=MisterKimPresident"
+              alt="김OO 대표님"
+              loading="lazy"
+            />
+            <div className="diag-quote-body">
+              <p>
+                "문제는 빌딩 운영이 아니라 <strong>'데이터'였습니다.</strong> 임차인이 뭘 요청했는지,
+                누가 언제 입주했는지, 시설 보수 이력이 어떻게 되는지…
+                <strong> 모두 머릿속에만 있다 보니 의사결정이 느립니다.</strong> 시스템이 절실해요."
+              </p>
+              <cite>— <strong>25세대 빌딩 김OO 대표님</strong> · 지방 광역시</cite>
+            </div>
+          </blockquote>
         </div>
       </div>
     </section>
