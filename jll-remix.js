@@ -64,8 +64,8 @@ if (['technology', 'leasing', 'management', 'facility', 'rental', 'accounting', 
     showDetail(requestedService, new URLSearchParams(location.search).get('section'));
   }, { once: true });
 }
-$$('.filter').forEach(button => button.addEventListener('click', () => {
-  $$('.filter').forEach(filter => { const selected = filter === button; filter.classList.toggle('active', selected); filter.setAttribute('aria-pressed', String(selected)); });
+$$('.filter:not([data-insights-filter])').forEach(button => button.addEventListener('click', () => {
+  $$('.filter:not([data-insights-filter])').forEach(filter => { const selected = filter === button; filter.classList.toggle('active', selected); filter.setAttribute('aria-pressed', String(selected)); });
   $$('.insight-card').forEach(card => { card.hidden = button.dataset.filter !== 'all' && card.dataset.category !== button.dataset.filter; });
 }));
 

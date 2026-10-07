@@ -2,8 +2,8 @@
    published reports or client outcomes. Images are existing illustrative assets. */
 window.SPSJournalArticles = [
   {
-    id:'why-we-work', category:'perspective', label:'우리의 관점',
-    collection:'journal', book:{lines:['우리는','왜','일하는가.'], note:'맡긴다는 것의 의미를 묻다', style:'manifesto', tone:'peach'},
+    id:'why-we-work', featured:3, category:'perspective', label:'우리의 관점',
+    collection:'journal', series:'Our perspective',
     title:'우리는 왜 일하는가.',
     deck:'맡겼지만, 알 수 없었던 경험에서 시작했습니다.',
     summary:'창업자가 건물주로서 겪었던 불편. SPS가 관리의 기준을 생각하게 된 출발점입니다.',
@@ -19,11 +19,11 @@ window.SPSJournalArticles = [
   },
   {
     id:'arrears-records', category:'guide', label:'운영 가이드',
-    collection:'journal', book:{lines:['미납을','확인하는','순서.'], note:'계약과 입금, 같은 기준으로', style:'ledger', tone:'sage'},
+    collection:'journal', series:'Asset management',
     title:'미납 금액을 확인할 때, 어디서부터 봐야 할까.',
     deck:'청구와 입금을 같은 기준으로 놓고 보는 일부터.',
     summary:'계약상 청구 내역과 입금 기록이 다를 때, 확인할 자료와 남겨 둘 질문을 정리합니다.',
-    cover:['계약과 입금,','같은 기준으로.'], tone:'sage',
+    image:'assets/landing/interior.jpg', alt:'자연광이 들어오는 건물 내부 공간',
     intro:'입금되지 않은 돈을 이야기하기 전에, 어떤 금액이 언제 청구됐는지부터 확인해야 합니다. 청구 기록과 입금 기록이 따로 있다면 같은 호실, 같은 기간으로 나란히 놓는 것이 정리의 출발점입니다.',
     sections:[
       {title:'금액보다 먼저 맞출 기준', paragraphs:['호실, 계약 기간, 청구 항목과 기준일을 구분합니다. 입금 내역이 어떤 청구분에 해당하는지 연결돼야 확인할 금액도 구체적으로 설명할 수 있습니다.']},
@@ -33,11 +33,11 @@ window.SPSJournalArticles = [
   },
   {
     id:'knowing-and-delegating', category:'perspective', label:'우리의 관점',
-    collection:'journal', book:{lines:['맡기는 일.','알고 있는 일.'], note:'위탁과 확인 사이에서', style:'division', tone:'blue'},
+    collection:'journal', series:'Our perspective',
     title:'맡기는 것과, 알고 맡기는 것의 차이.',
     deck:'건물주의 시간을 덜 쓰면서도, 판단에 필요한 정보는 남아 있어야 합니다.',
     summary:'모든 일을 직접 챙기는 것과 아무것도 모르는 것 사이에서, 관리의 역할을 생각합니다.',
-    cover:['맡기는 일.','알고 있는 일.'], tone:'blue',
+    image:'assets/jll/seoul.webp', alt:'산과 도심의 건물을 함께 바라본 서울 전경',
     intro:'일을 맡긴 뒤에도 같은 질문을 반복하게 되는 순간이 있습니다. 연락이 부족해서일 수도 있지만, 전달받은 정보가 판단에 필요한 질문에 답하지 못해서일 수도 있습니다.',
     quote:'모든 과정을 보여주기보다, 필요한 판단을 이어갈 수 있게.',
     sections:[
@@ -48,7 +48,7 @@ window.SPSJournalArticles = [
   },
   {
     id:'lease-conditions', category:'guide', label:'운영 가이드',
-    collection:'journal', book:{lines:['임대조건','분석의 출발점.'], note:'금액보다 먼저 살필 조건들', style:'photo-top', tone:'blue'},
+    collection:'journal', series:'Leasing insights',
     title:'임대조건 분석은 어떤 질문에서 시작할까.',
     deck:'주변에 나온 금액을 보기 전에, 비교할 조건을 정리합니다.',
     summary:'면적과 층, 시설 상태, 보증금과 관리비. 같은 조건끼리 비교하기 위한 질문들입니다.',
@@ -62,7 +62,7 @@ window.SPSJournalArticles = [
   },
   {
     id:'field-record', category:'field', label:'현장 노트',
-    collection:'journal', book:{lines:['작은 기록,','건물의 상태.'], note:'사진 밖의 정보까지 남기는 일', style:'photo-bottom', tone:'sage'},
+    collection:'journal', series:'Smarter operations',
     title:'건물의 상태는 작은 기록에서 드러납니다.',
     deck:'한 장의 사진에 장소와 시점, 다음 확인을 더하는 이유.',
     summary:'점검 사진과 처리 메모가 다음 담당자에게도 설명이 되려면 무엇을 남겨야 할까요.',
@@ -75,12 +75,12 @@ window.SPSJournalArticles = [
     ]
   },
   {
-    id:'report-principles', category:'perspective', label:'우리의 관점',
-    collection:'journal', book:{lines:['상태.','근거.','다음 확인.'], note:'우리가 보고서에 남기고 싶은 것', style:'report', tone:'peach'},
+    id:'report-principles', featured:1, category:'perspective', label:'우리의 관점',
+    collection:'journal', series:'Asset management',
     title:'우리가 보고서에 남기고 싶은 것.',
     deck:'한 달 동안 한 일과, 다음에 확인할 일을 함께.',
     summary:'정리된 숫자 뒤에 처리의 근거와 남은 일이 보이는 보고를 생각합니다.',
-    cover:['상태. 근거.','다음 확인.'], tone:'peach',
+    image:'assets/landing/city.jpg', alt:'저녁 빛으로 물든 도심의 건물들',
     intro:'보고서를 잘 만든다는 말은 무엇일까요. 보기 좋은 표를 만드는 것도 필요하지만, 읽는 사람이 건물의 지금 상태를 이해할 수 있는지가 먼저라고 생각합니다.',
     sections:[
       {title:'현재 상태', paragraphs:['완료된 일과 진행 중인 일, 아직 확인하지 못한 일을 구분합니다. 기준 시점을 표시해 과거의 기록을 현재 상태로 읽지 않게 합니다.']},
@@ -89,8 +89,8 @@ window.SPSJournalArticles = [
     ]
   },
   {
-    id:'before-changing-space', category:'field', label:'현장 노트',
-    collection:'journal', book:{lines:['공간을','바꾸기 전에.'], note:'먼저 들어야 할 질문들', style:'photo-top', tone:'cool'},
+    id:'before-changing-space', featured:2, category:'field', label:'현장 노트',
+    collection:'journal', series:'Future of spaces',
     title:'공간을 바꾸기 전에, 먼저 듣는 질문.',
     deck:'어떤 모습으로 바꿀지보다, 무엇이 불편한지부터.',
     summary:'인테리어와 리모델링을 고민할 때, 공간을 쓰는 사람의 하루에서 질문을 찾습니다.',

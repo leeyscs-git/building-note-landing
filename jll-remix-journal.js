@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const articles = window.SPSJournalArticles;
+  const articles = window.SPSInsights.articles;
   const list = document.getElementById('journal-grid');
   const index = document.getElementById('journal-index');
   const detail = document.getElementById('journal-article');
@@ -15,21 +15,18 @@
     else url.hash = 'archive';
     return url.pathname + url.search + url.hash;
   };
-  function cover(article) {
-    const book = article.book;
-    const photo = book.style.startsWith('photo-');
-    return `<span class="book-cover" data-style="${book.style}" data-tone="${book.tone}" aria-hidden="true"><span class="book-imprint">SPS JOURNAL<span>${escape(article.label)}</span></span>${photo ? `<span class="book-photo"><img src="${article.image}" alt="" loading="lazy" width="800" height="500"></span>` : ''}<strong class="book-title">${book.lines.map(line => `<span>${escape(line)}</span>`).join('')}</strong><span class="book-subtitle">${escape(book.note)}</span><span class="book-motif"></span><span class="book-colophon"><img src="assets/logo.svg" alt="" width="54" height="18"><span>공간과 운영에 관한 기록</span></span></span>`;
-  }
   function renderList() {
-    const shown = articles.filter(a => a.id !== 'why-we-work' && (category === 'all' || a.collection === category));
-    document.querySelectorAll('.journal-filters [data-category]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.category === category)));
+    const shown = articles.filter(a => category === 'all' || a.collection === category);
+    document.querySelectorAll('.journal-filters [data-category]').forEach(button => {
+      const selected = button.dataset.category === category;
+      button.setAttribute('aria-pressed', String(selected));
+      button.classList.toggle('active', selected);
+    });
     document.getElementById('journal-count').textContent = shown.length ? `${shown.length}개의 글 · 편집 초안` : '0개의 글';
     document.getElementById('journal-category-note').textContent = category === 'research' ? '리서치 · 출처와 분석 근거를 갖춘 자료를 소개합니다.' : category === 'journal' ? '저널 · 우리의 관점, 운영 가이드, 현장의 기록을 담습니다.' : '저널에는 경험과 관점을, 리서치에는 자료와 분석을 담습니다.';
     document.getElementById('journal-empty').hidden = !!shown.length;
     list.hidden = !shown.length;
-    list.innerHTML = shown.map(article => `<article class="journal-card"><a href="${journalUrl(article.id)}" data-article="${article.id}"><span class="journal-card-cover">${cover(article)}</span><p class="journal-meta"><span>저널 · ${article.label}</span><span>편집 초안</span></p><h3>${escape(article.title)}</h3><p class="journal-card-summary">${escape(article.summary)}</p><span class="journal-card-read">글 읽기<sps-arrow-up-right></sps-arrow-up-right></span></a></article>`).join('');
-    document.getElementById('featured-book-cover').innerHTML = cover(articles.find(a => a.id === 'why-we-work'));
-    document.querySelectorAll('.journal-feature [data-article]').forEach(a => { a.href = journalUrl('why-we-work'); });
+    list.innerHTML = window.SPSInsights.cards(shown, category);
   }
   function renderArticle(article) {
     const related = articles.filter(a => a.id !== article.id).sort((a,b) => Number(b.category === article.category)-Number(a.category === article.category)).slice(0,2);
