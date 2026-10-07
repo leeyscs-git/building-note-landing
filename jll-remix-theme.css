@@ -20,28 +20,51 @@ body:not(.ds-page){font-size:var(--body-size,16px)}
 .motion-ready [data-reveal]:not(.is-revealed){transform:translate3d(0,var(--reveal-distance,28px),0)}
 .motion-ready .editorial-image[data-reveal]:not(.is-revealed){transform:none}
 @media(min-width:1600px){.hero h1{font-size:var(--hero-title-size,69px)}.editorial-copy h2{font-size:var(--section-title-size,49px)}.editorial-copy{padding-block:var(--editorial-padding,75px)}}
-@media(max-width:1100px){.wrap{width:calc(100% - var(--layout-gutter)*2)}.hero h1{font-size:var(--hero-title-size,54px)}.editorial-copy h2{font-size:var(--section-title-size,37px)}.editorial-copy{padding-block:var(--editorial-padding,46px)}.insight-card h3{font-size:var(--card-title-size,21px)}.insight-image{height:var(--insight-image-height,200px)}.story-tab{font-size:var(--story-font-size,11px)}}
-@media(max-width:850px){.wrap{width:calc(100% - var(--layout-gutter)*2)}.header-main{height:var(--header-height,77px)}.hero h1{font-size:var(--hero-title-size,51px)}.editorial-copy h2{font-size:var(--section-title-size,31px)}.editorial-copy{padding-block:var(--editorial-padding,37px)}.insight-card h3{font-size:var(--card-title-size,19px)}.insight-image{height:var(--insight-image-height,170px)}.insight-grid{gap:var(--card-gap,19px)}.story-tab{font-size:var(--story-font-size,10px);padding-block:var(--story-padding,10px)}.faq summary{font-size:var(--faq-font-size,12px)}}
-@media(max-width:700px){.brand-logo{width:var(--logo-width-mobile,105px)}}
-@media(max-width:600px){
-  .wrap{width:calc(100% - var(--layout-gutter)*2)}
-  .header-main{height:var(--header-height-mobile,75px)}
-  .nav-links{top:calc(var(--header-height-mobile,75px) - 1px)}
-  .hero h1{font-size:var(--hero-title-mobile,39px)}
-  .editorial-copy h2{font-size:var(--section-title-mobile,35px)}
-  .editorial-copy{padding-top:var(--editorial-padding,38px);padding-bottom:var(--editorial-padding,37px)}
-  .insight-card h3{font-size:var(--card-title-size,24px)}
-  .insight-image{height:var(--insight-image-mobile,235px)}
-  .insight-grid{gap:var(--card-gap,30px)}
-  .header-contact{gap:var(--contact-gap,12px);padding-inline:var(--contact-padding,12px)}
-  .story-tab{font-size:var(--story-font-size,10px);padding-block:var(--story-padding,9px)}
-  .faq summary{min-height:var(--faq-height,78px);font-size:var(--faq-font-size,14px)}
-  .dialog{padding:47px 25px 30px}
-  .motion-ready [data-reveal]{transition-duration:var(--reveal-duration,650ms)}
-  .motion-ready [data-reveal]:not(.is-revealed){transform:translate3d(0,var(--reveal-distance,18px),0)}
-  .motion-ready .editorial-image[data-reveal]:not(.is-revealed){transform:none}
+@media(max-width:1100px){
+  :where(html:not([data-sps-desktop])) .wrap{width:calc(100% - var(--layout-gutter)*2)}
+  :where(html:not([data-sps-desktop])) .hero h1{font-size:var(--hero-title-size,54px)}
+  :where(html:not([data-sps-desktop])) .editorial-copy h2{font-size:var(--section-title-size,37px)}
+  :where(html:not([data-sps-desktop])) .editorial-copy{padding-block:var(--editorial-padding,46px)}
+  :where(html:not([data-sps-desktop])) .insight-card h3{font-size:var(--card-title-size,21px)}
+  :where(html:not([data-sps-desktop])) .insight-image{height:var(--insight-image-height,200px)}
+  :where(html:not([data-sps-desktop])) .story-tab{font-size:var(--story-font-size,11px)}
 }
-@media(max-width:360px){.hero h1{font-size:var(--hero-title-mobile,34px)}}
+@media(max-width:850px){
+  :where(html:not([data-sps-desktop])) .wrap{width:calc(100% - var(--layout-gutter)*2)}
+  :where(html:not([data-sps-desktop])) .header-main{height:var(--header-height,77px)}
+  :where(html:not([data-sps-desktop])) .hero h1{font-size:var(--hero-title-size,51px)}
+  :where(html:not([data-sps-desktop])) .editorial-copy h2{font-size:var(--section-title-size,31px)}
+  :where(html:not([data-sps-desktop])) .editorial-copy{padding-block:var(--editorial-padding,37px)}
+  :where(html:not([data-sps-desktop])) .insight-card h3{font-size:var(--card-title-size,19px)}
+  :where(html:not([data-sps-desktop])) .insight-image{height:var(--insight-image-height,170px)}
+  :where(html:not([data-sps-desktop])) .insight-grid{gap:var(--card-gap,19px)}
+  :where(html:not([data-sps-desktop])) .story-tab{font-size:var(--story-font-size,10px);padding-block:var(--story-padding,10px)}
+  :where(html:not([data-sps-desktop])) .faq summary{font-size:var(--faq-font-size,12px)}
+}
+@media(max-width:700px){
+  :where(html:not([data-sps-desktop])) .brand-logo{width:var(--logo-width-mobile,105px)}
+}
+@media(max-width:600px){
+  :where(html:not([data-sps-desktop])) .wrap{width:calc(100% - var(--layout-gutter)*2)}
+  :where(html:not([data-sps-desktop])) .header-main{height:var(--header-height-mobile,75px)}
+  :where(html:not([data-sps-desktop])) .nav-links{top:calc(var(--header-height-mobile,75px) - 1px)}
+  :where(html:not([data-sps-desktop])) .hero h1{font-size:var(--hero-title-mobile,39px)}
+  :where(html:not([data-sps-desktop])) .editorial-copy h2{font-size:var(--section-title-mobile,35px)}
+  :where(html:not([data-sps-desktop])) .editorial-copy{padding-top:var(--editorial-padding,38px);padding-bottom:var(--editorial-padding,37px)}
+  :where(html:not([data-sps-desktop])) .insight-card h3{font-size:var(--card-title-size,24px)}
+  :where(html:not([data-sps-desktop])) .insight-image{height:var(--insight-image-mobile,235px)}
+  :where(html:not([data-sps-desktop])) .insight-grid{gap:var(--card-gap,30px)}
+  :where(html:not([data-sps-desktop])) .header-contact{gap:var(--contact-gap,12px);padding-inline:var(--contact-padding,12px)}
+  :where(html:not([data-sps-desktop])) .story-tab{font-size:var(--story-font-size,10px);padding-block:var(--story-padding,9px)}
+  :where(html:not([data-sps-desktop])) .faq summary{min-height:var(--faq-height,78px);font-size:var(--faq-font-size,14px)}
+  :where(html:not([data-sps-desktop])) .dialog{padding:47px 25px 30px}
+  :where(html:not([data-sps-desktop])) .motion-ready [data-reveal]{transition-duration:var(--reveal-duration,650ms)}
+  :where(html:not([data-sps-desktop])) .motion-ready [data-reveal]:not(.is-revealed){transform:translate3d(0,var(--reveal-distance,18px),0)}
+  :where(html:not([data-sps-desktop])) .motion-ready .editorial-image[data-reveal]:not(.is-revealed){transform:none}
+}
+@media(max-width:360px){
+  :where(html:not([data-sps-desktop])) .hero h1{font-size:var(--hero-title-mobile,34px)}
+}
 /* The document uses the same editable values; its editor chrome stays stable. */
 .ds-page .ds-type-hero{font-size:var(--hero-title-size,59px)}
 .ds-page .ds-type-section{font-size:var(--section-title-size,43px)}
@@ -63,8 +86,18 @@ body:not(.ds-page){font-size:var(--body-size,16px)}
 .ds-page .ds-logo-sizes>div:last-child img{width:var(--logo-width-mobile,105px)}
 
 
-@media(max-width:600px){.ds-page .ds-header-stage .header-main{height:var(--header-height-mobile,75px)}.ds-page .ds-editorial-demo .editorial-copy h2{font-size:var(--section-title-mobile,35px)}.ds-page .ds-header-stage .header-contact{padding-inline:var(--contact-padding,12px);gap:var(--contact-gap,10px)}.ds-page .ds-header-stage .brand-logo{width:var(--logo-width-mobile,92px)}}
-@media(max-width:520px){.ds-page .ds-card-grid .insight-image{height:var(--insight-image-mobile,235px)}.ds-page .ds-card-grid .insight-card h3{font-size:var(--card-title-size,24px)}.ds-page .ds-modal-sheet{padding:30px 22px}.ds-page .ds-editorial-demo .editorial-copy h2{font-size:var(--section-title-mobile,35px)}}
+@media(max-width:600px){
+  :where(html:not([data-sps-desktop])) .ds-page .ds-header-stage .header-main{height:var(--header-height-mobile,75px)}
+  :where(html:not([data-sps-desktop])) .ds-page .ds-editorial-demo .editorial-copy h2{font-size:var(--section-title-mobile,35px)}
+  :where(html:not([data-sps-desktop])) .ds-page .ds-header-stage .header-contact{padding-inline:var(--contact-padding,12px);gap:var(--contact-gap,10px)}
+  :where(html:not([data-sps-desktop])) .ds-page .ds-header-stage .brand-logo{width:var(--logo-width-mobile,92px)}
+}
+@media(max-width:520px){
+  :where(html:not([data-sps-desktop])) .ds-page .ds-card-grid .insight-image{height:var(--insight-image-mobile,235px)}
+  :where(html:not([data-sps-desktop])) .ds-page .ds-card-grid .insight-card h3{font-size:var(--card-title-size,24px)}
+  :where(html:not([data-sps-desktop])) .ds-page .ds-modal-sheet{padding:30px 22px}
+  :where(html:not([data-sps-desktop])) .ds-page .ds-editorial-demo .editorial-copy h2{font-size:var(--section-title-mobile,35px)}
+}
 @media(prefers-reduced-motion:reduce){.motion-ready [data-reveal],.motion-ready [data-reveal]:not(.is-revealed){transform:none;transition:none}}
 
 /* Full-width photography keeps its scale; the outer text edge follows .wrap. */

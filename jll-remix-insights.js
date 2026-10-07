@@ -6,6 +6,7 @@
   const articles = [...(window.SPSJournalArticles || [])].sort((a, b) => (a.featured || Infinity) - (b.featured || Infinity));
   const url = (article, category = 'all') => {
     const params = new URLSearchParams();
+    if (new URLSearchParams(location.search).get('layout') === 'desktop') params.set('layout', 'desktop');
     if (category !== 'all') params.set('category', category);
     if (article) params.set('article', article.id);
     return `jll-remix-journal.html${params.size ? `?${params}` : ''}${article ? '' : '#archive'}`;

@@ -21,14 +21,14 @@
 .insights-empty h3 { font-size:var(--card-title-size,24px); margin-bottom:12px; }
 .insights-empty p { color:var(--muted); font-size:14px; line-height:1.75; }
 @media(max-width:850px) {
-  .sps-insights .insight-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  :where(html:not([data-sps-desktop])) .sps-insights .insight-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); }
 }
 @media(max-width:600px) {
-  .sps-insights .section-heading :is(h1,h2) { font-size:var(--section-title-mobile,35px); }
-  .sps-insights .section-heading { flex-direction:column; align-items:flex-start; gap:24px; }
-  .sps-insights .insight-grid { grid-template-columns:1fr; row-gap:36px; margin-top:28px; }
-  .insights-foot { align-items:flex-start; flex-direction:column; gap:16px; }
-  .insights-empty { padding:28px 24px; }
+  :where(html:not([data-sps-desktop])) .sps-insights .section-heading :is(h1,h2){ font-size:var(--section-title-mobile,35px); }
+  :where(html:not([data-sps-desktop])) .sps-insights .section-heading{ flex-direction:column; align-items:flex-start; gap:24px; }
+  :where(html:not([data-sps-desktop])) .sps-insights .insight-grid{ grid-template-columns:1fr; row-gap:36px; margin-top:28px; }
+  :where(html:not([data-sps-desktop])) .insights-foot{ align-items:flex-start; flex-direction:column; gap:16px; }
+  :where(html:not([data-sps-desktop])) .insights-empty{ padding:28px 24px; }
 }
 @media(prefers-reduced-motion:reduce) {
   .insight-card-link .insight-image > img,.insight-card-link .insight-read > span { transition:none; }

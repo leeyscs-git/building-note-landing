@@ -6,6 +6,14 @@ html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
+/* A consistent desktop canvas only for an explicit/recognized phone PC view.
+   Normal PC windows and the responsive mobile view retain their own layout. */
+html[data-sps-desktop] {
+  width: 1280px;
+  min-width: 1280px;
+  zoom: var(--sps-desktop-scale, 1);
+}
+html[data-sps-desktop] [data-sps-header] { top: var(--sps-visible-top, 0px); }
 :root {
   --ink: #10252b;
   --red: #d5092b;
@@ -34,6 +42,6 @@ html {
 /* Shared content inset. Recompute on the header because About scopes its
    editable theme values there. Tablet/mobile spacing stays independent. */
 :root,[data-sps-header]{--layout-gutter:var(--page-gutter,72px)}
-@media(max-width:1100px){:root,[data-sps-header]{--layout-gutter:min(var(--page-gutter,48px),48px)}}
-@media(max-width:850px){:root,[data-sps-header]{--layout-gutter:min(var(--page-gutter,32px),32px)}}
-@media(max-width:600px){:root,[data-sps-header]{--layout-gutter:var(--page-gutter-mobile,20px)}}
+@media(max-width:1100px){:root:where(:not([data-sps-desktop])),:where(html:not([data-sps-desktop])) [data-sps-header]{--layout-gutter:min(var(--page-gutter,48px),48px)}}
+@media(max-width:850px){:root:where(:not([data-sps-desktop])),:where(html:not([data-sps-desktop])) [data-sps-header]{--layout-gutter:min(var(--page-gutter,32px),32px)}}
+@media(max-width:600px){:root:where(:not([data-sps-desktop])),:where(html:not([data-sps-desktop])) [data-sps-header]{--layout-gutter:var(--page-gutter-mobile,20px)}}

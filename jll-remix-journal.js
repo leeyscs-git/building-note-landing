@@ -10,6 +10,7 @@
   let renderedRoute = '';
   const journalUrl = (id, filter = category) => {
     const url = new URL('jll-remix-journal.html', location.href);
+    if (new URLSearchParams(location.search).get('layout') === 'desktop') url.searchParams.set('layout', 'desktop');
     if (filter !== 'all') url.searchParams.set('category', filter);
     if (id) url.searchParams.set('article', id);
     else url.hash = 'archive';
