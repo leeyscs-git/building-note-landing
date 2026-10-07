@@ -6,7 +6,8 @@
   const isAbout = header.dataset.page === 'about';
   const isJournal = header.dataset.page === 'journal';
   const isSupport = header.dataset.page === 'support';
-  const isSubpage = isAbout || isJournal || isSupport;
+  const isCases = header.dataset.page === 'cases';
+  const isSubpage = isAbout || isJournal || isSupport || isCases;
   const variant = document.documentElement.dataset.serviceMenu;
   const prefix = ['v2', 'v3', 'v4'].includes(variant) ? `jll-remix-${variant}` : 'jll-remix';
   const home = `${prefix}.html`;
@@ -15,7 +16,7 @@
   const links = [
     { label: 'SPS 소개', href: about, current: isAbout },
     { label: '서비스', href: sectionHref('services'), section: 'services' },
-    { label: '공간과 가치', href: sectionHref('spaces'), section: 'spaces' },
+    { label: '서비스 사례', href: 'jll-remix-cases.html', current: isCases },
     { label: '인사이트', href: prefix === 'jll-remix' ? 'jll-remix-journal.html' : sectionHref('insights'), current: isJournal, section: prefix === 'jll-remix' ? null : 'insights' },
     { label: '고객지원', href: 'jll-remix-support.html', current: isSupport },
   ];
