@@ -78,7 +78,7 @@
       // V1 explores broader service categories; V2/V3 retain their comparison content.
       const services = variant === 'v1' ? [
         ['management', '부동산 자산관리', '임대관리 · 시설관리 · 회계정산대행'],
-        ['marketing', '임대 마케팅', '임대조건 검토 · 공실 홍보 · 임차인 유치'],
+        ['marketing', '임대 마케팅', '임대조건 분석 · 임차인 유치'],
         ['interior', '실내건축', '인테리어 · 리모델링 · 공간개선']
       ] : [
         ['rental', '임대관리', '임차인 응대 · 계약 일정 · 미납 대응'],
