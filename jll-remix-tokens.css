@@ -1,5 +1,11 @@
 /* H / JLL Remix: shared by the landing page and visual design reference.
    Usage and source: design/jll-remix/design.md */
+/* Keep authored type/spacing proportions when a phone scales a desktop page.
+   100% disables text inflation without disabling user-controlled page zoom. */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
 :root {
   --ink: #10252b;
   --red: #d5092b;
