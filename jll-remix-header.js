@@ -5,7 +5,8 @@
   if (!header) return;
   const isAbout = header.dataset.page === 'about';
   const isJournal = header.dataset.page === 'journal';
-  const isSubpage = isAbout || isJournal;
+  const isSupport = header.dataset.page === 'support';
+  const isSubpage = isAbout || isJournal || isSupport;
   const variant = document.documentElement.dataset.serviceMenu;
   const prefix = ['v2', 'v3', 'v4'].includes(variant) ? `jll-remix-${variant}` : 'jll-remix';
   const home = `${prefix}.html`;
@@ -16,7 +17,7 @@
     { label: '서비스', href: sectionHref('services'), section: 'services' },
     { label: '공간과 가치', href: sectionHref('spaces'), section: 'spaces' },
     { label: '인사이트', href: prefix === 'jll-remix' ? 'jll-remix-journal.html' : sectionHref('insights'), current: isJournal, section: prefix === 'jll-remix' ? null : 'insights' },
-    { label: '고객 지원', href: sectionHref('faq'), section: 'faq' },
+    { label: '고객지원', href: 'jll-remix-support.html', current: isSupport },
   ];
   function renderLink(link, index, expanded = false) {
     if (link.section === 'services') return `<sps-service-menu${expanded ? ' data-mobile' : ''}></sps-service-menu>`;
@@ -40,7 +41,7 @@
         <img class="brand-logo" src="assets/logo.svg" alt="SPS" width="120" height="40">
       </a>
       <div class="nav-tools">
-        <a class="header-contact" href="${sectionHref('contact')}" target="_top">문의하기 <sps-arrow-up-right></sps-arrow-up-right></a>
+        <a class="header-contact" href="jll-remix-support.html#inquiry" data-inquiry aria-haspopup="dialog">문의하기 <sps-arrow-up-right></sps-arrow-up-right></a>
         <button class="icon-button menu-toggle" type="button" aria-label="전체 메뉴 열기" aria-expanded="false" aria-controls="sps-header-menu"><span></span><span></span></button>
       </div>
     </div>
@@ -50,7 +51,7 @@
     </nav>
     <nav class="sps-header-menu" id="sps-header-menu" aria-label="전체 메뉴" hidden>
       ${links.map((link, i) => renderLink(link, i, true)).join('')}
-      <a href="${sectionHref('contact')}" target="_top">문의하기 <span aria-hidden="true">↗</span></a>
+      <a href="jll-remix-support.html#inquiry" data-inquiry aria-haspopup="dialog">문의하기 <span aria-hidden="true">↗</span></a>
       ${renderLocale(true)}
     </nav>`;
 

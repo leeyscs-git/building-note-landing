@@ -57,7 +57,7 @@
       const anchor = event.target.closest?.('a[href]');
       if (!anchor || anchor.hasAttribute('download')) return;
       const url = new URL(anchor.href, win.location.href);
-      if (url.origin === win.location.origin && /\/jll-remix(?:-v[234])?(?:-about|-journal)?(?:\.html)?$/.test(url.pathname)) {
+      if (url.origin === win.location.origin && /\/jll-remix(?:-v[234])?(?:-about|-journal|-support)?(?:\.html)?$/.test(url.pathname)) {
         url.searchParams.set('layout', 'desktop');
         anchor.href = url.href;
       }
