@@ -1,0 +1,74 @@
+.reference-building .build .txt{position: absolute;top: 0;transform: scale(0.8);opacity: 0;transition: 1s;background-size: 100% 100% !important}
+.reference-building .build .txt.left{width: 5.208333333333333%;height: 9.404761904761905%;background: url(left.png)}
+.reference-building .build .txt.right{width: 5.208333333333333%;height: 9.404761904761905%;background: url(right.png)}
+.reference-building .build .txt.center{width: 5.208333333333333%;height: 5.952380952380952%;background: url(center.png)}
+.reference-building .build .build_s .txt01{top: 27.25%;left: 50%}
+.reference-building .build .build_s .txt02{top: 23.8%;left: 44.7%}
+.reference-building .build .build_s .txt03{top: 23.8%;left: 39.6%}
+.reference-building .build .build_s .txt04{top: 23.8%;left: 34.4%}
+.reference-building .build .build_s .txt05{top: 27.3%;left: 29.2%;}
+.reference-building .build .build_s .txt06{top: 33.2%;left: 29.2%;}
+.reference-building .build .build_s .txt07{top: 39.1%;left: 29.2%;}
+.reference-building .build .build_s .txt08{top: 45%;left: 29.2%;}
+.reference-building .build .build_s .txt09{top: 41.6%;left: 34.4%;}
+.reference-building .build .build_s .txt10{top: 41.6%;left: 39.6%;}
+.reference-building .build .build_s .txt11{top: 41.6%;left:44.7%;}
+.reference-building .build .build_s .txt12{top: 45%;left:50%;}
+.reference-building .build .build_s .txt13{top: 50.95%;left:50%;}
+.reference-building .build .build_s .txt14{top: 56.9%;left:50%;}
+.reference-building .build .build_s .txt15{top: 62.9%;left:50%;}
+.reference-building .build .build_s .txt16{top: 59.3%;left:44.7%;}
+.reference-building .build .build_s .txt17{top: 59.4%;left:39.5%;}
+.reference-building .build .build_s .txt18{top: 59.4%;left:34.4%;}
+.reference-building .build .build_s .txt19{top: 63%;left:29.2%;}
+
+
+.reference-building .build .build_m .txt01{top: 66.43%;left: 23.96%;}
+.reference-building .build .build_m .txt02{top: 60.53%;left: 23.96%;}
+.reference-building .build .build_m .txt03{top: 54.63%;left: 23.96%;}
+.reference-building .build .build_m .txt04{top: 48.73%;left: 23.96%;}
+.reference-building .build .build_m .txt05{top: 42.73%;left: 23.96%;}
+.reference-building .build .build_m .txt06{top: 36.53%;left: 23.96%;}
+.reference-building .build .build_m .txt07{top: 30.63%;left: 23.96%;}
+.reference-building .build .build_m .txt08{top: 33.23%;left: 29.16%;}
+.reference-building .build .build_m .txt09{top: 35.8%;left: 34.36%;}
+.reference-building .build .build_m .txt10{top: 41.6%;left: 39.6%;}
+.reference-building .build .build_m .txt11{top: 35.8%;left: 44.8%;}
+.reference-building .build .build_m .txt12{top: 33.23%;left: 50%;}
+.reference-building .build .build_m .txt13{top: 36.53%;left: 55.2%;}
+.reference-building .build .build_m .txt14{top: 30.63%;left: 55.2%;}
+.reference-building .build .build_m .txt15{top: 42.73%;left: 55.2%;}
+.reference-building .build .build_m .txt16{top: 48.73%;left: 55.2%;}
+.reference-building .build .build_m .txt17{top: 54.63%;left: 55.2%;}
+.reference-building .build .build_m .txt18{top: 60.53%;left: 55.2%;}
+.reference-building .build .build_m .txt19{top: 66.43%;left: 55.2%;}
+
+.reference-building .build .build_p .txt01{top: 62.96%;left:29.2%;}
+.reference-building .build .build_p .txt02{top: 57.06%;left:29.2%;}
+.reference-building .build .build_p .txt03{top: 51.16%;left:29.2%;}
+.reference-building .build .build_p .txt04{top: 45.26%;left:29.2%;}
+.reference-building .build .build_p .txt05{top: 39.36%;left:29.2%;}
+.reference-building .build .build_p .txt06{top: 33.42%;left:29.2%;}
+.reference-building .build .build_p .txt07{top: 27.4%;left:29.2%;}
+.reference-building .build .build_p .txt08{top: 23.7%;left: 34.4%;}
+.reference-building .build .build_p .txt09{top: 23.7%;left: 39.6%;}
+.reference-building .build .build_p .txt10{top: 23.7%;left: 44.8%;}
+.reference-building .build .build_p .txt11{top: 33.1%;left: 50%;}
+.reference-building .build .build_p .txt12{top: 39%;left: 50%;}
+.reference-building .build .build_p .txt13{top: 41.5%;left: 44.8%;}
+.reference-building .build .build_p .txt14{top: 41.5%;left: 39.6%;}
+.reference-building .build .build_p .txt15{top: 41.5%;left: 34.4%;}
+
+.reference-building .build .build_c .txt01{top: 33.2%;left: 50%;}
+.reference-building .build .build_c .txt02{top: 23.8%;left: 44.8%;}
+.reference-building .build .build_c .txt03{top: 23.8%;left: 39.6%;}
+.reference-building .build .build_c .txt04{top: 23.8%;left: 34.4%;}
+.reference-building .build .build_c .txt05{top: 33.2%;left: 29.2%;}
+.reference-building .build .build_c .txt06{top: 39.1%;left: 29.2%;}
+.reference-building .build .build_c .txt07{top: 45%;left: 29.2%;}
+.reference-building .build .build_c .txt08{top: 50.9%;left: 29.2%;}
+.reference-building .build .build_c .txt09{top: 56.9%;left: 29.2%;}
+.reference-building .build .build_c .txt10{top:59.7%;left: 34.4%;}
+.reference-building .build .build_c .txt11{top:59.7%;left: 39.6%;}
+.reference-building .build .build_c .txt12{top:59.7%;left: 44.8%;}
+.reference-building .build .build_c .txt13{top:56.9%;left: 50%;}

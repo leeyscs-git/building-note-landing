@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="공간을 읽고, 관리의 기준을 씁니다. SPS의 저널과 리서치를 모은 인사이트 페이지 시안입니다.">
+  <title>SPS 인사이트 — 저널과 리서치</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+  <link rel="stylesheet" href="jll-remix.css">
+  <link rel="stylesheet" href="jll-remix-header.css?v=service-proportion-64">
+  <link rel="stylesheet" href="jll-remix-components.css?v=service-proportion-64">
+  <link rel="stylesheet" href="jll-remix-theme.css">
+  <link rel="stylesheet" href="jll-remix-journal.css">
+  <script src="jll-remix-header.js?v=journal-subpage" defer></script>
+  <script src="jll-remix-theme-schema.js?v=no-header-phone" defer></script>
+  <script src="jll-remix-theme.js?v=stable4" defer></script>
+  <script src="jll-remix-components.js?v=lease-condition-copy" defer></script>
+  <script src="jll-remix-journal-data.js" defer></script>
+  <script src="jll-remix-journal.js" defer></script>
+</head>
+<body class="journal-page">
+  <a class="skip-link" href="#main">본문으로 바로가기</a>
+  <header class="nav-shell" data-sps-header data-page="journal"></header>
+  <main id="main">
+    <div id="journal-index">
+      <section class="journal-intro wrap" aria-labelledby="journal-title">
+        <div><p class="eyebrow journal-overline">SPS INSIGHTS</p><h1 id="journal-title">공간을 읽고,<br>관리의 기준을 씁니다.</h1></div>
+        <div class="journal-intro-note"><p>건물의 일상에서 시작한 질문을<br>더 나은 운영의 기준으로 기록합니다.</p><a class="text-link journal-link" href="#archive">기록 살펴보기 <sps-arrow-up-right></sps-arrow-up-right></a></div>
+      </section>
+      <section class="journal-feature wrap" aria-labelledby="feature-title">
+        <a class="journal-feature-book" href="?article=why-we-work" data-article="why-we-work" aria-label="우리는 왜 일하는가 읽기"><span id="featured-book-cover"></span></a>
+        <div class="journal-feature-copy">
+          <p class="journal-meta"><span>저널 · 우리의 관점</span><span>대표 글 · 편집 초안</span></p>
+          <h2 id="feature-title"><a href="?article=why-we-work" data-article="why-we-work">우리는 왜<br>일하는가.</a></h2>
+          <p class="journal-feature-deck">맡겼지만, 알 수 없었던<br>경험에서 시작했습니다.</p>
+          <p class="journal-feature-summary">내 건물의 미납이 얼마인지, 어떤 관리가 남았는지.<br class="journal-wide-only"> 그 질문 앞에서 SPS의 일이 시작됐습니다.</p>
+          <a class="text-link journal-link" href="?article=why-we-work" data-article="why-we-work">글 읽기 <sps-arrow-up-right></sps-arrow-up-right></a>
+        </div>
+      </section>
+      <section class="journal-archive wrap" id="archive" aria-labelledby="archive-title">
+        <div class="journal-section-head"><div><p class="eyebrow">PERSPECTIVES & PRACTICE</p><h2 id="archive-title">관점에서, 현장까지.</h2></div><p>생각의 배경과 일의 기준을 함께 읽습니다.</p></div>
+        <div class="journal-filter-row">
+          <div class="journal-filters" role="group" aria-label="글 분류">
+            <button type="button" data-category="all" aria-pressed="true">전체</button>
+            <button type="button" data-category="journal" aria-pressed="false">저널</button>
+            <button type="button" data-category="research" aria-pressed="false">리서치</button>
+          </div>
+          <p id="journal-count" aria-live="polite"></p>
+        </div>
+        <p class="journal-category-note" id="journal-category-note">저널에는 경험과 관점을, 리서치에는 자료와 분석을 담습니다.</p>
+        <div class="journal-grid" id="journal-grid"></div>
+        <div class="journal-empty" id="journal-empty" hidden><p class="eyebrow">RESEARCH</p><h3>아직 공개된 리서치가 없습니다.</h3><p>자료의 출처와 분석 근거를 갖춘 글을 이곳에 소개합니다.<br>지금은 저널에서 SPS의 생각과 운영에 관한 기록을 읽어보세요.</p><button class="text-link journal-link" type="button" data-category="journal">저널 살펴보기 <sps-arrow-up-right></sps-arrow-up-right></button></div>
+        <noscript><p>분류와 글 미리보기를 이용하려면 브라우저의 자바스크립트를 켜 주세요.</p></noscript>
+      </section>
+      <section class="journal-closing wrap" aria-labelledby="closing-title">
+        <p class="eyebrow">FROM WORDS TO WORK</p><div><h2 id="closing-title">이 기준이, 실제 관리에서는<br>어떻게 이어질까요?</h2><a class="text-link journal-link" href="jll-remix.html#services">SPS 서비스 살펴보기 <sps-arrow-up-right></sps-arrow-up-right></a></div>
+      </section>
+    </div>
+    <article id="journal-article" class="journal-article wrap" hidden></article>
+  </main>
+  <footer class="journal-footer"><div class="wrap"><div class="journal-footer-main"><a href="jll-remix.html" aria-label="SPS 홈"><img src="assets/logo.svg" alt="SPS" width="120" height="40"></a><p>공간과 운영에 관한 기록.<br><span>SPS INSIGHTS</span></p><a class="text-link journal-link" href="jll-remix.html#contact">관리 상담 안내 <sps-arrow-up-right></sps-arrow-up-right></a></div><div class="journal-footer-bottom"><p>© SPS. All rights reserved.</p><p>페이지 시안 · 수록 글은 편집 초안이며, 사진은 실제 관리 사례를 나타내지 않습니다.</p></div></div></footer>
+</body>
+</html>

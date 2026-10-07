@@ -1,0 +1,6 @@
+/* Service grouping in G only; archived C/F layouts remain unchanged. */
+.f-service-choices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.f-header .c-primary > a[aria-current="location"]:after { transform: scaleX(1); }
+@media (max-width: 700px) {
+  .f-service-choices { grid-template-columns: 1fr; }
+}

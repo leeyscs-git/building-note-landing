@@ -1,0 +1,53 @@
+/* JLL expression reused; these overrides apply only to the separate persuasion proposal. */
+.persuasion-hero{position:relative;isolation:isolate;background:var(--ink);color:#fff;overflow:hidden}
+.persuasion-visual{position:absolute;inset:0 0 0 44%;z-index:-1}
+.persuasion-visual>img{width:100%;height:100%;object-fit:cover;object-position:58% center;filter:saturate(.65)}
+.persuasion-visual:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#10252b 0%,#10252b88 18%,#10252b08 55%),linear-gradient(0deg,#10252b77,transparent 60%)}
+.visual-caption{position:absolute;z-index:1;right:32px;top:24px;padding:4px 8px;background:#10252be6;color:#fff;font-size:14px}
+.persuasion-inner{display:grid;grid-template-columns:1.1fr .9fr;align-items:end;gap:56px;padding-block:48px}
+.hero-audience{font-size:14px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.hero-audience:before{content:'';width:24px;height:2px;background:var(--red);flex-shrink:0}
+.hero-audience>span{color:#e0e7e9;border-left:1px solid #ffffff66;padding-left:16px}
+.hero-v2 h1{font-size:64px;font-weight:500;line-height:1.2;letter-spacing:-.03em;margin-block:24px 24px}
+.hero-promise{font-size:24px;line-height:1.4!important;font-weight:500;letter-spacing:-.02em}
+.hero-scope{font-size:16px;margin-top:16px;color:#e0e7e9;max-width:520px}
+.hero-actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-top:24px}
+.hero-actions .button-white{min-height:52px;gap:32px;font-weight:500}
+.hero-secondary{display:inline-flex;align-items:center;gap:20px;font-size:16px;min-height:44px;border-bottom:1px solid #ffffff99}
+.hero-secondary>span{font-size:22px}
+.hero-condition{font-size:14px;color:#e0e7e9;margin-top:16px}
+.hero-v2 .persuasion-hero :is(a,button):focus-visible{outline-color:#fff}
+.report-preview{background:#fff;color:var(--ink);padding:28px 32px 20px;border-top:3px solid var(--red);width:100%;max-width:416px;margin:0 0 0 auto;box-shadow:0 16px 32px #06151933}
+.preview-heading{display:flex;justify-content:space-between;gap:12px;font-size:14px;align-items:start}.preview-heading>p{font-weight:700}.preview-heading>span{color:var(--muted);font-size:14px}
+.hero-v2 .report-preview h2{font-size:24px;margin-top:20px;line-height:1.4}
+.preview-points{margin:24px 0 8px}.preview-points>div{display:grid;grid-template-columns:80px 1fr;gap:16px;border-top:1px solid var(--line);padding-block:14px}
+.preview-points dt{font-size:14px;color:var(--muted)}.preview-points dd{margin:0;font-size:16px;line-height:1.5}
+.hero-v2 .report-preview .text-link{font-size:14px;gap:8px;justify-content:space-between;width:100%}
+.hero-v2 .report-preview a:focus-visible{outline-color:var(--red)}
+.origin-note{display:flex;align-items:center;gap:40px;padding-block:32px;border-bottom:1px solid var(--line)}
+.origin-label{font-size:14px;font-weight:700;color:var(--red);flex-shrink:0}
+.origin-note>p:nth-child(2){font-size:16px;flex:1}.origin-note>p:nth-child(2)>span{color:var(--muted)}
+.origin-note .text-link{white-space:nowrap;font-size:14px}
+.value-explanation{display:grid;grid-template-columns:1fr 1.2fr;gap:80px;padding-block:80px}
+.value-heading>p:last-child{margin-top:24px;color:var(--muted)}
+.value-points>div{display:flex;gap:24px;padding:24px 0;border-top:1px solid var(--line)}.value-points>div:first-child{padding-top:0;border:0}
+.value-index{font-size:14px;color:var(--red);font-variant-numeric:tabular-nums;min-width:24px;padding-top:4px}
+.value-points p{margin-top:12px;color:var(--muted)}
+.report-introduction{border-top:1px solid var(--line);padding-block:48px 32px}
+.report-introduction>p:last-child{margin-top:20px;color:var(--muted);max-width:720px}
+.hero-v2 .report-photo{display:none}.hero-v2 .report-heading h2{max-width:900px}
+.report-next{display:flex;align-items:center;justify-content:space-between;gap:32px;padding-block:32px;border-bottom:1px solid var(--line)}
+.report-next p{font-size:14px;color:var(--muted)}.report-next strong{display:block;font-size:24px;font-weight:500;letter-spacing:-.02em;margin-top:8px}
+@media(max-width:1100px){.persuasion-inner{gap:24px;grid-template-columns:1.1fr .9fr}.hero-v2 h1{font-size:56px}.hero-actions{gap:16px}.report-preview{padding:24px}.preview-heading{display:block}.preview-heading>span{display:block;margin-top:4px}.preview-points>div{gap:8px;grid-template-columns:64px 1fr}.origin-note{gap:24px}.value-explanation{gap:40px}}
+@media(max-width:760px){
+.persuasion-inner{display:block;padding-block:32px 56px}.persuasion-visual{inset:0;opacity:.3}.persuasion-visual:after{background:linear-gradient(90deg,#10252bfa,#10252b9c)}.visual-caption{top:auto;bottom:20px;right:20px;font-size:14px;padding:0;background:transparent}
+.hero-audience{gap:8px;font-size:14px}.hero-audience:before{width:16px}.hero-audience>span{padding-left:8px}
+.hero-v2 h1{font-size:40px;line-height:1.2;letter-spacing:-.02em;margin-block:24px}
+.hero-promise{font-size:24px}.hero-scope{margin-top:16px;font-size:16px}.hero-scope br{display:none}
+.hero-actions{margin-top:24px;display:grid;grid-template-columns:1fr;gap:8px}.hero-actions .button{width:100%}.hero-secondary{justify-content:space-between;border-bottom:0;min-height:48px}.hero-condition{margin-top:8px;font-size:14px}
+.report-preview{margin-top:32px;max-width:none;padding:24px 20px 16px;box-shadow:none}.preview-heading{display:flex}.preview-heading>span{margin:0}.hero-v2 .report-preview h2{margin-top:16px}.preview-points{margin-top:16px}.preview-points>div{padding-block:12px;gap:12px;grid-template-columns:64px 1fr}
+.origin-note{display:block;padding-block:24px}.origin-label{margin-bottom:12px}.origin-note>p:nth-child(2) br{display:none}.origin-note .text-link{margin-top:12px}
+.value-explanation{grid-template-columns:1fr;gap:32px;padding-block:48px}.value-heading>p:last-child{margin-top:16px}.value-points>div{gap:16px}.value-points p{margin-top:8px}
+.report-introduction{padding-block:40px 24px}.report-next{display:block;padding-block:24px}.report-next strong{font-size:24px}.report-next .button{margin-top:24px;width:100%}
+}
+@media(prefers-reduced-motion:reduce){.hero-v2 *{animation:none!important;transition:none!important}}

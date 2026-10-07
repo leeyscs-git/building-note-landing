@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "revision": 109,
+  "updatedAt": "2026-10-07T08:19:50.949Z",
+  "values": {
+    "--rose-hover": "#dde5e8",
+    "--rose-soft": "#e9eef0",
+    "--header-top-space": 0,
+    "--contact-padding": 18,
+    "--nav-font-size": 15,
+    "--contact-font-size": 14,
+    "--locale-font-size": 14,
+    "--content-max": 1200,
+    "--page-gutter": 96
+  }
+}

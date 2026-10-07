@@ -4,8 +4,9 @@
   "private": true,
   "description": "빌딩노트 랜딩페이지",
   "scripts": {
-    "dev": "serve . -l 3000",
-    "start": "serve . -l 3000"
+    "dev": "node scripts/design-server.cjs",
+    "start": "node scripts/design-server.cjs",
+    "test:theme": "node --test scripts/design-server.test.cjs"
   },
   "devDependencies": {
     "serve": "^14.2.4"

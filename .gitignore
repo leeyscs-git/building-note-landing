@@ -16,3 +16,16 @@ next-env.d.ts
 
 # humanize 파이프라인 산출물
 _workspace/
+
+# Local business documents, temporary work and visual review evidence
+/output/
+/tmp/
+/briefing/evidence/
+/briefing/journal-v1-source/
+
+# Keep internal strategy and decision records local
+/CONCEPT.md
+/DESIGN-ADAPTATIONS.md
+/briefing/*.md
+/briefing/journal-research.json
+/design/jll-remix/theme.before-locale-merge.json

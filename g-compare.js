@@ -1,0 +1,9 @@
+(() => {
+ 'use strict';
+ const root=document.querySelector('.comparison');let width=1280;
+ function resize(){document.querySelectorAll('.preview-window').forEach(container=>{if(!container.clientWidth)return;const frame=container.querySelector('iframe'),scale=Math.min(1,container.clientWidth/width),height=width===390?844:900;frame.style.width=`${width}px`;frame.style.height=`${height}px`;frame.style.transform=`scale(${scale})`;frame.style.left=`${Math.max(0,(container.clientWidth-width*scale)/2)}px`;container.style.height=`${Math.ceil(height*scale)+1}px`;});}
+ document.querySelectorAll('[data-width]').forEach(button=>button.addEventListener('click',()=>{width=Number(button.dataset.width);root.dataset.device=width===390?'mobile':'desktop';document.querySelectorAll('[data-width]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));resize();}));
+ document.querySelectorAll('button[data-view]').forEach(button=>button.addEventListener('click',()=>{const both=button.dataset.view==='both';root.style.setProperty('--panel-columns',both?2:1);document.querySelectorAll('.version-panel').forEach(p=>p.hidden=!both&&p.dataset.version!==button.dataset.view);document.querySelectorAll('button[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));resize();}));
+ document.querySelectorAll('[data-service]').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.version-panel').forEach(p=>{const url=`${p.dataset.version}-service.html?service=${button.dataset.service}`;p.querySelector('iframe').src=url;p.querySelector('[data-open]').href=url;});document.querySelectorAll('[data-service]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));}));
+ const observer=new ResizeObserver(resize);document.querySelectorAll('.preview-window').forEach(el=>observer.observe(el));resize();
+})();
