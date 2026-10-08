@@ -29,6 +29,7 @@ html[data-sps-desktop] [data-sps-header] { top: var(--sps-visible-top, 0px); }
   --red-section: #d2082b;
   --font: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --content-max: 1320px;
+  --page-tab-size: 21px;
   --radius-control: 3px;
   --radius-panel: 4px;
   --ease-editorial: cubic-bezier(.22, 1, .36, 1);
@@ -41,7 +42,19 @@ html[data-sps-desktop] [data-sps-header] { top: var(--sps-visible-top, 0px); }
 
 /* Shared content inset. Recompute on the header because About scopes its
    editable theme values there. Tablet/mobile spacing stays independent. */
-:root,[data-sps-header]{--layout-gutter:var(--page-gutter,72px)}
-@media(max-width:1100px){:root:where(:not([data-sps-desktop])),:where(html:not([data-sps-desktop])) [data-sps-header]{--layout-gutter:min(var(--page-gutter,48px),48px)}}
-@media(max-width:850px){:root:where(:not([data-sps-desktop])),:where(html:not([data-sps-desktop])) [data-sps-header]{--layout-gutter:min(var(--page-gutter,32px),32px)}}
-@media(max-width:600px){:root:where(:not([data-sps-desktop])),:where(html:not([data-sps-desktop])) [data-sps-header]{--layout-gutter:var(--page-gutter-mobile,20px)}}
+:root,[data-sps-header],[data-sps-layout]{--layout-gutter:var(--page-gutter,72px)}
+@media(max-width:1100px){:root:where(:not([data-sps-desktop])),:where(html:not([data-sps-desktop])) :is([data-sps-header],[data-sps-layout]){--layout-gutter:min(var(--page-gutter,48px),48px)}}
+@media(max-width:850px){:root:where(:not([data-sps-desktop])),:where(html:not([data-sps-desktop])) :is([data-sps-header],[data-sps-layout]){--layout-gutter:min(var(--page-gutter,32px),32px)}}
+@media(max-width:600px){:root:where(:not([data-sps-desktop])),:where(html:not([data-sps-desktop])) :is([data-sps-header],[data-sps-layout]){--layout-gutter:var(--page-gutter-mobile,20px)}}
+
+/* Shared content boundary: match the header rails; photos may bleed outside.
+   Apply once to a full-width section, not inside another constrained wrapper. */
+.sps-content{box-sizing:border-box;width:calc(100% - var(--layout-gutter)*2);max-width:var(--content-max);margin-inline:auto;padding-inline:0}
+
+/* Measure the indicator gap from the text line box, shared with content tabs.
+   Recompute in header scope because About stores its navigation type there. */
+:root,[data-sps-header],.ds-demo-nav {
+  --sps-nav-line-height: 1.65;
+  --sps-nav-indicator-size: 3px;
+  --sps-nav-indicator-gap: calc((49px - var(--nav-font-size,13px) * var(--sps-nav-line-height)) / 2 - var(--sps-nav-indicator-size));
+}

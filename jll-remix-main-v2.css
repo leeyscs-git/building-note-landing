@@ -1,0 +1,27 @@
+/* The opening film fills the viewport behind the shared SPS header. */
+.hw-main-v2 #main { margin-top:calc(-1 * var(--sps-header-height,137px)); }
+.hw-main-v2 .hw-hero { height:calc(var(--hw-height) + var(--sps-header-height,137px)); }
+.hw-main-v2 [data-sps-header] { transition:background-color .25s,color .25s,box-shadow .25s; }
+.hw-main-v2 [data-sps-header] .nav-links > a,
+.hw-main-v2 [data-sps-header] .nav-links > sps-service-menu { font-weight:550; }
+.hw-main-v2 [data-sps-header].is-over-film { background:transparent; color:var(--surface); border-bottom-color:transparent; box-shadow:none; }
+.hw-main-v2 [data-sps-header].is-over-film::before { content:''; position:absolute; inset:0 0 -32px; z-index:-1; pointer-events:none; background:linear-gradient(180deg,color-mix(in srgb,var(--ink) 72%,transparent),color-mix(in srgb,var(--ink) 24%,transparent) 72%,transparent); }
+.hw-main-v2 [data-sps-header].is-over-film .brand-logo { content:url('assets/logo-on-film.svg'); }
+.hw-main-v2 [data-sps-header].is-over-film .nav-links > a,
+.hw-main-v2 [data-sps-header].is-over-film .nav-links > sps-service-menu { color:var(--surface); text-shadow:0 1px 3px color-mix(in srgb,var(--ink) 65%,transparent); }
+.hw-main-v2 [data-sps-header].is-over-film :is(.header-locale,.locale-field select,.locale-field sps-chevron,.sps-service-trigger sps-chevron) { color:var(--surface); }
+.hw-main-v2 [data-sps-header].is-over-film .locale-divider { background:color-mix(in srgb,var(--surface) 45%,transparent); }
+.hw-main-v2 [data-sps-header].is-over-film .header-contact { color:var(--surface); background:color-mix(in srgb,var(--surface) 12%,transparent); border:1px solid color-mix(in srgb,var(--surface) 45%,transparent); }
+.hw-main-v2 [data-sps-header].is-over-film .header-contact:is(:hover,:focus-visible) { background:var(--surface); color:var(--ink); }
+.hw-main-v2 [data-sps-header].is-over-film .menu-toggle { color:var(--surface); border-color:color-mix(in srgb,var(--surface) 45%,transparent); }
+.hw-main-v2 [data-sps-header].is-over-film .menu-toggle > span { background:var(--surface); }
+.hw-main-v2 [data-sps-header].is-over-film :is(a,button,select):focus-visible { outline-color:var(--surface); }
+.hw-main-v2 [data-sps-header].is-over-film .nav-links > a:not(.current):is(:hover,:focus-visible)::after,
+.hw-main-v2 [data-sps-header].is-over-film .sps-service-trigger:not(.current):is(:hover,:focus-visible)::after { background:var(--surface); }
+
+@media(max-width:600px){
+  .hw-main-v2 .hw-section-nav { bottom:88px; }
+}
+@media(prefers-reduced-motion:reduce){
+  .hw-main-v2 [data-sps-header] { transition:none; }
+}

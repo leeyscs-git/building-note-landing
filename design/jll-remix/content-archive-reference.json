@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-08",
+  "pages": [
+    "jll-remix-journal-v2.html",
+    "jll-remix-cases.html"
+  ],
+  "shared": {
+    "script": "jll-remix-content-archive.js",
+    "stylesheet": "jll-remix-content-archive.css",
+    "responsibilities": [
+      "Centered Korean page title without an English chip",
+      "Breadcrumb and foundation content rails",
+      "Category tabs with header-matching gray hover/focus bars and an animated red active underline",
+      "Card markup, image hover and responsive grid",
+      "Foundation rise reveal and reduced-motion handling",
+      "Category help and empty-state layout"
+    ],
+    "compatibility": "Existing iv2 DOM hooks remain stable for article photo transitions. Insights owns its article routing, hero and manual first-read card; cases owns service filtering and inquiry context.",
+    "emptyState": "Research and every service category use the same .iv2-empty component. Both top and bottom borders are removed in the shared stylesheet; title size, weight, line height, spacing and responsive padding are shared. No service-specific empty-state border or title override remains.",
+    "breadcrumbMotion": "Shared breadcrumbMotion controller animates an optional data-breadcrumb-step from zero width, compensating the flex gap, so right-aligned ancestor items move left continuously as the new reading step appears. Reverse navigation contracts the step and then hides it. Photo-backed copies share the same motion. Use foundation reveal duration/easing; initial/direct loads and reduced motion settle immediately. Rapid reversals resume at the current width; resize, theme changes and backgrounding clean up animations.",
+    "categoryHelp": "Category labels and help buttons are separate siblings. Shared categoryHelp targets data-help-trigger only and anchors tooltips to the icon. Uses the shared 12px sps-help-pictogram raised beside the category label like a superscript, with the 28 × 44px minimum button hit area preserved and supports hover, focus, activation, Escape and outside dismissal. The active tab underline continues to measure only the category button."
+  },
+  "cases": {
+    "heading": "서비스 사례",
+    "label": null,
+    "categories": [
+      "전체",
+      "부동산 자산관리",
+      "임대 마케팅",
+      "실내건축",
+      "기타"
+    ],
+    "content": "User-requested layout samples: two property-management and two leasing-marketing cards. Each is marked 샘플 and uses an existing illustrative image; no actual clients, dates, metrics or results are asserted. All shows four, each populated category shows two; interior and other retain the shared borderless preparation state.",
+    "navigation": "Category URLs support direct access, browser Back, desktop/responsive mode and embed state.",
+    "consultation": "Selected management, marketing or interior service is passed to the inquiry flow. 기타 maps to undecided rather than an unsupported service; all retains the existing unspecified behavior.",
+    "responsive": "Long service names use horizontally scrollable tabs at widths up to 850px. All labels remain available; indicator coordinates account for scroll and desktop scale.",
+    "data": "jll-remix-cases-data.js contains the four samples separately from the filtering controller. Render with SPSContentArchive.cards, the same card component as Insights; use data-case rather than journal article routing. 서비스 안내 보기 links to the existing service section.",
+    "verification": "34 checks passed: shared cards and category filtering, sample images, direct category URLs, Back, inquiry context and Insights routes. No browser visual inspection performed."
+  },
+  "archive": {
+    "directory": "briefing/service-cases-v1-reference",
+    "original": "briefing/service-cases-v1-reference/original-source.html",
+    "preview": "briefing/service-cases-v1-reference/jll-remix-cases.html",
+    "preserved": [
+      "Page-specific HTML",
+      "Page-specific CSS",
+      "Original filter JS"
+    ],
+    "shared": "Header, foundations, consultation components and assets remain shared so before/after use the same site environment."
+  },
+  "comparison": {
+    "page": "jll-remix-cases-compare.html",
+    "entry": "compare.html",
+    "modes": [
+      "side by side",
+      "previous only",
+      "current only"
+    ],
+    "sizes": [
+      "1280 × 900",
+      "390 × 844"
+    ]
+  },
+  "verification": {
+    "tests": "57 passed: component/reveal/filter/archive checks plus Insights route, tooltip, hero, image-transition, manual-card and inquiry regression checks.",
+    "visual": "No browser visual inspection performed."
+  },
+  "labelTweak": {
+    "enabled": false,
+    "removedOn": "2026-10-09",
+    "decision": "Remove the INSIGHTS and OUR WORK heading chips and their icon-only chip controls. Remove the shared preview controller and CSS, so former per-page saved choices no longer restore either chip. V4 layout tweaks are independent."
+  },
+  "breadcrumbAlignment": "Use shared 12px top/bottom padding with 44px link height across archive lists and article view, including narrow layouts. Remove the article-only padding override and former 24px desktop / 20px mobile list inset. This keeps breadcrumb centers at the same offset below the shared header.",
+  "mobileRefinement": {
+    "date": "2026-10-09",
+    "headerBreakpoint": 850,
+    "scope": "Compact title/filter/help layout, selected-category horizontal reveal, left-aligned mobile prose, bounded first-read panel and shared touch navigation.",
+    "verification": "119 automated checks passed; 29 scripts passed syntax checking; 599 local HTML references resolved. Browser and physical-device visual checks were not performed."
+  }
+}

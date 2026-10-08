@@ -7,17 +7,19 @@
   const isJournal = header.dataset.page === 'journal';
   const isSupport = header.dataset.page === 'support';
   const isCases = header.dataset.page === 'cases';
-  const isSubpage = isAbout || isJournal || isSupport || isCases;
+  const isHanwha = header.dataset.page === 'hanwha';
+  const isSamsung = header.dataset.page === 'samsung';
+  const isSubpage = isAbout || isJournal || isSupport || isCases || isHanwha || isSamsung;
   const variant = document.documentElement.dataset.serviceMenu;
   const prefix = ['v2', 'v3', 'v4'].includes(variant) ? `jll-remix-${variant}` : 'jll-remix';
-  const home = `${prefix}.html`;
-  const about = `${prefix}-about.html`;
+  const home = header.dataset.homeHref || `${prefix}.html`;
+  const about = header.dataset.aboutHref || `${prefix}-about.html`;
   const sectionHref = id => `${isSubpage ? home : ''}#${id}`;
   const links = [
     { label: 'SPS 소개', href: about, current: isAbout },
     { label: '서비스', href: sectionHref('services'), section: 'services' },
     { label: '서비스 사례', href: 'jll-remix-cases.html', current: isCases },
-    { label: '인사이트', href: prefix === 'jll-remix' ? 'jll-remix-journal.html' : sectionHref('insights'), current: isJournal, section: prefix === 'jll-remix' ? null : 'insights' },
+    { label: '인사이트', href: header.dataset.journalHref || 'jll-remix-journal-v2.html', current: isJournal, section: null },
     { label: '고객지원', href: 'jll-remix-support.html', current: isSupport },
   ];
   function renderLink(link, index, expanded = false) {
@@ -42,7 +44,7 @@
         <img class="brand-logo" src="assets/logo.svg" alt="SPS" width="120" height="40">
       </a>
       <div class="nav-tools">
-        <a class="header-contact" href="jll-remix-support.html#inquiry" data-inquiry aria-haspopup="dialog">문의하기 <sps-arrow-up-right></sps-arrow-up-right></a>
+        <a class="header-contact" href="jll-remix-support.html#inquiry" data-inquiry aria-haspopup="dialog"><span class="header-contact-label">문의하기</span> <sps-arrow-up-right></sps-arrow-up-right></a>
         <button class="icon-button menu-toggle" type="button" aria-label="전체 메뉴 열기" aria-expanded="false" aria-controls="sps-header-menu"><span></span><span></span></button>
       </div>
     </div>
@@ -92,7 +94,7 @@
       else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
     }
   });
-  const mobileLayout = matchMedia('(max-width: 600px)');
+  const mobileLayout = matchMedia('(max-width: 850px)');
   mobileLayout.addEventListener('change', event => {
     header.querySelectorAll('sps-service-menu').forEach(item => item.close());
     if (event.matches || menu.hidden) return;
@@ -100,7 +102,10 @@
     header.querySelector('.brand').focus();
   });
   const updateHeight = () => document.documentElement.style.setProperty('--sps-header-height', `${header.offsetHeight}px`);
-  new ResizeObserver(updateHeight).observe(header);
+  // Saved top padding changes the border box without resizing its content box.
+  new ResizeObserver(updateHeight).observe(header, { box: 'border-box' });
+  window.addEventListener('sps-theme-change', updateHeight);
+  window.addEventListener('pageshow', updateHeight);
   updateHeight();
   const updateScroll = () => header.classList.toggle('is-scrolled', scrollY > 20);
   window.addEventListener('scroll', updateScroll, { passive: true });

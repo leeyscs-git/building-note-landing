@@ -1,0 +1,91 @@
+{
+  "verified": "2026-10-08",
+  "purpose": "Local Hanwha interaction reference study, not SPS project evidence",
+  "assets": [
+    {
+      "file": "hero.mp4",
+      "bytes": 11958675,
+      "source": "https://www.hanwha.co.kr/upload/main/visual/2024/03/06/1709710864404_90.mp4"
+    },
+    {
+      "file": "sky.jpg",
+      "bytes": 57059,
+      "source": "https://www.hanwha.co.kr/assets/img/pages/main/motion1/sky.jpg"
+    },
+    {
+      "file": "mountain-front.png",
+      "bytes": 408741,
+      "source": "https://www.hanwha.co.kr/assets/img/pages/main/motion1/mountain1.png"
+    },
+    {
+      "file": "mountain-back.png",
+      "bytes": 254175,
+      "source": "https://www.hanwha.co.kr/assets/img/pages/main/motion1/mountain2.png"
+    },
+    {
+      "file": "rocket.webm",
+      "bytes": 260379,
+      "source": "https://www.hanwha.co.kr/assets/img/pages/main/motion1/rocket.webm"
+    },
+    {
+      "file": "smoke.webm",
+      "bytes": 940854,
+      "source": "https://www.hanwha.co.kr/assets/img/pages/main/motion1/smoke.webm"
+    },
+    {
+      "file": "rocket-mobile.mp4",
+      "bytes": 3820235,
+      "source": "https://www.hanwha.co.kr/assets/img/pages/main/motion1/m.mp4"
+    },
+    {
+      "file": "rocket-poster.jpg",
+      "bytes": 133380,
+      "source": "https://www.hanwha.co.kr/assets/img/pages/main/motion1/m.jpg"
+    },
+    {
+      "file": "energy.mp4",
+      "bytes": 9674757,
+      "source": "https://www.hanwha.co.kr/assets/img/pages/main/motion2/d.mp4?v=2"
+    },
+    {
+      "file": "energy.jpg",
+      "bytes": 219070,
+      "source": "https://www.hanwha.co.kr/assets/img/pages/main/motion2/d.jpg?v=2"
+    },
+    {
+      "file": "future.mp4",
+      "bytes": 10047822,
+      "source": "https://www.hanwha.co.kr/assets/img/pages/main/motion3/d.mp4?v=2"
+    },
+    {
+      "file": "future.jpg",
+      "bytes": 146168,
+      "source": "https://www.hanwha.co.kr/assets/img/pages/main/motion3/d.jpg?v=2"
+    },
+    {
+      "file": "nature.jpg",
+      "bytes": 376860,
+      "source": "https://www.hanwha.co.kr/assets/img/pages/main/future-img-6.jpg"
+    },
+    {
+      "file": "business-1.jpg",
+      "bytes": 702355,
+      "source": "https://www.hanwha.co.kr/assets/img/pages/main/business-img-1.jpg"
+    },
+    {
+      "file": "business-2.jpg",
+      "bytes": 897603,
+      "source": "https://www.hanwha.co.kr/assets/img/pages/main/business-img-2.jpg"
+    },
+    {
+      "file": "business-3.jpg",
+      "bytes": 700752,
+      "source": "https://www.hanwha.co.kr/assets/img/pages/main/business-img-3.jpg"
+    },
+    {
+      "file": "business-4.jpg",
+      "bytes": 584763,
+      "source": "https://www.hanwha.co.kr/assets/img/pages/main/business-img-4.jpg"
+    }
+  ]
+}

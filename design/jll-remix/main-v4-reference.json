@@ -1,0 +1,151 @@
+{
+  "date": "2026-10-08",
+  "page": "jll-remix-main-v4.html",
+  "base": "Original SPS main stories with the shared Hanwha motion engine",
+  "decision": "Use the shared white header on both rows. The opening hero uses original still images for tabs 1–3 and the existing Hanwha test film for tab 4.",
+  "shared": [
+    "jll-remix-main-v2.js",
+    "jll-remix-hanwha.css",
+    "jll-remix-hanwha.js"
+  ],
+  "mediaManifest": "assets/hanwha-reference/sources.json",
+  "layout": "No overlay opt-in or negative header overlap. Shared header colors, logo and menu typography are retained on desktop and mobile.",
+  "comparison": "V4 does not load the retired comparison/palette switcher. Original A and V2 B keep comparison links; the separate comparison page retains all variants. V3 redirects to V4.",
+  "playback": "Only tab 4 shows the existing assets/hanwha-reference/hero.mp4. Tabs 1–3 hide and pause it. The shared playback engine also respects section visibility, background tabs and reduced motion. No playback button is added.",
+  "stories": "PERSPECTIVES: four original story labels select headlines and media. The panel retains the original content width, touches the hero bottom, and uses the shared 4px radius only at the upper corners. Its position remains separate from the media parallax.",
+  "headline": "Reuse the Hanwha 1.6s line reveal with 0.45s staggering on entry and tab selection. Remove the SPS 알아보기 CTA. Use the about-page down-arrow glyph in a 48px square with the shared contact-button radius and cool surface. Reduced-motion settings disable animation.",
+  "verification": {
+    "automatedTests": "25 passed, including loaded-image motion, video exclusion, background/offscreen pause and reduced motion",
+    "servedFiles": "Updated V4 HTML and controller match the workspace",
+    "visualReview": "Not performed: browser inspection remains unavailable in this session."
+  },
+  "mediaByTab": [
+    {
+      "tab": 1,
+      "type": "image",
+      "source": "assets/jll/seoul.webp"
+    },
+    {
+      "tab": 2,
+      "type": "image",
+      "source": "assets/landing/architecture.jpg"
+    },
+    {
+      "tab": 3,
+      "type": "image",
+      "source": "assets/jll/spaces.webp"
+    },
+    {
+      "tab": 4,
+      "type": "video",
+      "source": "assets/hanwha-reference/hero.mp4"
+    }
+  ],
+  "storyEntry": "PERSPECTIVES has no adjacent arrow. Match the original bar timing: 300ms delay, 800ms duration, cubic-bezier(.22,1,.36,1). Retain the bottom-up entry and 4px upper corners. Reduced motion displays the bar immediately.",
+  "downButton": "Retain the square down link beside or above the PERSPECTIVES bar according to available width. Layout tweaks do not change this button.",
+  "photoMotion": "Tabs 1–3 reuse the original photo motion: scale 1.055 to 1 over 8500ms, linear, once per selected photo after loading. Pause outside the hero and in background tabs; cancel for reduced motion or tab 4. The existing video is unchanged.",
+  "visionPalettes": {
+    "status": "Finalized; palette preview retired",
+    "name": "쿨 화이트",
+    "token": "--surface-cool",
+    "savedValue": "#f1f1f1",
+    "foreground": "--ink",
+    "scope": "V4 vision slogan background. Uses the existing shared foundation value; no global token edit in this change.",
+    "behavior": "The approved surface is defined directly in CSS and remains independent of the retired vision query. Retain the original transition to Ink before the keyword films, and the chosen static surface for reduced motion.",
+    "verification": "26 main, switcher and motion tests passed. V4 creates no tweak UI, and original/V2 comparisons remain usable. Browser visual verification not performed."
+  },
+  "visionTypography": "Use the existing --hero-title-size foundation token (59px default) for the vision slogan and its hidden keyword guides above 768px and in explicit desktop-canvas mode. Retain the previous small-screen responsive sizing. Recompute motion coordinates on foundation theme changes. The dedicated Hanwha reference page keeps its source-derived scale.",
+  "serviceContent": {
+    "categories": [
+      {
+        "key": "management",
+        "name": "부동산 자산관리",
+        "image": "assets/landing/architecture.jpg"
+      },
+      {
+        "key": "marketing",
+        "name": "임대 마케팅",
+        "image": "assets/landing/workplace.jpg"
+      },
+      {
+        "key": "interior",
+        "name": "실내건축",
+        "image": "assets/landing/interior.jpg"
+      }
+    ],
+    "interaction": "Existing expandable panels with local SPS service dialogs and directly addressable service URLs."
+  },
+  "insightsContent": {
+    "index": "jll-remix-journal-v2.html",
+    "articles": [
+      "report-principles",
+      "before-changing-space",
+      "why-we-work"
+    ],
+    "peek": "The former hero-only news drawer is removed. The numbered rail links to #hw-news, which retains the index and article links."
+  },
+  "pageNavigation": {
+    "layout": "Fixed right-side rail with quiet dividers and five always-visible section names. Retain the surface and shadow; use the shared --radius-panel foundation token (4px default), replacing the former 30px pill corners. V4 only.",
+    "sections": [
+      "소개",
+      "비전",
+      "서비스",
+      "인사이트",
+      "지속가능경영"
+    ],
+    "content": "Remove 01–05 from visible and accessible labels. Rename 처음 to 소개. Keep the five existing anchor targets; the shared scroll engine colors the active section label red.",
+    "interaction": "All names remain visible without hovering, on desktop and narrow screens. Clicking a label keeps the existing section scroll behavior.",
+    "fallback": "Hide during menus, dialogs, background tabs and footer, and while the V4 layout tweak disables the rail. Returning from another section or menu preserves the manual visibility choice.",
+    "verification": "10 existing navigation and shared motion checks passed. All five text-only links and section targets checked. Browser visual verification not performed."
+  },
+  "visionParticles": {
+    "enabled": false,
+    "archive": "design/jll-remix/archive/vision-particles-2026-10-08",
+    "reason": "Restore the original upward slogan reveal; keep the complete scroll-driven particle experiment for later reuse."
+  },
+  "tweakVerification": "34 layout, story, navigation and shared archive checks passed, including down-arrow persistence, reset, resizing, older/invalid storage and embed defaults. No browser visual inspection performed.",
+  "visionEntry": {
+    "effect": "Restore shared keywordState reveal: original lines rise from translateY(110%) to 0 while vision progress advances from -0.4 to 0. Scrolling backward reverses the same motion.",
+    "timing": "Remove the particle-only 0.9-stage extension and offset; the vision stage returns to 8.6 heights and subsequent keyword/film timings match the original.",
+    "fallback": "Shared reduced-motion behavior shows readable static text. No canvas boot guard or particle script is loaded.",
+    "verification": "37 existing checks passed: 28 current main, navigation and motion checks plus 9 archived particle checks. Browser visual verification not performed."
+  },
+  "layoutTweaks": {
+    "controller": "jll-remix-main-v4-tweaks.js",
+    "placement": "Collapsed native details control fixed at the viewport upper-right corner, 16px from top and right, over the white header area. Follow the visible viewport offset in desktop-canvas mode. Hidden in embedded comparison frames.",
+    "controls": [
+      "Right-side section navigation visibility",
+      "Hero down-arrow visibility",
+      "Hero headline size from existing foundation title tokens",
+      "Hero headline vertical position",
+      "Reset controls to default"
+    ],
+    "position": "Signed pixel offset from the original bar + 32px baseline; minimum -20px keeps 12px clear of the bar. Maximum is recalculated from hero, copy and bar layout heights with 24px top clearance. Resize, text wrapping and foundation changes update the limit.",
+    "persistence": "V4-only localStorage key sps-main-v4-layout-tweaks-v1. Save showNav, showDown, offset and fontToken independently. Older settings default the down arrow to visible. Restore with panel collapsed; storage failures keep controls usable. Reset shows both navigation and down arrow and restores the headline defaults.",
+    "foundation": "Approved cool-white vision palette remains fixed; no color or comparison controls.",
+    "accessibility": "Native checkbox/range/details semantics, labelled range with directional value, keyboard adjustment, Escape dismissal and focus restoration.",
+    "stacking": "Header uses z-index 60 in the shared Hanwha stylesheet. V4 corner tweaks use 70 so they remain visible over the opaque header; shared skip navigation remains above at 100. Menu-open hiding is preserved.",
+    "fontChoice": {
+      "source": "SPSThemeSchema content/title fields only; show each foundation label and current pixel value.",
+      "tokens": [
+        "--hero-title-size",
+        "--hero-title-mobile",
+        "--section-title-size",
+        "--section-title-mobile",
+        "--card-title-size"
+      ],
+      "default": "--section-title-size (43px foundation default)",
+      "application": "Hero H1 uses a CSS var reference to the selected token with its schema default fallback. Applies to all four hero story headlines; live foundation edits update both the text and dropdown labels.",
+      "persistence": "Store the selected token name with existing V4 layout settings. Old settings remain compatible. Reject unregistered tokens and arbitrary pixel values.",
+      "layout": "Recalculate safe vertical movement after selection; existing title/bar ResizeObservers handle wrapping and changed height. Keep shared entry animation and story behavior."
+    },
+    "trigger": "44px square icon-only + summary, labelled 화면 조정 for assistive technology; the icon rotates into a close mark while expanded. V4 layout controls remain available independently of the retired archive chip previews.",
+    "downArrow": "아래 화살표 표시 toggles the existing .hw-down anchor through hidden; an explicit V4 [hidden] rule overrides its grid layout. The existing vision anchor, button position, hero media and scroll behavior are retained when shown. Embedded comparisons keep the visible default."
+  },
+  "mobileRefinement": {
+    "date": "2026-10-09",
+    "headerBreakpoint": 850,
+    "scope": "Bottom section rail with safe-area space, inset-aware story/title placement, mobile foundation title cap, non-overlapping tweaks and controls, stacked service panels, static scenes on short landscape viewports.",
+    "verification": "119 automated checks passed; 29 scripts passed syntax checking; 599 local HTML references resolved. Browser and physical-device visual checks were not performed."
+  }
+}

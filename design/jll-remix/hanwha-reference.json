@@ -1,0 +1,63 @@
+{
+  "reference": "https://www.hanwha.co.kr/",
+  "inspectedAt": "2026-10-08",
+  "scope": "한화 원본의 모션을 SPS 공통 헤더 아래에서 비교하는 독립 로컬 페이지",
+  "localPage": "jll-remix-hanwha.html",
+  "verifiedEvidence": "공개 HTML, CSS, JS 및 /api/v1/main.do의 응답을 직접 읽음. 영상·이미지 GET 200/206 확인. 브라우저 렌더링은 도구 시작 오류로 미확인.",
+  "sourceFiles": [
+    "https://www.hanwha.co.kr/assets/js/main.js",
+    "https://www.hanwha.co.kr/assets/css/main.css",
+    "https://www.hanwha.co.kr/api/v1/main.do"
+  ],
+  "reproduced": [
+    {
+      "scene": "첫 화면",
+      "observed": "활성 API의 영상 1개. 예전 텍스트/작은 이미지 마스크 도입은 주석 처리. 제목 1.6초 Quint out, PC 두 번째 줄 지연 3초·모바일 .2초. 영상은 스크롤 속도의 50%로 움직임.",
+      "implementation": "원본 영상 사용, 두 구문을 순차 등장. 고정 높이 안에서 배경만 이동. 영상 재생/정지 제공."
+    },
+    {
+      "scene": "비전",
+      "observed": "화면 고정. 50vh 동안 일반 문장 소거 → 50vh 동안 키워드 X 이동 → 10vh 간격 → 50vh 동안 Y 이동.",
+      "implementation": "뷰포트에서 공통 헤더 높이를 뺀 기준 높이로 변환. 문장의 원래 키워드 자체를 숨긴 목차 좌표로 이동. 복제 문구를 표시하지 않음."
+    },
+    {
+      "scene": "3개 영상",
+      "observed": "66%에서 100%로 확대, 둥근 모서리 4.25vw→0. 첫 2개는 나갈 때 66%로 축소. 내부 진입 -90%, 퇴장 40% 이동. 영상 object-position 0→100%.",
+      "implementation": "원본 자산과 같은 수치의 스크롤 상태 함수, 역스크롤 시 같은 진행률로 복원."
+    },
+    {
+      "scene": "로켓",
+      "observed": "하늘/로켓/연기/전경산/후경산 분리. 산 스케일 2→1, 로켓 수직 이동 100→0→-60%. 마우스 좌우 회전 ±4도·상하 ±1도.",
+      "implementation": "원본 WebM 및 PNG 레이어를 합성. 세로 화면에는 원본 모바일 영상. CSS/JS의 좌표 값은 반영했으나 최종 화면 일치 미확인."
+    },
+    {
+      "scene": "사업분야",
+      "observed": "이미지 2초 Quint out, .2초 순차 진입. 호버 시 열 너비 1.2초 전환. 진입/호버 시 .8초 상단 정렬.",
+      "implementation": "4열 사진 펼침, .2초 순차 진입, 호버/키보드/터치 대응. 상단 정렬은 호버 시 가까운 구간에서만 허용해 강제 스크롤 줄임."
+    },
+    {
+      "scene": "마지막 이미지",
+      "observed": "최대 360×468 세로 사진이 화면 전체로 확장, 반경 8px→0, 내부 이미지 스케일 .6→1. 이어서 좌상단/우하단 문구 순차 등장.",
+      "implementation": "원본 은하수 사진, 고정 프레임에서 확대 및 단계별 문구 등장."
+    }
+  ],
+  "differences": [
+    "SPS 공통 헤더와 기존 Pretendard·색상 토큰 유지. 한화의 오렌지색·전용 서체는 새로 추가하지 않음.",
+    "원문을 길게 전재하지 않고 비교용 문구로 재작성. 실제 한화 뉴스 목록 대신 공식 뉴스룸 진입 카드 제공.",
+    "동작 원리를 자체 코드로 재작성했으며 원본 페이지나 원본 스크립트를 iframe으로 실행하지 않음.",
+    "원본은 GSAP/ScrollTrigger, 로컬은 native sticky + requestAnimationFrame. 부드러운 스크롤은 Lenis 1.0.42를 사용. 원본 Lenis 세부 버전은 미확인.",
+    "접근성 설정에서 모션 축소·자동 영상 정지, 숨겨진 CTA의 포커스 제외 등 추가.",
+    "원본에는 내장되지 않은 영상 재생/정지 버튼을 추가."
+  ],
+  "visualVerification": "브라우저 도구가 trusted Node process exited unexpectedly 오류로 시작하지 않아 PC/모바일 실제 재생·전환·겹침·동일성은 아직 미확인.",
+  "publication": "로컬만. 커밋·푸시·배포 없음.",
+  "mediaManifest": "assets/hanwha-reference/sources.json",
+  "keywordOverlapFix": {
+    "date": "2026-10-08",
+    "issue": "사용자 캡처에서 비전 문장과 이동용 복제 키워드가 서로 다른 위치에 동시에 표시되는 겹침 확인.",
+    "change": "복제 키워드 생성 제거. 원래 문장 안의 키워드를 직접 이동하고 나머지 구절만 먼저 흐리게 처리. 도착 좌표용 목차는 항상 숨김. 글꼴·행간·자간을 동일하게 유지하고, 크기 변경 시 원래 좌표를 다시 측정.",
+    "verified": "JS 구문 검사 및 스크롤 상태 회귀 검사 7개 통과. 로컬 서버 200 응답 및 수정 파일 동일성 확인.",
+    "unverified": "브라우저 도구 시작 오류로 수정 후 실제 렌더링과 스크롤 모습은 아직 확인하지 못함.",
+    "publication": "로컬만 수정. 커밋·푸시·배포 없음."
+  }
+}

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SPS 소개 · V1 / V2 비교</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+  <link rel="stylesheet" href="jll-remix.css?v=insight-title59">
+  <style>
+    body{background:var(--surface-cool)}
+    .review-head{padding:24px 32px;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .review-head>a:first-child{display:flex;gap:24px;align-items:center}.review-head img{width:96px;height:auto}.review-head strong{font-size:16px;font-weight:550}.review-head>a:last-child{font-size:13px;text-decoration:underline;text-underline-offset:5px}
+    .review-main{padding:32px;max-width:1800px;margin:auto}.review-main h1{font-size:32px;line-height:1.4}.review-intro{font-size:14px;color:var(--muted);margin-top:12px;max-width:75em}
+    .review-controls{display:flex;flex-wrap:wrap;gap:16px 32px;margin-block:24px}.review-control{display:flex;border:1px solid var(--line);background:var(--surface);padding:4px;gap:4px;border-radius:var(--radius-control)}
+    .review-control button{font-size:13px;padding:10px 16px;min-height:44px;border-radius:var(--radius-control)}
+    .review-control button[aria-pressed=true]{background:var(--ink);color:var(--surface)}
+    .about-comparison{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+    .about-comparison:not([data-view=both]){grid-template-columns:minmax(0,1fr)}
+    .review-panel{background:var(--surface);border:1px solid var(--line);min-width:0}
+    .review-panel-heading{display:flex;align-items:center;justify-content:space-between;padding:20px;gap:24px;border-bottom:1px solid var(--line)}
+    .review-panel-heading h2{font-size:18px;line-height:1.5}.review-panel-heading small{font-size:12px;color:var(--muted);display:block;margin-top:6px}.review-panel-heading a{font-size:13px;white-space:nowrap}
+    .review-window{width:100%;max-width:var(--review-width,1280px);margin:auto;height:var(--preview-height,450px);overflow:hidden;background:var(--surface)}
+    .review-window iframe{display:block;width:var(--review-width,1280px);height:var(--review-height,900px);border:0;transform:scale(var(--preview-scale,.5));transform-origin:top left}
+    .review-note{font-size:13px;color:var(--muted);margin-top:20px;line-height:1.8}
+    @media(max-width:850px){.review-head{padding:20px;flex-wrap:wrap}.review-head>a:first-child{gap:16px}.review-main{padding:24px 16px}.about-comparison{grid-template-columns:1fr}.review-main h1{font-size:26px}.review-panel-heading{padding:16px;gap:12px}}
+  </style>
+</head>
+<body>
+  <header class="review-head"><a href="compare.html"><img src="assets/logo.svg" alt="SPS" width="120" height="40"><strong>소개 페이지 비교</strong></a><a href="compare.html">전체 시안 비교로 ↗</a></header>
+  <main class="review-main">
+    <h1>같은 SPS, 더 구체적인 소개.</h1>
+    <p class="review-intro">V1의 이미지와 소개 문구를 유지하고, V2는 회사 개요 → 대표 인사말 → 함께하는 사람들 → 등록·면허 순서로 구성했습니다. 기존 서비스 메뉴의 V2 트윅과는 별도의 소개 페이지 시안입니다.</p>
+    <div class="review-controls">
+      <div class="review-control" role="group" aria-label="비교할 소개 화면"><button type="button" data-review-view="both" aria-pressed="true">나란히 비교</button><button type="button" data-review-view="before" aria-pressed="false">V1 원본</button><button type="button" data-review-view="after" aria-pressed="false">V2 트윅</button></div>
+      <div class="review-control" role="group" aria-label="동일한 화면 크기"><button type="button" data-review-size="desktop" aria-pressed="true">PC · 1280 × 900</button><button type="button" data-review-size="mobile" aria-pressed="false">모바일 · 390 × 844</button></div>
+    </div>
+    <div class="about-comparison" data-view="both">
+      <section class="review-panel" data-version="before"><div class="review-panel-heading"><div><h2>V1 · 기존 소개</h2><small>비전과 공간 이야기 중심</small></div><a href="jll-remix-about.html" target="_blank" rel="noopener">직접 보기 ↗</a></div><div class="review-window"><iframe src="jll-remix-about.html?embed=1" title="V1 기존 SPS 소개"></iframe></div></section>
+      <section class="review-panel" data-version="after"><div class="review-panel-heading"><div><h2>V2 · 소개 트윅</h2><small>회사 · 시작한 이유 · 사람 · 확인 자료</small></div><a href="jll-remix-about-v2.html" target="_blank" rel="noopener">직접 보기 ↗</a></div><div class="review-window"><iframe src="jll-remix-about-v2.html?embed=1" title="V2 네 가지 목차로 구성한 SPS 소개"></iframe></div></section>
+    </div>
+    <p class="review-note">각 화면 안에서 개별 스크롤할 수 있습니다. V2의 대표 인사말은 전달받은 경험을 바탕으로 작성한 초안입니다. 구성원과 등록·면허 자료는 준비 상태이며 실제 문서 열람은 연결하지 않았습니다. 상담 창은 작성·확인·복사까지만 가능하며 서버 접수는 되지 않습니다.</p>
+  </main>
+  <script>
+    (() => {
+      const comparison=document.querySelector('.about-comparison');
+      const panels=[...document.querySelectorAll('.review-panel')];
+      const windows=[...document.querySelectorAll('.review-window')];
+      let width=1280,height=900;
+      function fit(){
+        windows.forEach(frame=>{
+          if(!frame.clientWidth)return;
+          const scale=Math.min(1,frame.clientWidth/width);
+          frame.style.setProperty('--preview-scale',scale);
+          frame.style.setProperty('--preview-height',height*scale+'px');
+        });
+      }
+      document.querySelectorAll('[data-review-view]').forEach(button=>button.addEventListener('click',()=>{
+        const view=button.dataset.reviewView;
+        comparison.dataset.view=view;
+        panels.forEach(panel=>panel.hidden=view!=='both'&&panel.dataset.version!==view);
+        document.querySelectorAll('[data-review-view]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+        requestAnimationFrame(fit);
+      }));
+      document.querySelectorAll('[data-review-size]').forEach(button=>button.addEventListener('click',()=>{
+        const mobile=button.dataset.reviewSize==='mobile';
+        width=mobile?390:1280;height=mobile?844:900;
+        comparison.style.setProperty('--review-width',width+'px');
+        comparison.style.setProperty('--review-height',height+'px');
+        document.querySelectorAll('[data-review-size]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+        requestAnimationFrame(fit);
+      }));
+      const observer=new ResizeObserver(fit);
+      windows.forEach(frame=>observer.observe(frame));
+      fit();
+    })();
+  </script>
+</body>
+</html>

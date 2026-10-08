@@ -72,6 +72,11 @@ body.sps-inquiry-open { overflow:hidden; }
 .credentials-inquire sps-arrow-up-right { color:var(--red); }
 @media(max-width:1100px) { :where(html:not([data-sps-desktop])) .credentials { --layout-gutter:min(var(--page-gutter,48px),48px); } }
 @media(max-width:850px) { :where(html:not([data-sps-desktop])) .credentials { --layout-gutter:min(var(--page-gutter,32px),32px); } }
+@media(max-width:850px) {
+  :where(html:not([data-sps-desktop])) .inquiry-grid { grid-template-columns:minmax(0,1fr); }
+  :where(html:not([data-sps-desktop])) .inquiry-progress { display:flex; flex-wrap:wrap; gap:8px 24px; }
+  :where(html:not([data-sps-desktop])) .inquiry-field :is(input,select,textarea) { font-size:max(16px,var(--field-font-size,14px)); }
+}
 @media(max-width:600px) {
   :where(html:not([data-sps-desktop])) .credentials { --layout-gutter:var(--page-gutter-mobile,20px); }
   :where(html:not([data-sps-desktop])) .sps-inquiry { width:100%;max-width:100%;height:100dvh;max-height:100dvh;border-radius:0; }
@@ -83,7 +88,7 @@ body.sps-inquiry-open { overflow:hidden; }
   :where(html:not([data-sps-desktop])) .inquiry-aside>p:not(.eyebrow),:where(html:not([data-sps-desktop])) .inquiry-phone { display:none; }
   :where(html:not([data-sps-desktop])) .inquiry-progress { display:flex;margin-top:20px;gap:24px; }
   :where(html:not([data-sps-desktop])) .inquiry-progress li { padding:0;border:0; }
-  :where(html:not([data-sps-desktop])) .inquiry-panel { padding:24px 20px; }
+  :where(html:not([data-sps-desktop])) .inquiry-panel { padding:24px 20px max(24px,env(safe-area-inset-bottom)); }
   :where(html:not([data-sps-desktop])) .inquiry-field input,:where(html:not([data-sps-desktop])) .inquiry-field select,:where(html:not([data-sps-desktop])) .inquiry-field textarea { font-size:max(16px,var(--field-font-size,14px)); }
   :where(html:not([data-sps-desktop])) .inquiry-pair { grid-template-columns:1fr;gap:20px; }
   :where(html:not([data-sps-desktop])) .inquiry-review dl>div { grid-template-columns:80px 1fr;gap:16px; }
@@ -94,4 +99,28 @@ body.sps-inquiry-open { overflow:hidden; }
   :where(html:not([data-sps-desktop])) .credentials-row { grid-template-columns:32px 1fr;gap:16px; }
   :where(html:not([data-sps-desktop])) .credentials-row>span { grid-column:2; }
 }
+@media(max-width:360px) {
+  :where(html:not([data-sps-desktop])) .inquiry-kind-options { grid-template-columns:minmax(0,1fr); }
+}
 @media(prefers-reduced-motion:reduce) { .sps-inquiry * { scroll-behavior:auto;transition:none; } }
+
+/* Consultation and quotation share one draft and review flow. */
+.inquiry-kind { border:0;padding:0;margin:0 0 24px;min-width:0; }
+.inquiry-kind legend { font-size:16px;font-weight:550;margin-bottom:12px; }
+.inquiry-kind-options { display:grid;grid-template-columns:1fr 1fr;gap:12px; }
+.inquiry-kind-options label { display:flex;align-items:flex-start;gap:10px;padding:16px 12px;border:1px solid var(--line);border-radius:var(--radius-control,3px);cursor:pointer; }
+.inquiry-kind-options label:has(input:checked) { border-color:var(--ink);background:var(--surface-cool); }
+.inquiry-kind-options input { width:16px;height:16px;margin:4px 0 0;accent-color:var(--ink);flex-shrink:0; }
+.inquiry-kind-options strong { display:block;font-size:15px;font-weight:550; }
+.inquiry-kind-options small { display:block;font-size:12px;line-height:1.65;color:var(--muted);margin-top:4px; }
+.inquiry-context-status { margin:0 0 20px;padding-left:12px;border-left:2px solid var(--line);font-size:13px;color:var(--muted); }
+.inquiry-quote { border:1px solid var(--line);border-radius:var(--radius-control,3px);padding:16px;margin:0;min-width:0;display:grid;gap:16px; }
+.inquiry-quote legend { font-size:14px;font-weight:600;padding-inline:6px; }
+.inquiry-quote legend span { color:var(--muted);font-size:12px;font-weight:450;margin-left:6px; }
+.inquiry-quote>p { font-size:13px;color:var(--muted);line-height:1.7; }
+.inquiry-quote .inquiry-quote-note { padding-top:16px;border-top:1px solid var(--line); }
+@media(max-width:600px) {
+  :where(html:not([data-sps-desktop])) .inquiry-kind-options { gap:8px; }
+  :where(html:not([data-sps-desktop])) .inquiry-kind-options label { padding:12px 10px;gap:8px; }
+  :where(html:not([data-sps-desktop])) .inquiry-kind-options small { font-size:12px; }
+}

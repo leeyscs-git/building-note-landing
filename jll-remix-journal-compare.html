@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SPS 인사이트 · V1 / V2 비교</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+  <link rel="stylesheet" href="jll-remix.css?v=insight-title59">
+  <style>
+    body{background:var(--surface-cool)}
+    .review-head{padding:24px 32px;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .review-head>a:first-child{display:flex;gap:24px;align-items:center}.review-head img{width:96px;height:auto}.review-head strong{font-size:16px;font-weight:550}.review-head>a:last-child{font-size:13px;text-decoration:underline;text-underline-offset:5px}
+    .review-main{padding:32px;max-width:1800px;margin:auto}.review-main h1{font-size:32px;line-height:1.4}.review-intro{font-size:14px;color:var(--muted);margin-top:12px;max-width:75em}
+    .review-controls{display:flex;flex-wrap:wrap;gap:16px 32px;margin-block:24px}.review-control{display:flex;border:1px solid var(--line);background:var(--surface);padding:4px;gap:4px;border-radius:var(--radius-control)}
+    .review-control button{font-size:13px;padding:10px 16px;min-height:44px;border-radius:var(--radius-control)}
+    .review-control button[aria-pressed=true]{background:var(--ink);color:var(--surface)}
+    .about-comparison{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+    .about-comparison:not([data-view=both]){grid-template-columns:minmax(0,1fr)}
+    .review-panel{background:var(--surface);border:1px solid var(--line);min-width:0}
+    .review-panel-heading{display:flex;align-items:center;justify-content:space-between;padding:20px;gap:24px;border-bottom:1px solid var(--line)}
+    .review-panel-heading h2{font-size:18px;line-height:1.5}.review-panel-heading small{font-size:12px;color:var(--muted);display:block;margin-top:6px}.review-panel-heading a{font-size:13px;white-space:nowrap}
+    .review-window{width:100%;max-width:var(--review-width,1280px);margin:auto;height:var(--preview-height,450px);overflow:hidden;background:var(--surface)}
+    .review-window iframe{display:block;width:var(--review-width,1280px);height:var(--review-height,900px);border:0;transform:scale(var(--preview-scale,.5));transform-origin:top left}
+    .review-note{font-size:13px;color:var(--muted);margin-top:20px;line-height:1.8}
+    @media(max-width:850px){.review-head{padding:20px;flex-wrap:wrap}.review-head>a:first-child{gap:16px}.review-main{padding:24px 16px}.about-comparison{grid-template-columns:1fr}.review-main h1{font-size:26px}.review-panel-heading{padding:16px;gap:12px}}
+  </style>
+</head>
+<body>
+  <header class="review-head"><a href="compare.html"><img src="assets/logo.svg" alt="SPS" width="120" height="40"><strong>인사이트 페이지 비교</strong></a><a href="compare.html">전체 시안 비교로 ↗</a></header>
+  <main class="review-main">
+    <h1>같은 글, 두 가지 인사이트 구성.</h1>
+    <p class="review-intro">V1은 기존 메인과 같은 카드 구성, V2는 중앙 제목과 카테고리 탭·동일 크기의 3열 뉴스룸 카드입니다. 동일한 7개 편집 초안과 파운데이션을 사용하며, 리서치는 아직 비어 있습니다.</p>
+    <div class="review-controls">
+      <div class="review-control" role="group" aria-label="비교할 인사이트 화면"><button type="button" data-review-view="both" aria-pressed="true">나란히 비교</button><button type="button" data-review-view="before" aria-pressed="false">V1 보관본</button><button type="button" data-review-view="after" aria-pressed="false">V2 트윅</button></div>
+      <div class="review-control" role="group" aria-label="동일한 화면 크기"><button type="button" data-review-size="desktop" aria-pressed="true">PC · 1280 × 900</button><button type="button" data-review-size="mobile" aria-pressed="false">모바일 · 390 × 844</button></div>
+    </div>
+    <div class="about-comparison" data-view="both">
+      <section class="review-panel" data-version="before"><div class="review-panel-heading"><div><h2>V1 · 보관용 인사이트</h2><small>나중에 확인하기 위한 이전 구성</small></div><a href="jll-remix-journal.html" target="_blank" rel="noopener">직접 보기 ↗</a></div><div class="review-window"><iframe src="jll-remix-journal.html?embed=1" title="V1 기존 SPS 인사이트"></iframe></div></section>
+      <section class="review-panel" data-version="after"><div class="review-panel-heading"><div><h2>V2 · 인사이트 트윅</h2><small>중앙 제목 · 사진 중심 3열 카드</small></div><a href="jll-remix-journal-v2.html" target="_blank" rel="noopener">직접 보기 ↗</a></div><div class="review-window"><iframe src="jll-remix-journal-v2.html?embed=1" title="V2 중앙 제목과 뉴스룸 구성의 SPS 인사이트"></iframe></div></section>
+    </div>
+    <p class="review-note">각 화면 안에서 분류 선택·글 읽기·목록 복귀를 확인할 수 있습니다. V2는 사용자가 지정한 한화 비교 페이지의 뉴스룸 캡처처럼 사진·분류·제목·읽기 링크를 3열로 배치했습니다. 별도 대표 기사와 카드 요약문은 두지 않습니다. 사진은 각진 형태이며 실제 관리 사례가 아닙니다. 브레드크럼과 카드 영문 분류는 13px입니다. 페이지 제목 59px·콘텐츠 분류 탭 21px·기사 제목 24px는 기존 파운데이션에 연결됩니다.</p>
+  </main>
+  <script>
+    (() => {
+      const comparison=document.querySelector('.about-comparison');
+      const panels=[...document.querySelectorAll('.review-panel')];
+      const windows=[...document.querySelectorAll('.review-window')];
+      let width=1280,height=900;
+      function fit(){
+        windows.forEach(frame=>{
+          if(!frame.clientWidth)return;
+          const scale=Math.min(1,frame.clientWidth/width);
+          frame.style.setProperty('--preview-scale',scale);
+          frame.style.setProperty('--preview-height',height*scale+'px');
+        });
+      }
+      document.querySelectorAll('[data-review-view]').forEach(button=>button.addEventListener('click',()=>{
+        const view=button.dataset.reviewView;
+        comparison.dataset.view=view;
+        panels.forEach(panel=>panel.hidden=view!=='both'&&panel.dataset.version!==view);
+        document.querySelectorAll('[data-review-view]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+        requestAnimationFrame(fit);
+      }));
+      document.querySelectorAll('[data-review-size]').forEach(button=>button.addEventListener('click',()=>{
+        const mobile=button.dataset.reviewSize==='mobile';
+        width=mobile?390:1280;height=mobile?844:900;
+        comparison.style.setProperty('--review-width',width+'px');
+        comparison.style.setProperty('--review-height',height+'px');
+        document.querySelectorAll('[data-review-size]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+        requestAnimationFrame(fit);
+      }));
+      const observer=new ResizeObserver(fit);
+      windows.forEach(frame=>observer.observe(frame));
+      fit();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SPS — 메인 A/B/C 비교</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+  <link rel="stylesheet" href="jll-remix.css?v=insight-title59">
+  <style>
+    body{background:var(--surface-cool)}
+    .review-head{padding:24px 32px;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .review-head>a:first-child{display:flex;gap:24px;align-items:center}.review-head img{width:96px;height:auto}.review-head strong{font-size:16px;font-weight:550}.review-head>a:last-child{font-size:13px;text-decoration:underline;text-underline-offset:5px}
+    .review-main{padding:32px;max-width:1800px;margin:auto}.review-main h1{font-size:32px;line-height:1.4}.review-intro{font-size:14px;color:var(--muted);margin-top:12px;max-width:75em}
+    .review-controls{display:flex;flex-wrap:wrap;gap:16px 32px;margin-block:24px}.review-control{display:flex;flex-wrap:wrap;max-width:100%;border:1px solid var(--line);background:var(--surface);padding:4px;gap:4px;border-radius:var(--radius-control)}
+    .review-control button{font-size:13px;padding:10px 16px;min-height:44px;border-radius:var(--radius-control)}
+    .review-control button[aria-pressed=true]{background:var(--ink);color:var(--surface)}
+    .about-comparison{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+    .about-comparison:not([data-view=both]){grid-template-columns:minmax(0,1fr)}
+    .review-panel{background:var(--surface);border:1px solid var(--line);min-width:0}
+    .review-panel-heading{display:flex;align-items:center;justify-content:space-between;padding:20px;gap:24px;border-bottom:1px solid var(--line)}
+    .review-panel-heading h2{font-size:18px;line-height:1.5}.review-panel-heading small{font-size:12px;color:var(--muted);display:block;margin-top:6px}.review-panel-heading a{font-size:13px;white-space:nowrap}
+    .review-window{width:100%;max-width:var(--review-width,1280px);margin:auto;height:var(--preview-height,450px);overflow:hidden;background:var(--surface)}
+    .review-window iframe{display:block;width:var(--review-width,1280px);height:var(--review-height,900px);border:0;transform:scale(var(--preview-scale,.5));transform-origin:top left}
+    .review-note{font-size:13px;color:var(--muted);margin-top:20px;line-height:1.8}
+    @media(max-width:850px){.review-head{padding:20px;flex-wrap:wrap}.review-head>a:first-child{gap:16px}.review-main{padding:24px 16px}.about-comparison{grid-template-columns:1fr}.review-main h1{font-size:26px}.review-panel-heading{padding:16px;gap:12px}}
+.review-references{margin-top:64px;padding-top:40px;border-top:1px solid var(--line)}.review-references>h2{font-size:28px}.review-references>p{font-size:14px;line-height:1.8;color:var(--muted);margin-top:16px}.reference-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:24px}.reference-grid>a{display:block;background:var(--surface);padding:28px;border-top:2px solid var(--ink)}.reference-grid small{font-size:12px;color:var(--muted)}.reference-grid h3{font-size:24px;margin:16px 0}.reference-grid p{font-size:14px;line-height:1.8;color:var(--muted)}.review-references>p>a{text-decoration:underline;text-underline-offset:4px}@media(max-width:850px){.reference-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+  <header class="review-head"><a href="compare.html"><img src="assets/logo.svg" alt="SPS" width="120" height="40"><strong>메인 A/B/C 비교</strong></a><a href="compare.html">전체 시안 비교로 ↗</a></header>
+  <main class="review-main">
+    <h1>원본과 두 가지 영상 메인을 비교합니다.</h1>
+    <p class="review-intro">A는 기존 메인, B는 전체 투명 헤더의 V2, C는 흰색 헤더와 PERSPECTIVES 탭을 더한 V4입니다.</p>
+    <div class="review-controls">
+      <div class="review-control" role="group" aria-label="비교할 메인 화면"><button type="button" data-review-view="both" aria-pressed="true">나란히 비교</button><button type="button" data-review-view="before" aria-pressed="false">A · 원본</button><button type="button" data-review-view="after" aria-pressed="false">B · 메인 V2</button><button type="button" data-review-view="third" aria-pressed="false">C · 메인 V4</button></div>
+      <div class="review-control" role="group" aria-label="동일한 화면 크기"><button type="button" data-review-size="desktop" aria-pressed="true">PC · 1280 × 900</button><button type="button" data-review-size="mobile" aria-pressed="false">모바일 · 390 × 844</button></div>
+    </div>
+    <div class="about-comparison" data-view="both">
+      <section class="review-panel" data-version="before"><div class="review-panel-heading"><div><h2>A · 원본</h2><small>기존 스토리 슬라이드</small></div><a href="jll-remix.html" target="_blank" rel="noopener">직접 보기 ↗</a></div><div class="review-window"><iframe src="jll-remix.html?embed=1" title="A 원본 메인"></iframe></div></section>
+      <section class="review-panel" data-version="after"><div class="review-panel-heading"><div><h2>B · 메인 V2</h2><small>전체 투명 헤더 · 흰색 로고 글자</small></div><a href="jll-remix-main-v2.html" target="_blank" rel="noopener">직접 보기 ↗</a></div><div class="review-window"><iframe src="jll-remix-main-v2.html?embed=1" title="B 메인 V2"></iframe></div></section>
+      <section class="review-panel" data-version="third"><div class="review-panel-heading"><div><h2>C · 메인 V4</h2><small>흰색 헤더 · 이미지 3장과 영상 1개</small></div><a href="jll-remix-main-v4.html" target="_blank" rel="noopener">직접 보기 ↗</a></div><div class="review-window"><iframe src="jll-remix-main-v4.html?embed=1" title="C 메인 V4"></iframe></div></section>
+    </div>
+    <p class="review-note">SPS 공통 헤더와 문의 기능을 유지합니다. 움직임 줄이기 설정에서는 한화 비교 페이지와 동일하게 내용을 순서대로 표시합니다.</p>
+<section class="review-references"><h2>영상 연출의 기준: 한화</h2><p>한화 비교 페이지와 같은 영상·사진, 레이아웃과 모션을 사용합니다.</p><div class="reference-grid">
+<a href="jll-remix-hanwha.html#hw-vision" target="_blank" rel="noopener"><small>01 / VISION</small><h3>중앙 타이포 ↗</h3><p>어두운 배경의 네 줄 문장 뒤에 키워드가 왼쪽으로 이동하고 세 장면이 순서대로 펼쳐집니다.</p></a>
+<a href="jll-remix-hanwha.html#hw-business" target="_blank" rel="noopener"><small>02 / BUSINESS</small><h3>사업분야 카드 ↗</h3><p>네 장의 사진이 들어오고, 포인터나 키보드로 선택한 카드가 넓어지는 구성입니다.</p></a>
+<a href="jll-remix-hanwha.html#hw-future" target="_blank" rel="noopener"><small>03 / CLOSING</small><h3>마지막 사진 확대 ↗</h3><p>작은 세로 사진이 화면 전체로 넓어지고 문장이 순차적으로 나타납니다.</p></a></div>
+<p>영상·사진 출처: <a href="https://www.hanwha.co.kr/" target="_blank" rel="noopener">한화 공식 홈페이지</a>. 기존 한화 비교 페이지에 저장한 자료를 사용한 로컬 시안이며 SPS의 서비스·실적 사진을 의미하지 않습니다.</p></section>
+  </main>
+  <script>
+    (() => {
+      const comparison=document.querySelector('.about-comparison');
+      const panels=[...document.querySelectorAll('.review-panel')];
+      const windows=[...document.querySelectorAll('.review-window')];
+      let width=1280,height=900;
+      function fit(){
+        windows.forEach(frame=>{
+          if(!frame.clientWidth)return;
+          const scale=Math.min(1,frame.clientWidth/width);
+          frame.style.setProperty('--preview-scale',scale);
+          frame.style.setProperty('--preview-height',height*scale+'px');
+        });
+      }
+      document.querySelectorAll('[data-review-view]').forEach(button=>button.addEventListener('click',()=>{
+        const view=button.dataset.reviewView;
+        comparison.dataset.view=view;
+        panels.forEach(panel=>panel.hidden=view!=='both'&&panel.dataset.version!==view);
+        document.querySelectorAll('[data-review-view]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+        requestAnimationFrame(fit);
+      }));
+      document.querySelectorAll('[data-review-size]').forEach(button=>button.addEventListener('click',()=>{
+        const mobile=button.dataset.reviewSize==='mobile';
+        width=mobile?390:1280;height=mobile?844:900;
+        comparison.style.setProperty('--review-width',width+'px');
+        comparison.style.setProperty('--review-height',height+'px');
+        document.querySelectorAll('[data-review-size]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+        requestAnimationFrame(fit);
+      }));
+      const observer=new ResizeObserver(fit);
+      windows.forEach(frame=>observer.observe(frame));
+      fit();
+    })();
+  </script>
+</body>
+</html>

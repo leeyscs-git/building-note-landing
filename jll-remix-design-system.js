@@ -70,8 +70,9 @@
     document.querySelector('[data-type-size="section"]').textContent=value(mobile?'--section-title-mobile':'--section-title-size',mobile?35:43)+'px / 1.3';
     document.querySelector('.ds-type-row:nth-child(3) b').textContent=value('--card-title-size',24)+'px / 1.4';
     document.querySelector('.ds-type-row:nth-child(4) b').textContent=value('--body-size',16)+'px / 1.65';
+    document.querySelector('[data-type-size="page-tab"]').textContent=value(mobile?'--body-size':'--page-tab-size',mobile?16:21)+'px / 1.4';
     document.querySelector('.ds-state-matrix>div:first-child code').textContent=current.getPropertyValue('--rose-soft').trim().toUpperCase();
-    document.querySelector('.ds-state-matrix>div:nth-child(2) code').textContent=current.getPropertyValue('--rose-hover').trim().toUpperCase()+' · 104% · 220ms';
+    document.querySelector('.ds-state-matrix>div:nth-child(2) code').textContent=current.getPropertyValue('--rose-hover').trim().toUpperCase()+' · 문구 250ms / 화살표 200ms';
   }
   window.addEventListener('sps-theme-change',refreshThemeMeasurements);
   refreshThemeMeasurements();

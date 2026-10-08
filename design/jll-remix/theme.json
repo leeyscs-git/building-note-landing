@@ -1,9 +1,8 @@
 {
   "version": 1,
-  "revision": 109,
-  "updatedAt": "2026-10-07T08:19:50.949Z",
+  "revision": 113,
+  "updatedAt": "2026-10-08T10:24:28.434Z",
   "values": {
-    "--rose-hover": "#dde5e8",
     "--rose-soft": "#e9eef0",
     "--header-top-space": 0,
     "--contact-padding": 18,
@@ -11,6 +10,8 @@
     "--contact-font-size": 14,
     "--locale-font-size": 14,
     "--content-max": 1200,
-    "--page-gutter": 96
+    "--page-gutter": 96,
+    "--body-size": 18,
+    "--surface-cool": "#f1f1f1"
   }
 }

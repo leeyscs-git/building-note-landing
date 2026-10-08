@@ -1,0 +1,8 @@
+{
+  "scope": "V4 only. The complete four-line vision beginning 새로운 도전 replaces its entry rise with the former Insights grain effect. V2 and the Hanwha reference remain unchanged.",
+  "rendering": "Measure real glyph ranges across all lines, including wrapping and desktop-canvas scale, to mask up to 12000 fine grains from all eight directions. Use the current computed Ink/Surface color throughout palette transitions.",
+  "timing": "Scroll-driven and reversible. Map raw vision progress -0.25 through 0.9 to the grain curve; there is no elapsed-time animation loop. Stopping scrolling holds every grain and the native-font blend in place. Reverse scrolling reuses the exact same grains.",
+  "handoff": "Add 0.9 stage-heights to the V4 vision runway and subtract the same CSS --vision-particle-travel value from the shared keyword/film timeline. Full native ink is reached before keyword fade/travel begins. Preserve all subsequent relative scene timing and ordinary scrolling.",
+  "fallback": "Reduced motion, forced colors, missing canvas and font/script failure show the native text. Deep links into later films display the moving words immediately, while reverse scrolling can still assemble the grains. Background tabs suspend rendering; typography changes remask at the current scroll position and palette changes keep the same grains.",
+  "verification": "42 particle, route, navigation, hero and shared motion checks passed, including scroll freeze, exact reverse positions, scaled glyph masks and delayed film handoff. Six served files verified; browser visual verification remains unavailable."
+}

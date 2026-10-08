@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-08",
+  "page": "jll-remix-main-v3.html",
+  "status": "retired at user request; page now redirects to V4",
+  "redirect": "jll-remix-main-v4.html",
+  "base": "jll-remix-main-v2.html",
+  "decision": "Keep the logo and contact row on a full-width white surface. Only the navigation row overlaps the opening film with white labels and icons.",
+  "shared": ["jll-remix-main-v2.js", "jll-remix-hanwha.css", "jll-remix-hanwha.js"],
+  "mediaManifest": "assets/hanwha-reference/sources.json",
+  "layout": "Measure the navigation row including the header bottom border. Its overlap is independent of logo row height and top padding, and accounts for desktop-canvas scaling.",
+  "responsive": "When the navigation row is hidden on mobile, retain the solid white header and place the video below it.",
+  "comparison": "Original A, fully transparent V2 B, navigation-only transparent V3 C. Equivalent section and layout settings are retained.",
+  "playback": "Main V3 inherits V2 without a pause button; reduced motion, background-tab pausing and offscreen pausing remain.",
+  "verification": "Source, automated behavior and served-file checks. Live browser rendering unavailable due tool access restriction."
+}

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>SPS 서비스 사례 · 이전 / 현재 비교</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+  <link rel="stylesheet" href="jll-remix.css?v=insight-title59">
+  <style>
+    body{background:var(--surface-cool)}
+    .review-head{padding:24px 32px;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .review-head>a:first-child{display:flex;gap:24px;align-items:center}.review-head img{width:96px;height:auto}.review-head strong{font-size:16px;font-weight:550}.review-head>a:last-child{font-size:13px;text-decoration:underline;text-underline-offset:5px}
+    .review-main{padding:32px;max-width:1800px;margin:auto}.review-main h1{font-size:32px;line-height:1.4}.review-intro{font-size:14px;color:var(--muted);margin-top:12px;max-width:75em}
+    .review-controls{display:flex;flex-wrap:wrap;gap:16px 32px;margin-block:24px}.review-control{display:flex;border:1px solid var(--line);background:var(--surface);padding:4px;gap:4px;border-radius:var(--radius-control)}
+    .review-control button{font-size:13px;padding:10px 16px;min-height:44px;border-radius:var(--radius-control)}
+    .review-control button[aria-pressed=true]{background:var(--ink);color:var(--surface)}
+    .about-comparison{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+    .about-comparison:not([data-view=both]){grid-template-columns:minmax(0,1fr)}
+    .review-panel{background:var(--surface);border:1px solid var(--line);min-width:0}
+    .review-panel-heading{display:flex;align-items:center;justify-content:space-between;padding:20px;gap:24px;border-bottom:1px solid var(--line)}
+    .review-panel-heading h2{font-size:18px;line-height:1.5}.review-panel-heading small{font-size:12px;color:var(--muted);display:block;margin-top:6px}.review-panel-heading a{font-size:13px;white-space:nowrap}
+    .review-window{width:100%;max-width:var(--review-width,1280px);margin:auto;height:var(--preview-height,450px);overflow:hidden;background:var(--surface)}
+    .review-window iframe{display:block;width:var(--review-width,1280px);height:var(--review-height,900px);border:0;transform:scale(var(--preview-scale,.5));transform-origin:top left}
+    .review-note{font-size:13px;color:var(--muted);margin-top:20px;line-height:1.8}
+    @media(max-width:850px){.review-head{padding:20px;flex-wrap:wrap}.review-head>a:first-child{gap:16px}.review-main{padding:24px 16px}.about-comparison{grid-template-columns:1fr}.review-main h1{font-size:26px}.review-panel-heading{padding:16px;gap:12px}}
+  </style>
+</head>
+<body>
+  <header class="review-head"><a href="compare.html"><img src="assets/logo.svg" alt="SPS" width="120" height="40"><strong>서비스 사례 페이지 비교</strong></a><a href="compare.html">전체 시안 비교로 ↗</a></header>
+  <main class="review-main">
+    <h1>서비스 사례, 이전 구성과 현재 구성.</h1>
+    <p class="review-intro">왼쪽은 변경 전 서비스 사례 보관본, 오른쪽은 인사이트와 공통 컴포넌트를 사용하는 현재 화면입니다. 분류와 상담 연결을 직접 확인할 수 있습니다.</p>
+    <div class="review-controls">
+      <div class="review-control" role="group" aria-label="비교할 서비스 사례 화면"><button type="button" data-review-view="both" aria-pressed="true">나란히 비교</button><button type="button" data-review-view="before" aria-pressed="false">이전 보관본</button><button type="button" data-review-view="after" aria-pressed="false">현재 화면</button></div>
+      <div class="review-control" role="group" aria-label="동일한 화면 크기"><button type="button" data-review-size="desktop" aria-pressed="true">PC · 1280 × 900</button><button type="button" data-review-size="mobile" aria-pressed="false">모바일 · 390 × 844</button></div>
+    </div>
+    <div class="about-comparison" data-view="both">
+      <section class="review-panel" data-version="before"><div class="review-panel-heading"><div><h2>이전 · 서비스 사례 보관본</h2><small>나중에 확인하기 위한 이전 구성</small></div><a href="briefing/service-cases-v1-reference/jll-remix-cases.html" target="_blank" rel="noopener">직접 보기 ↗</a></div><div class="review-window"><iframe src="briefing/service-cases-v1-reference/jll-remix-cases.html?embed=1" title="변경 전 SPS 서비스 사례"></iframe></div></section>
+      <section class="review-panel" data-version="after"><div class="review-panel-heading"><div><h2>현재 · 공통 인사이트 구성</h2><small>중앙 제목 · 서비스 분류 탭 · 공통 등장 효과</small></div><a href="jll-remix-cases.html" target="_blank" rel="noopener">직접 보기 ↗</a></div><div class="review-window"><iframe src="jll-remix-cases.html?embed=1" title="현재 SPS 서비스 사례"></iframe></div></section>
+    </div>
+    <p class="review-note">보관본의 페이지 코드와 전용 스타일은 별도 폴더에 보존했습니다. 두 화면은 동일한 최신 파운데이션과 공통 헤더를 사용합니다. 실제 공개 사례 자료는 아직 없으므로 두 버전 모두 준비 안내를 표시합니다. 각 화면에서 독립적으로 스크롤할 수 있습니다.</p>
+  </main>
+  <script>
+    (() => {
+      const comparison=document.querySelector('.about-comparison');
+      const panels=[...document.querySelectorAll('.review-panel')];
+      const windows=[...document.querySelectorAll('.review-window')];
+      let width=1280,height=900;
+      function fit(){
+        windows.forEach(frame=>{
+          if(!frame.clientWidth)return;
+          const scale=Math.min(1,frame.clientWidth/width);
+          frame.style.setProperty('--preview-scale',scale);
+          frame.style.setProperty('--preview-height',height*scale+'px');
+        });
+      }
+      document.querySelectorAll('[data-review-view]').forEach(button=>button.addEventListener('click',()=>{
+        const view=button.dataset.reviewView;
+        comparison.dataset.view=view;
+        panels.forEach(panel=>panel.hidden=view!=='both'&&panel.dataset.version!==view);
+        document.querySelectorAll('[data-review-view]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+        requestAnimationFrame(fit);
+      }));
+      document.querySelectorAll('[data-review-size]').forEach(button=>button.addEventListener('click',()=>{
+        const mobile=button.dataset.reviewSize==='mobile';
+        width=mobile?390:1280;height=mobile?844:900;
+        comparison.style.setProperty('--review-width',width+'px');
+        comparison.style.setProperty('--review-height',height+'px');
+        document.querySelectorAll('[data-review-size]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+        requestAnimationFrame(fit);
+      }));
+      const observer=new ResizeObserver(fit);
+      windows.forEach(frame=>observer.observe(frame));
+      fit();
+    })();
+  </script>
+</body>
+</html>

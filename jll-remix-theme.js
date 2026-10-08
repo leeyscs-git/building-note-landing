@@ -6,6 +6,9 @@
   // The introduction shares header styling while keeping its own body design.
   const themeTarget = document.body.dataset.themeScope === 'header'
     ? document.querySelector('[data-sps-header]') : document.documentElement;
+  // Selected body regions share layout values even on header-scoped pages.
+  const layoutTargets = [...document.querySelectorAll('[data-sps-layout]')];
+  const layoutTokens = new Set(['--content-max','--page-gutter','--page-gutter-mobile']);
   const local = ['localhost','127.0.0.1'].includes(location.hostname);
   const api = local ? location.protocol + '//' + location.hostname + ':3001/__design' : null;
   const cacheKey = 'sps-h-saved-theme-v1';
@@ -44,8 +47,11 @@
     const values=currentValues();
     for(const field of schema){
       const value=values[field.token];
-      if(value===undefined||value===null) themeTarget.style.removeProperty(field.token);
-      else themeTarget.style.setProperty(field.token,field.type==='number'?value+field.unit:value);
+      const targets = layoutTokens.has(field.token) ? [themeTarget,...layoutTargets] : [themeTarget];
+      for(const target of targets){
+        if(value===undefined||value===null) target.style.removeProperty(field.token);
+        else target.style.setProperty(field.token,field.type==='number'?value+field.unit:value);
+      }
     }
     window.dispatchEvent(new CustomEvent('sps-theme-change',{detail:{...state,values,connected,saving,pending:Object.keys(pending).length>0||resetRequested,error}}));
   }

@@ -17,6 +17,24 @@
     }
   });
 
+  // Compact navigation pictogram: a single inherited color for breadcrumb use.
+  if (!customElements.get('sps-home-pictogram')) customElements.define('sps-home-pictogram', class extends HTMLElement {
+    connectedCallback() {
+      this.setAttribute('aria-hidden', 'true');
+      if (this.firstElementChild) return;
+      this.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" focusable="false" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20h-5v-6H9v6H4Z"/></svg>';
+    }
+  });
+
+  // Small question-mark pictogram; the labelled button owns its tooltip semantics.
+  if (!customElements.get('sps-help-pictogram')) customElements.define('sps-help-pictogram', class extends HTMLElement {
+    connectedCallback() {
+      this.setAttribute('aria-hidden', 'true');
+      if (this.firstElementChild) return;
+      this.innerHTML = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M7.8 7.6a2.2 2.2 0 0 1 4.4 0c0 1.4-2.2 1.7-2.2 3.3"/><circle cx="10" cy="14" r=".65" fill="currentColor" stroke="none"/></svg>';
+    }
+  });
+
   // Recreated from the archived first mega-menu: ink outlines, white forms,
   // one red accent and a pale token-based backdrop. Decorative, not evidence.
   if (!customElements.get('sps-service-pictogram')) customElements.define('sps-service-pictogram', class extends HTMLElement {
@@ -93,10 +111,10 @@
         consulting: ['공간의 조건을 검토하고, 공실과 다음 임대 계약을 준비합니다.', ['임대 조건 검토', '공실 해소 방향', '임차인 유치 지원']]
       };
       const content = variant === 'v3'
-        ? `<div class="sps-service-intro"><p class="sps-service-kicker">SERVICES</p><h2>어떤 서비스가 <br>필요하신가요?</h2><p class="sps-service-intro-note">건물의 상황에 맞는<br>서비스를 살펴보세요.</p></div><div class="sps-service-cards">${services.map(([key, label, description]) => `<a class="sps-service-card" href="${home}?service=${key}#services" data-detail="${key}" aria-label="${label}"><span class="sps-service-art" data-art="${key}"><sps-service-pictogram data-service="${key}"></sps-service-pictogram></span><span class="sps-service-card-copy"><span class="sps-service-name">${label}<sps-arrow-up-right></sps-arrow-up-right></span><span class="sps-service-description">${description}</span></span></a>`).join('')}</div>`
+        ? `<div class="sps-service-intro"><p class="sps-service-kicker">SERVICES</p><h2>어떤 서비스가 <br>필요하신가요?</h2><p class="sps-service-intro-note">건물의 상황에 맞는<br>서비스를 살펴보세요.</p></div><div class="sps-service-cards">${services.map(([key, label, description]) => `<a class="sps-service-card" href="${home}?service=${key}#services" data-detail="${key}" aria-label="${label}"><span class="sps-service-art" data-art="${key}"><sps-service-pictogram data-service="${key}"></sps-service-pictogram></span><span class="sps-service-card-copy"><span class="sps-service-name"><span class="sps-service-title">${label}</span><sps-arrow-up-right></sps-arrow-up-right></span><span class="sps-service-description">${description}</span></span></a>`).join('')}</div>`
         : variant === 'v2'
         ? services.map(([key, label]) => `<div class="sps-service-column"><a class="sps-service-heading" href="${home}?service=${key}#services" data-detail="${key}">${label}<sps-chevron class="sps-chevron--next"></sps-chevron></a><p class="sps-service-summary">${expanded[key][0]}</p><ul class="sps-service-topics">${expanded[key][1].map((topic, index) => `<li><a href="${home}?service=${key}&section=${index}#services" data-detail="${key}" data-detail-section="${index}">${topic}</a></li>`).join('')}</ul></div>`).join('')
-        : `<div class="sps-service-intro"><h2>어떤 서비스가 <br>필요하신가요?</h2></div><div class="sps-service-links">${services.map(([key, label, description]) => `<a class="sps-service-link" href="${home}?service=${key}#services" data-detail="${key}" aria-label="${label}"><span class="sps-service-link-copy"><span class="sps-service-name">${label}<sps-arrow-up-right></sps-arrow-up-right></span><span class="sps-service-description">${description}</span></span><span class="sps-service-illustration"><sps-service-pictogram data-service="${key}" data-style="${pictogramStyle}"></sps-service-pictogram></span></a>`).join('')}</div>`;
+        : `<div class="sps-service-intro"><h2><span class="sps-service-question-line">어떤 서비스가</span> <br><span class="sps-service-question-line">필요하신가요?</span></h2></div><div class="sps-service-links">${services.map(([key, label, description]) => `<a class="sps-service-link" href="${home}?service=${key}#services" data-detail="${key}" aria-label="${label}"><span class="sps-service-link-copy"><span class="sps-service-name"><span class="sps-service-title">${label}</span><sps-arrow-up-right></sps-arrow-up-right></span><span class="sps-service-description">${description}</span></span><span class="sps-service-illustration"><sps-service-pictogram data-service="${key}" data-style="${pictogramStyle}"></sps-service-pictogram></span></a>`).join('')}</div>`;
       this.innerHTML = `<button class="sps-service-trigger" type="button" data-header-section="services" aria-expanded="false" aria-controls="${id}">서비스 <sps-chevron class="sps-chevron--nav"></sps-chevron></button>
         <div class="sps-service-panel" id="${id}" hidden><div class="sps-service-content">
           ${content}
@@ -104,6 +122,7 @@
       this.trigger = this.querySelector('button');
       this.panel = this.querySelector('.sps-service-panel');
       this.content = this.querySelector('.sps-service-content');
+      this.question = this.querySelector('.sps-service-intro h2');
       this.isOpen = false;
       this.trigger.addEventListener('click', event => {
         // Pointer entry may already have opened it before the click arrives.
@@ -141,9 +160,9 @@
       document.addEventListener('click', this.outsideClick);
       // Comparison-only entry state; normal navigation still starts closed.
       const review = new URLSearchParams(location.search);
-      if (review.has('embed') && review.get('menu') === 'services' && !this.hasAttribute('data-mobile') && !matchMedia('(max-width:600px)').matches) this.setOpen(true);
+      if (review.has('embed') && review.get('menu') === 'services' && !this.hasAttribute('data-mobile') && !matchMedia('(max-width:850px)').matches) this.setOpen(true);
     }
-    disconnectedCallback() { this.fade?.cancel(); document.removeEventListener('click', this.outsideClick); }
+    disconnectedCallback() { this.fade?.cancel(); this.questionMotion?.cancel(); document.removeEventListener('click', this.outsideClick); }
     setOpen(open) {
       if (this.isOpen === open) return;
       // Read the current visual opacity before cancelling so a quick return
@@ -158,7 +177,23 @@
       this.content.inert = !open;
       this.panel.hidden = false;
       this.panel.style.opacity = open ? '1' : '0';
-      if (matchMedia('(prefers-reduced-motion: reduce)').matches || from === Number(open)) {
+      const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reducedMotion) this.questionMotion?.cancel();
+      // Move the complete heading visually; its two-line baseline and layout stay fixed.
+      // A quick return during the panel fade continues the existing entrance.
+      if (open && from === 0 && this.question && !reducedMotion) {
+        this.questionMotion?.cancel();
+        const motion = this.question.animate([
+          { opacity: 0, transform: 'translateY(8px)' },
+          { opacity: 1, transform: 'translateY(0)' }
+        ], {
+          duration: 420,
+          easing: getComputedStyle(this).getPropertyValue('--ease-editorial').trim() || 'cubic-bezier(.22,1,.36,1)'
+        });
+        this.questionMotion = motion;
+        motion.onfinish = () => { if (this.questionMotion === motion) this.questionMotion = null; };
+      }
+      if (reducedMotion || from === Number(open)) {
         this.panel.hidden = !open;
         return;
       }

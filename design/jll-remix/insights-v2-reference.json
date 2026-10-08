@@ -1,0 +1,230 @@
+{
+  "inspectedAt": "2026-10-08",
+  "page": "jll-remix-journal-v2.html",
+  "compare": "jll-remix-journal-compare.html",
+  "adaptation": [
+    "원본 인사이트와 V2는 jll-remix-journal-data.js의 동일한 7개 편집 초안을 사용. 리서치는 0개 상태 유지. 발행일·조회수·성과를 만들지 않음.",
+    "홈 → 인사이트 브레드크럼은 공통 wrap의 콘텐츠 최대 너비와 좌우 여백을 사용하며 콘텐츠 오른쪽 끝에 정렬한다. 홈 아이콘은 공통 sps-home-pictogram 벡터.",
+    "중앙 인사이트 제목, 전체·저널·리서치 분류. 상단 영문 문구와 목록 설명·개수 행은 제거.",
+    "모든 글을 동일한 3열 카드로 배치. 사진 → 영문 분류 → 제목 → 읽기 링크. 대형 대표 기사 및 목록 요약문은 제거하되 상세와 원본 데이터는 보존. 태블릿 2열, 모바일 1열.",
+    "사진 모서리는 0. 한화의 오렌지·고유 서체·글·영상 대신 기존 SPS 색상·Pretendard·콘텐츠 사용.",
+    "글 상세·목록 복귀는 기존 journal controller를 재사용하며 V2 경로와 선택 분류를 보존.",
+    "브레드크럼 위 PC 여백 40px → 24px, 모바일 20px 및 우측 정렬 유지.",
+    "분류 탭 아래 PC 100px·1024px 이하 72px로 삼성 비교 페이지와 맞춤. 제목 두 줄 최소 높이를 제거하고 읽기 링크 위 패딩 24px → 12px. 영문 분류·읽기 기본색은 같은 Muted를 공유.",
+    "표시 분류명은 전체 · CEO 저널 · 리서치. 기존 journal 분류 키와 글 내용·작성자·편집 초안 상태는 유지.",
+    "CEO 저널·리서치에 맞춤 설명 박스 추가. 마우스·키보드·터치로 열고 이탈·Escape·바깥 터치로 닫음. 콘텐츠 경계 안에서 위치하며 기본 title 툴팁은 사용하지 않음.",
+    "공통 헤더와 메인·하단 인사이트 링크는 V2를 기본으로 사용. V1 전용 코드·데이터·스타일은 별도 보관하여 V2 상세 변경과 분리.",
+    "상세의 목록 링크와 브레드크럼을 같은 수평 행에 배치하고 분류·제목을 가운데 정렬. 헤더 작성자/편집 초안 표기와 부제는 화면에서 제거하며 원본 데이터는 유지.",
+    "59px 제목·21px 분류 탭 확정. 하단 폰트 전후 트윅·type 분기·전후 비교 모드를 제거하고 V1/V2 구성 비교만 보관.",
+    "상세 사진 시작 최대 너비 360px → 280px. 목록·브레드크럼 행은 헤더 아래 고정하며 Surface 배경과 Line 경계로 가독성 확보. 사진의 sticky 위치는 헤더+탐색 행+24px 아래."
+  ],
+  "tokens": {
+    "breadcrumb": "13px / page-specific navigation text",
+    "titleDesktop": "--hero-title-size / 59px",
+    "titleMobile": "--hero-title-mobile / 39px",
+    "categoryDesktop": "--page-tab-size / 21px",
+    "categoryMobile": "--body-size / 16px",
+    "articleTitle": "--card-title-size / 24px",
+    "body": "--body-size / 16px",
+    "container": "--content-max / --layout-gutter",
+    "motion": "--reveal-duration / --reveal-distance / --ease-editorial",
+    "cardGap": "calc(var(--card-gap,28px) + 8px) / default 36px",
+    "homeIcon": "18px / mono muted; ink on hover",
+    "tabIndicator": "--sps-nav-indicator-size / 3px; --sps-nav-indicator-gap / shared with header; 9.125px line-box gap at nav 15px",
+    "articleCategory": "13px / page-specific category label",
+    "tabToContentGap": "100px desktop / 72px <=1024px; same as local Samsung comparison",
+    "articleReadPadding": "12px; title minimum two-line height removed",
+    "articleMetaAndReadColor": "--muted / #5C686C; shared normal-state rule; read arrow inherits link color",
+    "categoryHelp": "Dedicated help buttons beside CEO 저널 and 리서치 open their existing description-only tooltip on icon hover, keyboard focus or activation. Category labels remain separate filter buttons. Shared sps-help-pictogram: 16px single-color SVG circle/question mark, replacing the 20px text glyph; 28×44px button target retained. Escape, focus exit, outside press and article navigation dismiss help; clicks toggle and reopen after Escape. Position the pointer under the icon and clamp the 280px tooltip inside content rails. Foundation --rose-hover background, --ink text, --radius-panel, --body-size; padding 12px 14px and line-height 1.5."
+  },
+  "motion": [
+    "고정된 레이아웃 안에서 제목·기사·하단 안내 28px/800ms 등장(편집 가능한 기존 토큰).",
+    "카테고리 밑줄 250ms 이동, 목록 변경 시 새 기사 등장. 탭 버튼의 키보드 초점 유지.",
+    "이미지 프레임 고정, 내부 이미지만 호버 1.06배/800ms. 화살표 2px 대각 이동/200ms.",
+    "움직임 감소 설정에서는 등장·탭·이미지 이동 생략. 홈 및 서비스 픽토그램은 정지.",
+    "상세 사진은 최대 360px의 넓어진 세로형에서 화면 전체 너비로 스크롤 확장. 고정된 스크롤 영역 내 sticky+clip-path로 주변 레이아웃을 유지. 움직임 감소 시 전체 사진 정지. 모서리 0, 사진 이외 콘텐츠는 공통 레일 안에 유지."
+  ],
+  "validation": {
+    "rendered": "브라우저 도구 실행 오류로 PC/모바일 스크린샷 및 실제 모션은 미확인.",
+    "publication": "로컬만. 커밋·푸시·배포 없음.",
+    "checked": [
+      "6 existing article/navigation checks passed with the V2 count and note elements absent.",
+      "Updated local page, styles, components and controller returned HTTP 200 and matched files.",
+      "JavaScript syntax and git diff --check passed.",
+      "Eight theme persistence and insight navigation checks passed; eight served files matched source.",
+      "59px hero title reused; obsolete page-title-size absent from runtime and saved settings. Nine persistence/navigation checks passed; nine served files matched source.",
+      "Ten category help/navigation checks passed, covering pointer/touch/Escape and scaled layout bounds; updated page/CSS/JS served locally. Visual browser inspection remains blocked by tool startup error.",
+      "15 navigation, archived V1, category help and article motion checks passed, including scaled desktop geometry, reversed scroll, and reduced motion."
+    ]
+  },
+  "previousResearch": [
+    {
+      "url": "https://www.hanwha.co.kr/newsroom/index.do",
+      "evidence": "공개 HTML과 연결된 CSS·JS를 직접 읽음. 브라우저 도구 시작 오류로 실제 렌더링은 미확인."
+    },
+    {
+      "url": "https://www.hanwha.co.kr/assets/css/newsroom.css",
+      "evidence": "대표 기사 50:50 이미지·텍스트, 4:3 이미지, 하단 3열 기사 목록, 분류·제목·보조 정보 계층, 이미지 호버 scale(1.05) / 0.4초 확인."
+    },
+    {
+      "url": "https://www.hanwha.co.kr/assets/js/newsroom.js",
+      "evidence": "대표 기사 PostItem, 하단 post-list 및 data-inmotion 연결 확인. 원본 모션 재생의 실제 시각 결과는 미확인."
+    },
+    {
+      "file": "사용자 첨부 codex-clipboard-02f9f548-d582-4e72-a80a-5ceaaa45dd0c.png",
+      "evidence": "중앙 제목과 카테고리 탭, 헤더 로고와 정렬되지 않은 브레드크럼 위치를 첨부 화면에서 확인."
+    }
+  ],
+  "sources": [
+    {
+      "file": "사용자 첨부 codex-clipboard-082da800-709d-4e72-9988-cea3d23d08f0.png",
+      "evidence": "동일한 크기의 3열 사진, 분류·제목·읽기 링크 구조를 첨부 화면에서 확인. 사진 모서리만 기존 요청대로 각지게 변경."
+    },
+    {
+      "file": "jll-remix-hanwha.html#hw-news / jll-remix-hanwha.css",
+      "evidence": "로컬 비교 페이지의 뉴스룸 CSS에서 3열·36px 간격·1.35 사진 비율·28px/15px/24px 세로 간격 및 1.06배/800ms 이미지 호버 규칙 확인."
+    },
+    {
+      "file": "사용자 첨부 codex-clipboard-02f9f548-d582-4e72-a80a-5ceaaa45dd0c.png",
+      "evidence": "상단 중앙 제목·분류 탭 구조는 유지. 브레드크럼은 헤더 콘텐츠 경계에 정렬."
+    },
+    {
+      "file": "jll-remix-hanwha.js / user attachment (Comment 5)",
+      "evidence": "사용자 첨부의 중앙 세로 사진 및 로컬 futurePicture의 너비·높이 확장 방식을 참고해 기사 사진에 적용."
+    }
+  ],
+  "typographyAudit": {
+    "viewportWidth": 1230,
+    "samsungCalculated": {
+      "title": 49.7778,
+      "tabs": 21
+    },
+    "decision": "기존 hero-title-size 59px 및 page-tab-size 21px 확정. 별도 50px 항목과 폰트 전후 트윅은 제거.",
+    "insightsBefore": {
+      "title": 59,
+      "tabs": 24
+    },
+    "insightsCurrent": {
+      "title": 59,
+      "tabs": 21
+    }
+  },
+  "archive": {
+    "page": "jll-remix-journal.html",
+    "source": "briefing/insights-v1-reference/"
+  },
+  "articlePinnedScene": {
+    "date": "2026-10-08",
+    "backLabel": "An icon-only upper-left arrow returns to the Insights list; accessible label 인사이트 목록으로 돌아가기. Keep the text back link at the article end.",
+    "layout": "Photo starts below the stationary title, then opens upward behind the title and utility links to the bottom of the global SPS header. After expansion, the full-width white reading surface advances over the pinned photo. The scene releases when the gap from the photo top (global header bottom) to the main H1 equals the gap from the H1 bottom to the white reading surface. Title, image and body then move together without further relative covering. H1 bounds are measured separately from the category label and accommodate wrapping and rendered scale.",
+    "utilityBar": "The utility row and its photo-mask pseudo-element remain transparent throughout article view, independent of reading-backed scroll state. An inert white text copy still follows the visible photo for contrast; normal labels remain visible over prose. Empty row space passes pointer input through while the real back arrow and breadcrumb stay interactive. List navigation restores the regular Surface background. Applies to pinned, reduced-motion and short-viewport compositions.",
+    "fallback": "Static composition for reduced motion or photo region below 220 CSS px.",
+    "verification": "24 header, article motion and journal navigation checks passed. Reading-row transparency covers exact entry, reverse scroll, list/article restoration, scales 1 and 0.4, reduced motion and short viewports. The served HTML, CSS and JavaScript match local files. Browser visual verification unavailable.",
+    "contrast": "White title and navigation copies follow the actual photo clip. The photo retains its Ink gradient; navigation adds an Ink shadow for contrast as the picture leaves the screen.",
+    "headerBoundary": "Header height observes the border box and updates synchronously on theme changes and pageshow. This removes the stale 16px gap when saved top padding changes from 16px to 0px. Article layout observers also include padding and borders."
+  },
+  "articleReadingLayout": {
+    "body": "A single centered column, widened from 760px to a maximum of 840px. Prose paragraphs are justified to both edges, with natural left-aligned final lines and Korean syllable wrapping to limit uneven word spacing. Font size follows the Foundation --body-size token, saved at 18px (revision 112); line height remains 1.85.",
+    "toc": "Removed from the article markup on all viewport sizes.",
+    "editorialAlignment": "Section headings and pull quote text align to the same left edge as prose. The quote's red rule hangs 16px outside the text column without an inset. The main hero title remains centered.",
+    "responsive": "The reading column shrinks to the available content width below 840px without a separate sidebar breakpoint."
+  },
+  "titleParticles": {
+    "enabled": false,
+    "archive": "design/jll-remix/archive/vision-particles-2026-10-08"
+  },
+  "categoryEntry": {
+    "motion": "The complete tab group joins the existing foundation reveal: 800ms default fade and 28px rise, once on its first visible list entry. Category changes do not replay it; reduced motion leaves tabs static.",
+    "spacing": "Tab-to-card gap reduced from 100 to 80px on desktop, and from 72 to 56px at responsive widths up to 1024px."
+  },
+  "firstReadCard": {
+    "article": "why-we-work",
+    "presentation": "Non-modal right-edge card with the founding article image, category, title and working link; no introductory summary. Folds offscreen, leaving only the main-style chevron: transparent 44 × 54px button, no vertical label, border or tab background. Uses Ink on the white Insights page and reverses direction while open.",
+    "timing": {
+      "automaticOpen": false,
+      "automaticClose": false,
+      "transitionMs": 650
+    },
+    "frequency": "Starts folded on every page load. No automatic entry offer or timer. Returning from an article or research route also leaves it folded.",
+    "interaction": "The right chevron opens and closes the card only on explicit activation. Escape folds it and returns focus to the arrow only when focus is inside the card. Hidden during article/research/embed routes, menus, dialogs and background tabs. An explicitly opened card remains open through temporary overlays; article/research routes close it. Link preserves category and layout.",
+    "responsive": "Two-column desktop; stacked thumbnail/text on narrow screens, limited to the available height with internal scrolling. Uses foundation colors, type and radii. No backdrop or focus trap; transitions disabled for reduced motion.",
+    "verification": "18 intro and journal routing checks passed, including folded initial state, no automatic timers, manual toggle, Escape, route return, overlay visibility and unchanged article routing. Browser visual verification not performed.",
+    "title": "우리는 왜 이 일을 하는가.",
+    "category": "CEO 저널",
+    "cta": "바로가기"
+  },
+  "closingConsultation": {
+    "eyebrow": "LET’S TALK",
+    "title": "공감되는 이야기가 있었다면, 우리 건물의 고민도 들려주세요.",
+    "description": "어떤 업무를 맡길지 아직 정하지 않으셔도 괜찮습니다. 현재 상황을 듣고, 필요한 관리 방향을 함께 정리하겠습니다.",
+    "cta": "관리 고민 상담하기",
+    "destination": "Existing data-inquiry consultation form, with jll-remix-support.html#inquiry fallback. Existing message and service selection are preserved.",
+    "typography": "Existing section heading and shared eyebrow; description uses --body-size / 16px.",
+    "verification": "9 existing inquiry checks passed. CTA hook/type, existing draft preservation, fallback response and served files verified. Browser rendering not inspected."
+  },
+  "editorialLabels": {
+    "leadArticle": {
+      "id": "why-we-work",
+      "title": "우리는 왜 이 일을 하는가.",
+      "alternatives": [
+        "왜 이 일을 하는가.",
+        "우리가 이 일을 시작한 이유."
+      ]
+    },
+    "category": "Card and related-article categories use collection: CEO 저널 / 리서치, rather than the English series. The introduction card also uses CEO 저널.",
+    "readLink": "읽기 in listing cards and Main V2/V4 previews; 바로가기 in the standalone first-read invitation.",
+    "validation": "15 existing route and intro checks passed. All current card categories, a research category fixture, CTA text, shared/static title consistency and 8 served files verified."
+  },
+  "titleEntry": {
+    "effect": "Use the same existing data-iv2-reveal as the category tabs: Foundation duration 800ms and rise distance 28px by default, with a fade. Plays once per page visit; reduced motion leaves the title static.",
+    "cleanup": "Remove particle script, pre-paint pending guard and particle-only heading CSS from the Insights page."
+  },
+  "headingLabel": {
+    "enabled": false,
+    "removedOn": "2026-10-09",
+    "decision": "Show only the Korean 인사이트 title; remove its INSIGHTS chip and the chip visibility/color tweak. Shared with Service Cases."
+  },
+  "articleTransition": {
+    "scope": "Insights V2 list cards and first-read invitation move into the article hero. Browser Back, the article return links and the Insights header menu reverse the photo into its corresponding archive card.",
+    "motion": "850ms with the shared editorial ease. Interpolate the visible crop separately from the aspect-preserving photo transform. The title and article content rise/fade in over 600ms, delayed 100ms and 220ms.",
+    "geometry": "Measure the source image including hover scale, object-fit cover and position. Resolve the target hero inset clip after article layout/scroll paint. Convert viewport coordinates through the actual rendered scale for desktop-canvas phone mode.",
+    "interaction": "Keep URL and history behavior, with no extra history entry on browser Back. Modified header clicks and same-article fragment history remain native. Wheel, touch, keyboard/scrollbar movement, resize, theme changes, history navigation, backgrounding and rapid second navigation clean up the effect. No scroll locking.",
+    "fallback": "Reduced motion, unloaded or offscreen images and links without a photo navigate directly. Missing targets, animation errors and an 1800ms timeout release native article content.",
+    "verification": "42 transition, article-motion, intro and routing checks passed. Includes reverse geometry at two scales, deep-reading return, target cleanup, all return controls, browser history and modified clicks. Five served files match workspace. Browser visual verification unavailable.",
+    "returning": "Restore the original category and list scroll. Keep the list cards still during return, fade the archive in and mask only the destination image until the photo arrives. When the real hero has scrolled away, reuse its entry composition. If needed, bring the matching card into view and focus it without another scroll."
+  },
+  "articleHeroBottom": {
+    "layout": "Remove the 24px viewport allowance and the portrait bottom inset. The starting narrow photo and the expanded photo both meet the viewport bottom during the pinned introduction.",
+    "verification": "19 existing article-motion and image-transition checks passed, including scaled viewport alignment and the reading-surface handoff. Two served files match workspace."
+  },
+  "sharedArchive": {
+    "script": "jll-remix-content-archive.js",
+    "stylesheet": "jll-remix-content-archive.css",
+    "peer": "jll-remix-cases.html",
+    "reference": "design/jll-remix/content-archive-reference.json"
+  },
+  "articleBackArrow": {
+    "placement": "Left content rail in the utility row. Stay below the global header while the introduction is pinned, then move upward with the article category and title. Shown only for article view.",
+    "visual": "Visible arrow tip aligns with the shared header/content left rail. Compensate for the 4px SVG inset, keep 44px minimum hit height, and show 목록으로 at the shared --field-font-size with an 8px gap. Ink over white; the inert photo-overlay copy renders both arrow and label white over imagery.",
+    "behavior": "Uses data-journal-back and the existing category/layout-preserving list URL. Restore previous list scroll and reverse the hero photo to its originating card.",
+    "verification": "40 routing, transition, hero and shared archive checks passed. Photo copy remains inert and strips IDs, hrefs and route hooks. Served file verification performed; browser visual verification unavailable."
+  },
+  "articleReadingSpacing": {
+    "desktop": "80px top padding, increased from 56px",
+    "mobile": "48px top padding, increased from 32px",
+    "scope": "Space between the image/white reading-surface boundary and the first paragraph. Keep the cover/handoff motion and paragraph spacing unchanged."
+  },
+  "articleStartImage": {
+    "maxWidth": "360px (previously 280px)",
+    "responsive": "Capped at 68% of viewport width and available image height / 1.05, keeping a wider near-square portrait below wrapped titles.",
+    "preserved": "Centered start position, photo meeting viewport bottom, full-width scroll expansion, and list/article photo transitions.",
+    "verification": "22 article-motion and shared-photo transition checks passed. Browser visual verification not performed."
+  },
+  "articleNavigationScroll": {
+    "behavior": "Both 목록으로 and the right breadcrumb track the title scene. Keep the shared header offset while the photo expands and the white reading surface advances; once the title releases, translate the entire utility row upward by the same distance.",
+    "geometry": "Read the live article heading top against its measured scene anchor and convert through the rendered scale. The same rule follows natural document scrolling for reduced-motion and short/static views.",
+    "accessibility": "Mark the row inert once it is fully covered by the global header; restore it on reverse scroll. Clear displacement and inert state on return to the archive. Retain one interactive link set and the inert white photo-contrast copy.",
+    "verification": "35 article-motion, shared-photo transition and routing tests passed, including forward/reverse scroll, scaled views, static fallbacks, list restoration and hidden-row focus behavior. Browser visual verification not performed."
+  },
+  "breadcrumbTransition": "On list → article, Home and Insights slide left as 글 읽기 is added at the fixed right edge over the foundation reveal duration (800ms default). Article → list reverses the expansion. Uses the shared content-archive breadcrumbMotion controller, including the white photo-backed copy; preserves breadcrumb link, category URL, image transition, and title-following scroll behavior. 50 related checks passed; no browser visual verification performed."
+}

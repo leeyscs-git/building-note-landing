@@ -1,0 +1,88 @@
+{
+  "date": "2026-10-08",
+  "decision": "Retain the local Hanwha study media and motion, with the requested transparent opening header and no video pause button on Main V2.",
+  "page": "jll-remix-main-v2.html",
+  "referencePage": "jll-remix-hanwha.html",
+  "reference": "https://www.hanwha.co.kr/",
+  "shared": [
+    "jll-remix-hanwha.css",
+    "jll-remix-hanwha.js"
+  ],
+  "mediaManifest": "assets/hanwha-reference/sources.json",
+  "spsIntegration": [
+    "Common header and inquiry flow",
+    "Service dialogs",
+    "Original/V2 A/B with corresponding sections",
+    "Opening video fills behind the SPS header; white logo lettering, navigation and icons with an Ink gradient for contrast; original red SPS mark retained",
+    "Solid header returns outside the opening film or while a navigation menu is expanded",
+    "Main V2 omits the pause button; shared video controller tolerates its absence while the Hanwha study retains its control"
+  ],
+  "previousVersion": {
+    "date": "2026-10-08",
+    "references": [
+      {
+        "name": "The Boundary",
+        "url": "https://www.the-boundary.com/",
+        "applied": "Full-bleed architectural film with concise editorial message.",
+        "evidence": "Public HTML and CSS; live animation not visually verified."
+      },
+      {
+        "name": "Snøhetta",
+        "url": "https://www.snohetta.com/projects/snohetta_visual-identity_web_2023",
+        "applied": "Restrained identity, typography and grayscale hierarchy.",
+        "evidence": "Official visual identity project description."
+      },
+      {
+        "name": "Hines",
+        "url": "https://www.hines.com/",
+        "applied": "Property lifecycle services and clear customer pathways.",
+        "evidence": "Official home page content; not a motion reference."
+      }
+    ],
+    "media": {
+      "file": "assets/sps-main/city-film.mp4",
+      "poster": "assets/sps-main/city-poster.jpg",
+      "source": "https://mixkit.co/free-stock-video/aerial-panorama-over-the-buildings-of-a-big-city-41541/",
+      "download": "https://assets.mixkit.co/videos/41541/41541-720.mp4",
+      "license": "Mixkit Stock Video Free License, source page states commercial and personal use",
+      "bytes": 8097215,
+      "width": 1280,
+      "height": 720,
+      "durationSeconds": 23.77375,
+      "audio": false,
+      "context": "Stock city footage, not SPS managed property."
+    },
+    "verification": "Source, unit and HTTP checks. Browser visual playback unverified due browser security policy rejection."
+  },
+  "verification": "15 header, shared motion and A/B routing tests passed. Main V2 pause button removed, shared reference control preserved, served source files matched. Live browser rendering not verified due tool access restriction.",
+  "visionTypography": "Use the existing --hero-title-size foundation token (59px default) for the vision slogan and its hidden keyword guides above 768px and in explicit desktop-canvas mode. Retain the previous small-screen responsive sizing. Recompute motion coordinates on foundation theme changes. The dedicated Hanwha reference page keeps its source-derived scale.",
+  "serviceContent": {
+    "categories": [
+      {
+        "key": "management",
+        "name": "부동산 자산관리",
+        "image": "assets/landing/architecture.jpg"
+      },
+      {
+        "key": "marketing",
+        "name": "임대 마케팅",
+        "image": "assets/landing/workplace.jpg"
+      },
+      {
+        "key": "interior",
+        "name": "실내건축",
+        "image": "assets/landing/interior.jpg"
+      }
+    ],
+    "interaction": "Existing expandable panels with local SPS service dialogs and directly addressable service URLs."
+  },
+  "insightsContent": {
+    "index": "jll-remix-journal-v2.html",
+    "articles": [
+      "report-principles",
+      "before-changing-space",
+      "why-we-work"
+    ],
+    "peek": "Hero drawer also points to the Insights index."
+  }
+}

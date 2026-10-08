@@ -1,4 +1,4 @@
-@import url('jll-remix-tokens.css?v=desktop-canvas');
+@import url('jll-remix-tokens.css?v=insight-title59');
 
 /* Hold the old document until the next one can paint, then replace it opaquely.
    Cross-fading two bright heroes (or a header with late theme values) flashes. */
@@ -45,8 +45,8 @@ body.sps-menu-open { overflow: hidden; }
 [data-sps-header] .menu-toggle[aria-expanded=true] > span:last-child { transform: translateY(-4px) rotate(-45deg); }
 [data-sps-header] .nav { min-height: 49px; height: auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0 20px; }
 [data-sps-header] .nav-links { display: flex; align-items: center; gap: var(--sps-nav-gap, 34px); height: 49px; }
-[data-sps-header] .nav-links > a { position: relative; display: flex; align-items: center; gap: 9px; font-size: var(--nav-font-size, 13px); height: 100%; border-bottom: 0; padding-top: 0; white-space: nowrap; }
-[data-sps-header] .nav-links > a::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; z-index: 1; pointer-events: none; background: var(--line); transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease-editorial), background-color .2s; }
+[data-sps-header] .nav-links > a { position: relative; display: flex; align-items: center; gap: 9px; font-size: var(--nav-font-size, 13px); height: 100%; border-bottom: 0; padding-block: calc(var(--sps-nav-indicator-gap) + var(--sps-nav-indicator-size)); line-height: var(--sps-nav-line-height); white-space: nowrap; }
+[data-sps-header] .nav-links > a::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: var(--sps-nav-indicator-size); z-index: 1; pointer-events: none; background: var(--line); transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease-editorial), background-color .2s; }
 [data-sps-header] .nav-links > a:is(:hover, :focus-visible)::after { background: var(--line); transform: scaleX(1); }
 /* Current location stays red, including while hovered or focused. */
 [data-sps-header] .nav-links > a.current::after { background: var(--red); transform: scaleX(1); }
@@ -75,16 +75,20 @@ body.sps-menu-open { overflow: hidden; }
 @media (max-width: 700px) {
   :where(html:not([data-sps-desktop])) [data-sps-header] .brand-logo{ width: var(--logo-width-mobile, 105px); }
 }
-@media (max-width: 600px) {
+@media (max-width: 850px) {
   :where(html:not([data-sps-desktop])) [data-sps-header]{ min-height: calc(var(--header-height-mobile, 75px) + 1px + var(--header-top-space, 16px)); }
   :where(html:not([data-sps-desktop])) [data-sps-header] .wrap{ width: calc(100% - var(--layout-gutter) * 2); }
   :where(html:not([data-sps-desktop])) [data-sps-header] .header-main{ height: auto; min-height: var(--header-height-mobile, 75px); padding-block: 10px; gap: 15px; }
   :where(html:not([data-sps-desktop])) [data-sps-header] .brand{ gap: 8px; }
   :where(html:not([data-sps-desktop])) [data-sps-header] .nav-tools{ gap: 8px; }
-  :where(html:not([data-sps-desktop])) [data-sps-header] .header-contact{ gap: var(--contact-gap, 12px); padding-inline: var(--contact-padding, 12px); }
-  :where(html:not([data-sps-desktop])) [data-sps-header] .menu-toggle{ display: flex; width: 40px; }
+  :where(html:not([data-sps-desktop])) [data-sps-header] .header-contact{ gap: min(var(--contact-gap, 12px),12px); padding-inline: min(var(--contact-padding, 12px),12px); white-space:nowrap; }
+  :where(html:not([data-sps-desktop])) [data-sps-header] .menu-toggle{ display: flex; width: 44px; }
   :where(html:not([data-sps-desktop])) [data-sps-header] .nav{ display: none; }
-  :where(html:not([data-sps-desktop])) [data-sps-header] .sps-header-menu{ padding: 15px 24px 35px; }
+  :where(html:not([data-sps-desktop])) [data-sps-header] .sps-header-menu{ padding: 15px var(--layout-gutter) max(35px,env(safe-area-inset-bottom)); }
   :where(html:not([data-sps-desktop])) [data-sps-header] .sps-header-menu > a{ font-size: var(--nav-font-mobile, 23px); min-height: 68px; }
+}
+@media (max-width: 360px) {
+  :where(html:not([data-sps-desktop])) [data-sps-header] .header-main{ gap:8px; }
+  :where(html:not([data-sps-desktop])) [data-sps-header] .header-contact{ gap:8px; padding-inline:10px; }
 }
 @media (prefers-reduced-motion: reduce) { [data-sps-header], [data-sps-header] *, [data-sps-header] *::after { transition: none; } }

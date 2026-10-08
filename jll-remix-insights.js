@@ -9,7 +9,7 @@
     if (new URLSearchParams(location.search).get('layout') === 'desktop') params.set('layout', 'desktop');
     if (category !== 'all') params.set('category', category);
     if (article) params.set('article', article.id);
-    return `jll-remix-journal.html${params.size ? `?${params}` : ''}${article ? '' : '#archive'}`;
+    return `jll-remix-journal-v2.html${params.size ? `?${params}` : ''}${article ? '' : '#archive'}`;
   };
   const cards = (items, category = 'all') => items.map(article => `
     <article class="insight-card" data-category="${escape(article.collection)}">
