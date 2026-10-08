@@ -149,12 +149,12 @@ test('down-arrow visibility persists independently and survives resizing until e
 });
 
 
-test('saved title offsets are clamped above the mobile rail and restored on a larger viewport',()=>{
+test('saved title offsets stay above the mobile stories and restore on a larger viewport',()=>{
   const h=fixture();h.move(240);
-  h.hero.offsetHeight=680;h.bar.offsetHeight=210;h.bar.bottom=114;h.copy.offsetHeight=240;
+  h.hero.offsetHeight=680;h.bar.offsetHeight=210;h.bar.bottom=0;h.copy.offsetHeight=240;
   h.events.resize();
   const offset=Number.parseFloat(h.styles['--main-title-offset']);
-  assert.equal(offset,60);
+  assert.equal(offset,174);
   const bottom=h.bar.offsetHeight+h.bar.bottom+32+offset;
   assert.equal(h.hero.offsetHeight-bottom-h.copy.offsetHeight,24);
   assert.equal(h.stored().offset,240,'responsive clamping does not overwrite the desktop preference');

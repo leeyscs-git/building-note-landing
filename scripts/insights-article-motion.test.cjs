@@ -103,6 +103,23 @@ test('scroll progress uses rendered scale, restores on reverse scroll, and stops
   }
 });
 
+test('a hidden mobile utility row reserves no space and restores its height on desktop resize',()=>{
+  const h=harness();
+  const desktopRect=h.nav.getBoundingClientRect;
+  h.nav.getBoundingClientRect=()=>({left:0,right:0,top:0,bottom:0,width:0,height:0});
+  h.sync();h.flush();
+  assert.equal(h.article.style['--iv2-page-nav-height'],'0px');
+  assert.equal(h.intro.style['--iv2-scene-top'],'185px');
+  assert.equal(h.nav.children[0].hidden,true);
+  h.win.scrollY=1000;h.events.scroll();h.flush();
+  assert.equal(h.frame.style.clipPath,'inset(0px 0px 0px)');
+  h.nav.getBoundingClientRect=desktopRect;
+  h.win.scrollY=0;h.events.resize();h.flush();
+  assert.equal(h.article.style['--iv2-page-nav-height'],'69px');
+  assert.equal(h.intro.style['--iv2-scene-top'],'254px');
+  assert.equal(h.nav.inert,false);
+});
+
 test('reduced motion removes the scroll runway and shows the complete photograph',()=>{
   const h=harness();
   h.sync();h.flush();

@@ -85,7 +85,7 @@
     "peek": "The former hero-only news drawer is removed. The numbered rail links to #hw-news, which retains the index and article links."
   },
   "pageNavigation": {
-    "layout": "Fixed right-side rail with quiet dividers and five always-visible section names. Retain the surface and shadow; use the shared --radius-panel foundation token (4px default), replacing the former 30px pill corners. V4 only.",
+    "layout": "Fixed right-side rail with quiet dividers and five section names on wide desktop viewports. Retain the surface and shadow; use the shared --radius-panel foundation token (4px default), replacing the former 30px pill corners. V4 only.",
     "sections": [
       "소개",
       "비전",
@@ -95,7 +95,7 @@
     ],
     "content": "Remove 01–05 from visible and accessible labels. Rename 처음 to 소개. Keep the five existing anchor targets; the shared scroll engine colors the active section label red.",
     "interaction": "All names remain visible without hovering, on desktop and narrow screens. Clicking a label keeps the existing section scroll behavior.",
-    "fallback": "Hide during menus, dialogs, background tabs and footer, and while the V4 layout tweak disables the rail. Returning from another section or menu preserves the manual visibility choice.",
+    "fallback": "Hide at 850px and below, or whenever the viewport is narrower than the desktop header foundation width (--content-max + twice --page-gutter; currently 1392px). Re-evaluate on resize and theme changes without overwriting the saved visibility choice. Also hide during menus, dialogs, background tabs and footer, and while the layout tweak disables the rail. Start hidden until the first width check to avoid flashing on narrow screens.",
     "verification": "10 existing navigation and shared motion checks passed. All five text-only links and section targets checked. Browser visual verification not performed."
   },
   "visionParticles": {
@@ -145,7 +145,7 @@
   "mobileRefinement": {
     "date": "2026-10-09",
     "headerBreakpoint": 850,
-    "scope": "Bottom section rail with safe-area space, inset-aware story/title placement, mobile foundation title cap, non-overlapping tweaks and controls, stacked service panels, static scenes on short landscape viewports.",
+    "scope": "Hide section navigation on mobile and narrow desktop viewports; remove the former bottom rail and its 80px reserved space. Keep stories flush with the hero bottom, mobile foundation title cap, non-overlapping tweaks and controls, stacked service panels, and static scenes on short landscape viewports.",
     "verification": "119 automated checks passed; 29 scripts passed syntax checking; 599 local HTML references resolved. Browser and physical-device visual checks were not performed."
   }
 }

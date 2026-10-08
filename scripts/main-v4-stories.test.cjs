@@ -180,15 +180,15 @@ test('approved V4 uses the cool foundation surface without loading the old palet
 });
 
 
-test('mobile story measurement reserves the section rail and safe area after rotation',()=>{
+test('mobile stories remain at the hero bottom without reserving space for the hidden section menu',()=>{
   const h=fixture();
   for(const width of [320,360,390,430,768]){
     h.hero.offsetWidth=width;h.bar.offsetWidth=width-40;
-    h.bar.offsetHeight=210;h.bar.bottom=114;h.copy.offsetHeight=240;
+    h.bar.offsetHeight=210;h.bar.bottom=0;h.copy.offsetHeight=240;
     h.events.resize();
-    assert.equal(h.values['--main-stories-height'],'324px');
+    assert.equal(h.values['--main-stories-height'],'210px');
     assert.equal(h.values['--main-story-copy-height'],'240px');
-    assert.equal(h.values['--main-down-bottom'],'348px');
+    assert.equal(h.values['--main-down-bottom'],'234px');
   }
   h.hero.offsetWidth=1440;h.bar.offsetWidth=1200;h.bar.bottom=0;
   h.events.resize();

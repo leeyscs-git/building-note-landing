@@ -21,7 +21,6 @@
       labelFor:article=>article.collection === 'research' ? '리서치' : 'CEO 저널'
     });
   }
-  const categoryHelp = archive.categoryHelp;
   const clamp01 = value => Math.max(0, Math.min(1, value));
   function heroFrame(progress, width, height, portraitWidth, portraitTop = 0) {
     const p = clamp01(progress);
@@ -204,7 +203,6 @@
     return sync;
   }
   function start(win) {
-    categoryHelp(win);
     const syncHero = articleHero(win);
     const doc = win.document;
     const list = archive.start(win);
@@ -226,5 +224,5 @@
       win.requestAnimationFrame(() => { list.refresh(); });
     });
   }
-  return { cards, urlFor, start, categoryHelp, heroFrame, navPhotoBounds, articleHero };
+  return { cards, urlFor, start, heroFrame, navPhotoBounds, articleHero };
 });

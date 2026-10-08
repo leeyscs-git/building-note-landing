@@ -29,26 +29,6 @@
 .iv2-tab-indicator { position:absolute; left:0; bottom:0; width:0; height:var(--sps-nav-indicator-size); pointer-events:none; background:var(--red); transition:transform .25s var(--ease-editorial),width .25s var(--ease-editorial); }
 .iv2-filters.has-indicator button.active::after { display:none; }
 
-/* Designed category help: reuse the foundation's existing light rose. */
-.iv2-filter-item { display:flex; align-items:stretch; gap:4px; }
-.iv2-filter-help { position:relative; display:flex; align-items:stretch; flex-shrink:0; }
-.iv2-filters .iv2-help-trigger { align-items:center; justify-content:center; width:28px; min-height:44px; padding:0; font-size:var(--field-font-size,14px); font-weight:500; line-height:1; }
-.iv2-help-trigger sps-help-pictogram { transform:translateY(calc(var(--page-tab-size,21px) * -.4)); }
-.iv2-filters .iv2-help-trigger::after { display:none; }
-.iv2-help-trigger:focus-visible { outline:2px solid var(--red); outline-offset:2px; border-radius:var(--radius-control); }
-.iv2-category-help { position:absolute; z-index:5; top:calc(100% + 14px); left:50%; width:280px; padding:12px 14px; border-radius:var(--radius-panel); background:var(--rose-hover); color:var(--ink); text-align:left; font-size:var(--body-size,16px); font-weight:400; line-height:1.5; letter-spacing:0; word-break:keep-all; overflow-wrap:anywhere; opacity:0; visibility:hidden; pointer-events:none; transform:translate(-50%,6px); transition:opacity .18s var(--ease-editorial),transform .18s var(--ease-editorial),visibility 0s .18s; }
-.iv2-category-help::before { content:''; position:absolute; inset-inline:0; bottom:100%; height:14px; }
-.iv2-category-help::after { content:''; position:absolute; bottom:100%; left:var(--help-arrow-left,50%); width:10px; height:10px; background:inherit; transform:translate(-50%,50%) rotate(45deg); }
-.iv2-category-help strong { display:block; margin-bottom:4px; font-size:inherit; font-weight:600; }
-.iv2-category-help p { margin:0; }
-.iv2-filter-help:not([data-dismissed]):is(:has(> [data-help-trigger]:focus-visible),[data-open]) .iv2-category-help { opacity:1; visibility:visible; pointer-events:auto; transform:translate(-50%,0); transition-delay:0s; }
-@media(hover:hover) {
-  .iv2-filter-help:not([data-dismissed]):hover .iv2-category-help { opacity:1; visibility:visible; pointer-events:auto; transform:translate(-50%,0); transition-delay:0s; }
-}
-@media(prefers-reduced-motion:reduce) {
-  .iv2-category-help { transition:none; transform:translateX(-50%); }
-}
-
 .iv2-archive { padding-block:80px 88px; scroll-margin-top:calc(var(--sps-header-height,137px) + 24px); }
 .iv2-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:64px calc(var(--card-gap,28px) + 8px); }
 .iv2-post { min-width:0; }
@@ -80,20 +60,15 @@
   :where(html:not([data-sps-desktop])) .iv2-archive { padding-top:56px; }
 }
 @media(max-width:850px) {
+  :where(html:not([data-sps-desktop])) .content-archive-page .iv2-page-nav { display:none; }
   :where(html:not([data-sps-desktop])) .iv2-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:40px 24px; }
 }
 @media(max-width:600px) {
-  :where(html:not([data-sps-desktop])) .iv2-page-nav-inner { gap:8px; }
-  :where(html:not([data-sps-desktop])) .iv2-breadcrumb ol { gap:6px; }
-  :where(html:not([data-sps-desktop])) .iv2-breadcrumb li { gap:6px; }
   :where(html:not([data-sps-desktop])) .iv2-heading { padding-block:24px 40px; }
   :where(html:not([data-sps-desktop])) .iv2-heading h1 { font-size:var(--hero-title-mobile,39px); }
   :where(html:not([data-sps-desktop])) .iv2-filters { gap:16px; }
   :where(html:not([data-sps-desktop])) .iv2-filters button { font-size:var(--body-size,16px); }
   :where(html:not([data-sps-desktop])) .iv2-filters button[aria-pressed] { white-space:nowrap; }
-  :where(html:not([data-sps-desktop])) .iv2-filter-item { gap:0; }
-  :where(html:not([data-sps-desktop])) .iv2-filters .iv2-help-trigger { width:24px; }
-  :where(html:not([data-sps-desktop])) .iv2-help-trigger sps-help-pictogram { transform:translateY(calc(var(--body-size,16px) * -.4)); }
   :where(html:not([data-sps-desktop])) .iv2-archive { padding-bottom:56px; }
   :where(html:not([data-sps-desktop])) .iv2-grid { grid-template-columns:1fr; row-gap:48px; }
   :where(html:not([data-sps-desktop])) .iv2-empty { padding:40px 16px; }
@@ -101,7 +76,6 @@
   :where(html:not([data-sps-desktop])) .journal-closing-description br { display:none; }
   :where(html:not([data-sps-desktop])) .iv2-copy { padding-top:20px; }
   :where(html:not([data-sps-desktop])) .iv2-post h2 { margin-top:12px; }
-  :where(html:not([data-sps-desktop])) .iv2-page-nav-inner { padding-block:8px; }
 }
 @media(prefers-reduced-motion:reduce) {
   .iv2-filters button::after,.iv2-tab-indicator { transition:none; }

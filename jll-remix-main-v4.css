@@ -39,7 +39,7 @@
   :where(html:not([data-sps-desktop])) .hw-main-v4 .main-v4-stories .hero-bottom { padding:14px 14px 12px; }
 }
 
-/* Use the foundation panel radius, with section names visible at every size. */
+/* Use the foundation panel radius for the wide-desktop section menu. */
 .hw-main-v4 .main-v4-page-nav { position:fixed; inset:auto clamp(24px,2vw,40px) auto auto; top:50%; z-index:35; display:flex; flex-direction:column; gap:0; width:max-content; min-width:48px; padding:6px 16px; transform:translateY(-50%); background:color-mix(in srgb,var(--surface) 92%,transparent); color:var(--muted); border-radius:var(--radius-panel,4px); box-shadow:0 6px 20px #14161a0d; transition:background .25s,box-shadow .25s,opacity .3s; }
 .hw-main-v4 .main-v4-page-nav:is(:hover,:focus-within) { background:var(--surface); box-shadow:0 12px 32px #14161a1a; }
 .hw-main-v4 .main-v4-page-nav:is([hidden],[data-tweak-hidden]) { display:none; }
@@ -51,9 +51,6 @@
 .hw-main-v4 .main-v4-page-nav a:is([aria-current],:hover,:focus-visible) { color:var(--red); }
 .hw-main-v4 .main-v4-page-nav a[aria-current]:not(:hover):not(:focus-visible) .main-v4-nav-label { opacity:1; }
 .hw-main-v4 .main-v4-page-nav a:focus-visible { outline:2px solid var(--red); outline-offset:4px; border-radius:var(--radius-control,3px); }
-@media(max-width:600px) {
-  :where(html:not([data-sps-desktop])) .hw-main-v4 .main-v4-page-nav { right:12px; min-width:44px; padding:6px 12px; }
-}
 @media(prefers-reduced-motion:reduce) {
   .hw-main-v4 .main-v4-page-nav,.hw-main-v4 .main-v4-page-nav a,.hw-main-v4 .main-v4-page-nav span { transition:none; }
 }
@@ -85,14 +82,9 @@
 .main-v4-tweaks-panel button:hover { background:var(--rose-hover); }
 .main-v4-tweaks :is(summary,input,select,button):focus-visible { outline:2px solid var(--red); outline-offset:3px; }
 
-/* Compact section rail stays clear of the opening story controls and phone safe area. */
+/* Small screens use the shared header menu; the stories stay flush with the hero bottom. */
 @media(max-width:850px) {
-  :where(html:not([data-sps-desktop])) .hw-main-v4 { --main-rail-space:80px; }
-  :where(html:not([data-sps-desktop])) .hw-main-v4 .main-v4-page-nav { inset:auto 12px max(12px,env(safe-area-inset-bottom)) 12px; width:auto; min-width:0; max-width:540px; margin-inline:auto; flex-direction:row; justify-content:space-between; gap:0; padding:4px; transform:none; overflow-x:auto; overscroll-behavior-x:contain; }
-  :where(html:not([data-sps-desktop])) .hw-main-v4 .main-v4-page-nav a { flex:0 0 auto; padding:8px 6px; min-height:44px; border:0; }
-  :where(html:not([data-sps-desktop])) .hw-main-v4 .main-v4-page-nav .main-v4-nav-label { font-size:12px; }
-  :where(html:not([data-sps-desktop])) .hw-main-v4 .main-v4-page-nav a[aria-current] { background:var(--surface-cool); border-radius:var(--radius-control); }
-  :where(html:not([data-sps-desktop])) .hw-main-v4 .main-v4-stories { bottom:calc(var(--main-rail-space) + env(safe-area-inset-bottom)); }
+  .hw-main-v4 .main-v4-page-nav { display:none; }
   :where(html:not([data-sps-desktop])) .hw-main-v4 .hw-hero-copy h1 { font-size:min(var(--main-title-size,var(--section-title-size,43px)),var(--hero-title-mobile,39px)); overflow-wrap:anywhere; }
   :where(html:not([data-sps-desktop])) .main-v4-tweaks { top:calc(var(--sps-header-height,76px) + 12px); right:12px; }
   :where(html:not([data-sps-desktop])) .main-v4-tweaks-panel { max-height:calc(100dvh - var(--sps-header-height,76px) - 84px); overscroll-behavior:contain; }

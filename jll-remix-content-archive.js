@@ -19,68 +19,6 @@
         </a>
       </article>`).join('');
   }
-  function categoryHelp(win, renderEvent = 'sps-journal-render') {
-    const doc=win.document;
-    const groups=[...doc.querySelectorAll('[data-filter-help]')];
-    if (!groups.length) return;
-    function position(group) {
-      const button=group.querySelector('[data-help-trigger]');
-      const tip=group.querySelector('[role="tooltip"]');
-      const wrap=group.closest('.wrap');
-      const bounds=wrap.getBoundingClientRect();
-      if(!bounds.width)return;
-      const scale=bounds.width/wrap.offsetWidth||1;
-      const anchor=button.getBoundingClientRect();
-      const origin=group.getBoundingClientRect();
-      const width=Math.min(280*scale,bounds.width);
-      const center=anchor.left+anchor.width/2;
-      const left=Math.max(bounds.left,Math.min(center-width/2,bounds.right-width));
-      tip.style.width=(width/scale)+'px';
-      tip.style.left=((left+width/2-origin.left)/scale)+'px';
-      tip.style.setProperty('--help-arrow-left',Math.max(16,Math.min(width/scale-16,(center-left)/scale))+'px');
-    }
-    function close(group) { delete group.dataset.open; group.dataset.dismissed=''; }
-    groups.forEach(group=>{
-      const button=group.querySelector('[data-help-trigger]');
-      group.addEventListener('pointerenter',event=>{
-        if(event.pointerType==='touch')return;
-        delete group.dataset.dismissed;
-        position(group);
-      });
-      group.addEventListener('pointerleave',event=>{
-        if(event.pointerType==='touch')return;
-        delete group.dataset.open;
-        delete group.dataset.dismissed;
-      });
-      button.addEventListener('focus',()=>{
-        delete group.dataset.dismissed;
-        position(group);
-      });
-      button.addEventListener('click',()=>{
-        const wasOpen=group.hasAttribute('data-open');
-        groups.forEach(close);
-        if(!wasOpen){delete group.dataset.dismissed;group.dataset.open='';position(group);}
-      });
-      group.addEventListener('focusout',event=>{if(!group.contains(event.relatedTarget))close(group);});
-    });
-    doc.addEventListener('keydown',event=>{
-      if(event.key!=='Escape')return;
-      const visible=groups.filter(group=>win.getComputedStyle(group.querySelector('[role="tooltip"]')).visibility==='visible');
-      if(!visible.length)return;
-      visible.forEach(close);
-      event.preventDefault();
-    });
-    doc.addEventListener('pointerdown',event=>{
-      groups.forEach(group=>{if(!group.contains(event.target)&&group.hasAttribute('data-open'))close(group);});
-    });
-    doc.addEventListener(renderEvent,event=>{
-      if(event.detail.view==='article')groups.forEach(close);
-    });
-    win.addEventListener('resize',()=>groups.forEach(position),{passive:true});
-    win.addEventListener('sps-theme-change',()=>groups.forEach(position));
-    doc.fonts?.ready.then(()=>groups.forEach(position));
-    groups.forEach(position);
-  }
   // Grow a new breadcrumb from the right edge; its ancestors naturally move left.
   function breadcrumbMotion(win, root) {
     if(!root)return update=>update();
@@ -208,5 +146,5 @@
     win.addEventListener('sps-theme-change',positionIndicator);
     return {refresh(){positionIndicator();observeContent();}};
   }
-  return {cards,categoryHelp,breadcrumbMotion,start};
+  return {cards,breadcrumbMotion,start};
 });
