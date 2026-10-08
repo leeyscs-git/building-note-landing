@@ -58,8 +58,8 @@ sps-service-menu { display: block; position: relative; color: var(--ink); font-s
   background: var(--line); transform: scaleX(0); transform-origin: left;
   transition: transform .35s var(--ease-editorial), background-color .2s;
 }
-.sps-service-trigger.current::after { transform: scaleX(1); }
-.sps-service-trigger:is(:hover, :focus-visible, [aria-expanded=true])::after { background: var(--red); transform: scaleX(1); }
+.sps-service-trigger:is(:hover, :focus-visible, [aria-expanded=true])::after { background: var(--line); transform: scaleX(1); }
+.sps-service-trigger.current::after { background: var(--red); transform: scaleX(1); }
 .sps-service-trigger sps-chevron > svg {
   transform: rotate(-90deg); transform-origin: center;
   transition: transform .24s var(--ease-editorial);
@@ -133,8 +133,8 @@ sps-service-menu[data-variant=v2][data-mobile] .sps-service-summary { min-height
 sps-service-menu[data-mobile] { border-bottom: 1px solid var(--line); }
 sps-service-menu[data-mobile] .sps-service-trigger { justify-content: space-between; width: 100%; min-height: 68px; height: auto; font-size: var(--nav-font-mobile, 23px); }
 sps-service-menu[data-mobile] .sps-service-trigger::after { display: none; }
-sps-service-menu[data-mobile] .sps-service-trigger.current { color: var(--muted); }
-sps-service-menu[data-mobile] .sps-service-trigger:is(:hover, :focus-visible, [aria-expanded=true]) { color: var(--red); }
+sps-service-menu[data-mobile] .sps-service-trigger:is(:hover, :focus-visible, [aria-expanded=true]) { color: var(--muted); }
+sps-service-menu[data-mobile] .sps-service-trigger.current { color: var(--red); }
 sps-service-menu[data-mobile] .sps-service-panel { position: static; max-height: none; overflow: visible; border: 0; box-shadow: none; }
 sps-service-menu[data-mobile] .sps-service-content { width: 100%; grid-template-columns: 1fr; gap: 10px; padding: 8px 0 18px; }
 sps-service-menu[data-mobile] .sps-service-kicker { display: none; }

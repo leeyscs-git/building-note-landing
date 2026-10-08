@@ -4,7 +4,7 @@
   const groups = {
     brand: [
       ['--ink', 'Ink', '제목·본문·진한 버튼'],
-      ['--red', 'Signal Red', '활성 상태·방향·초점'],
+      ['--red', 'Signal Red', '현재 메뉴·활성 상태·방향·초점'],
       ['--rose-soft', 'Contact Surface', '헤더 문의 버튼'],
       ['--rose-hover', 'Contact Hover', '문의 호버·텍스트 선택']
     ],
@@ -15,7 +15,7 @@
       ['--surface-blue', 'Blue Gray', '기술 설명 면'],
       ['--surface-cool', 'Cool Neutral', '선택·참고 결과 영역'],
       ['--muted', 'Muted Ink', '보조 설명'],
-      ['--line', 'Line', '구획·구분선'],
+      ['--line', 'Line', '구획·구분선·헤더 호버'],
       ['--red-section', 'Section Red', '하단 문의 영역']
     ]
   };

@@ -8,12 +8,12 @@
   const size = (token, label, value, min, max, section, step = 1) => ({token, label, value, min, max, section, step, type:'number', unit:'px'});
   const font = (token, label, value, min, max, group) => ({...size(token,label,value,min,max,'type'),group});
   return [
-    color('--ink','제목·본문 / Ink','#10252b'), color('--red','강조·초점 / Red','#d5092b'),
+    color('--ink','제목·본문 / Ink','#10252b'), color('--red','강조·초점·현재 메뉴 / Red','#d5092b'),
     color('--rose-soft','문의 버튼 배경','#ffd7de'), color('--rose-hover','문의 버튼 호버','#f9c6cb'),
     color('--surface','기본 바탕','#ffffff'), color('--peach','자산관리 설명 배경','#f4ebe4'),
     color('--surface-sage','공간 설명 배경','#eaf0ed'), color('--surface-blue','기술 설명 배경','#e9eff2'),
     color('--surface-cool','선택·참고 영역','#edf1f2'), color('--muted','보조 설명','#5c686c'),
-    color('--line','구분선','#dce1e2'), color('--red-section','하단 문의 영역','#d2082b'),
+    color('--line','구분선·헤더 호버','#dce1e2'), color('--red-section','하단 문의 영역','#d2082b'),
     size('--logo-width','로고 너비 · 데스크톱',120,80,180,'brand'),
     size('--logo-width-mobile','로고 너비 · 모바일',105,70,120,'brand'),
     font('--nav-font-size','헤더 메뉴 · PC',13,11,20,'header'),
