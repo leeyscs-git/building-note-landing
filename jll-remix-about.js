@@ -95,11 +95,8 @@
 
   // A close city view pulls back while two lines rise independently through masks.
   if (!reduced.matches && !location.hash && scrollY < 100) {
-    const finalHeight = hero.offsetHeight;
-    introAnimations.push(hero.animate([
-      { height: `${Math.max(finalHeight, innerHeight)}px`, clipPath: 'inset(4% 0% 0% 0%)' },
-      { height: `${finalHeight}px`, clipPath: 'inset(0% 0% 0% 0%)' }
-    ], { duration: 1450, easing: cinematicEase }));
+    // Animate only inner layers: a measured height can go stale while the shared
+    // header settles, then snap to the responsive CSS height when the effect ends.
     introAnimations.push(q('.hero-photo').animate([
       { transform: 'translateY(5%) scale(1.28)' },
       { transform: 'translateY(-5%) scale(1)' }
