@@ -97,7 +97,7 @@
   if (!reduced.matches && !location.hash && scrollY < 100) {
     const finalHeight = hero.offsetHeight;
     introAnimations.push(hero.animate([
-      { height: `${Math.max(finalHeight, innerHeight)}px`, clipPath: 'inset(4% 3% 0% 3%)' },
+      { height: `${Math.max(finalHeight, innerHeight)}px`, clipPath: 'inset(4% 0% 0% 0%)' },
       { height: `${finalHeight}px`, clipPath: 'inset(0% 0% 0% 0%)' }
     ], { duration: 1450, easing: cinematicEase }));
     introAnimations.push(q('.hero-photo').animate([
@@ -193,8 +193,6 @@
     hero.style.setProperty('--hero-shift', `${heroProgress * heroHeight * .26}px`);
     hero.style.setProperty('--hero-scale', String(1 + heroProgress * .14));
     hero.style.setProperty('--hero-opacity', String(1 - heroProgress * .9));
-    hero.style.setProperty('--title-shift', `${-heroProgress * 90}px`);
-    hero.style.setProperty('--hero-inset', `${enhanced ? heroProgress * 3 : 0}%`);
 
     statementLines.forEach((line, i) => {
       const ink = reduced.matches ? 1 : clamp((visualY + innerHeight * .82 - lineBounds[i]) / (innerHeight * .32));
