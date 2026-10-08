@@ -92,7 +92,7 @@ sps-service-menu { display: block; position: relative; color: var(--ink); font-s
 .sps-service-link + .sps-service-link { border-left: 1px solid var(--line); }
 .sps-service-name { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: calc(var(--nav-font-size, 13px) * 1.45); font-weight: 550; line-height: 1.5; letter-spacing: -.035em; overflow-wrap: anywhere; }
 .sps-service-name sps-arrow-up-right { font-size: 13px; color: var(--muted); transition: color .2s, transform .2s var(--ease-editorial); }
-.sps-service-description { display: block; margin-top: 10px; color: var(--muted); font-size: var(--nav-font-size, 13px); line-height: 1.75; word-break: keep-all; }
+.sps-service-description { display: block; margin-top: 6px; color: var(--muted); font-size: var(--nav-font-size, 13px); line-height: 1.75; word-break: keep-all; }
 .sps-service-link:is(:hover, :focus-visible) .sps-service-name { color: var(--red); }
 .sps-service-link:is(:hover, :focus-visible) sps-arrow-up-right { color: var(--red); transform: translate(2px, -2px); }
 /* V2: the existing SPS site's four-column heading / summary / topic pattern.
