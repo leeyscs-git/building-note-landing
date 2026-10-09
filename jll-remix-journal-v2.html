@@ -8,26 +8,28 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
   <link rel="stylesheet" href="jll-remix.css?v=insight-title59">
-  <link rel="stylesheet" href="jll-remix-header.css?v=mobile-20261009">
+  <link rel="stylesheet" href="jll-remix-header.css?v=shared-button-gray1">
   <link rel="stylesheet" href="jll-remix-components.css?v=help-superscript4">
   <link rel="stylesheet" href="jll-remix-theme.css?v=desktop-canvas">
   <link rel="stylesheet" href="jll-remix-insights.css?v=desktop-canvas">
   <link rel="stylesheet" href="jll-remix-journal.css?v=desktop-canvas">
-  <link rel="stylesheet" href="jll-remix-content-archive.css?v=mobile-nav15">
-  <link rel="stylesheet" href="jll-remix-journal-v2.css?v=mobile-20261009">
+  <link rel="stylesheet" href="jll-remix-content-archive.css?v=mobile-nav-space1">
+  <link rel="stylesheet" href="jll-remix-journal-v2.css?v=mobile-nav-space1">
   <script src="jll-remix-header.js?v=mobile-20261009" defer></script>
-  <script src="jll-remix-theme-schema.js?v=insight-title59" defer></script>
+  <script src="jll-remix-theme-schema.js?v=display72" defer></script>
   <script src="jll-remix-theme.js?v=hero-content-rails1" defer></script>
   <script src="jll-remix-components.js?v=mobile-20261009" defer></script>
+<script src="jll-remix-footer.js?v=shared-footer2" defer blocking="render"></script>
   <script src="jll-remix-journal-data.js?v=why-this-work2" defer></script>
   <script src="jll-remix-insights.js?v=insights-current-v2" defer></script>
-  <script src="jll-remix-content-archive.js?v=plain-categories14" defer></script>
+  <script src="jll-remix-content-archive.js?v=shared-empty-component1" defer></script>
   <script src="jll-remix-journal-v2.js?v=plain-categories34" defer></script>
   <script src="jll-remix-journal-transition.js?v=photo-return2" defer></script>
-  <script src="jll-remix-journal.js?v=photo-return12" defer></script>
+  <script src="jll-remix-journal.js?v=shared-empty-component1" defer></script>
   <script src="jll-remix-insights-intro.js?v=manual-fold4" defer></script>
   <link rel="stylesheet" href="jll-remix-contact.css?v=mobile-20261009">
   <script src="jll-remix-contact.js?v=support-scenarios1" defer></script>
+<link rel="stylesheet" href="jll-remix-footer.css?v=phone-size24">
 </head>
 <body class="journal-page insights-v2 content-archive-page">
   <a class="skip-link" href="#main">본문으로 바로가기</a>
@@ -63,10 +65,7 @@
       </div>
       <section class="iv2-archive wrap" id="archive" aria-label="인사이트 글 목록">
         <div class="iv2-grid" id="journal-grid"></div>
-        <div class="iv2-empty" id="journal-empty" hidden>
-          <h2>아직 공개된 리서치가 없습니다.</h2>
-          <button class="text-link journal-link iv2-empty-cta" type="button" data-category="journal">CEO 저널 살펴보기<sps-arrow-up-right></sps-arrow-up-right></button>
-        </div>
+        <div class="iv2-empty" id="journal-empty" hidden></div>
         <noscript><p>분류와 글 미리보기를 이용하려면 브라우저의 자바스크립트를 켜 주세요.</p></noscript>
       </section>
       <section class="journal-closing wrap" id="insights-consultation" aria-labelledby="closing-title" data-iv2-reveal>
@@ -80,7 +79,8 @@
     </div>
     <article id="journal-article" class="journal-article wrap" hidden></article>
   </main>
-  <footer class="journal-footer"><div class="wrap"><div class="journal-footer-main"><a href="jll-remix.html" aria-label="SPS 홈"><img src="assets/logo.svg" alt="SPS" width="120" height="40"></a><p>공간과 운영에 관한 기록.<br><span>SPS INSIGHTS</span></p><a class="text-link journal-link" href="jll-remix-support.html#inquiry" data-inquiry>관리 상담 안내 <sps-arrow-up-right></sps-arrow-up-right></a></div><div class="journal-footer-bottom"><p>© SPS. All rights reserved.</p><p>페이지 시안 · 수록 글은 편집 초안이며, 사진은 실제 관리 사례를 나타내지 않습니다.</p></div></div></footer>
+<footer class="sps-footer" id="sps-footer" data-sps-footer data-sps-layout><a class="sps-footer-fallback" href="jll-remix-support.html">SPS · 고객지원</a></footer>
+
   <aside class="iv2-first-read" aria-label="먼저 읽어볼 CEO 저널" hidden>
     <div id="iv2-first-read-panel" class="iv2-first-read-panel" aria-hidden="true" inert>
       <img src="assets/landing/architecture.jpg" alt="" width="480" height="420" decoding="async">

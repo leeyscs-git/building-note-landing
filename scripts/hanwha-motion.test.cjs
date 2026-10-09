@@ -53,6 +53,35 @@ test('at least one scene stays visible throughout the moving-picture sequence',(
   for(let t=.61;t<7.59;t+=.02)
     assert.ok([0,1,2].some(i=>sceneState(t,i).visible),'gap at '+t);
 });
+
+test('V4 leaves with its final film covering the released stage and stops media afterward',()=>{
+  for(let t=6.6;t<7.6;t+=.013){
+    const state=sceneState(t,2,true);
+    assert.equal(state.visible,true);
+    assert.equal(state.size,100);
+    assert.equal(state.radius,0);
+    assert.equal(state.y,0,'the film must not leave ahead of its scrolling stage');
+    assert.equal(state.innerY,0);
+    assert.equal(state.text,1);
+    assert.equal(state.active,true);
+  }
+  assert.equal(sceneState(7.6,2,true).visible,false,'offscreen media stops');
+  assert.equal(sceneState(7.6,2).y,-1,'reference pages retain their original exit');
+  for(const index of [0,1])
+    for(const t of [0,1.6,2.6,3.6,4.6,6.6])
+      assert.deepEqual(sceneState(t,index,true),sceneState(t,index));
+  const samples=[4.6,5.2,5.6,6,6.6,7,7.59].map(t=>[t,sceneState(t,2,true)]);
+  samples.reverse().forEach(([t,state])=>assert.deepEqual(sceneState(t,2,true),state));
+});
+
+test('neutral vision opens to white before the films, then restores white film lettering',()=>{
+  assert.equal(keywordState(0).baseWeight,1);
+  assert.equal(keywordState(.6).baseWeight,0);
+  assert.equal(keywordState(.6).filmWeight,0);
+  assert.equal(keywordState(1.2).filmWeight,0);
+  assert.ok(keywordState(1.4).filmWeight>0 && keywordState(1.4).filmWeight<1);
+  assert.equal(keywordState(1.6).filmWeight,1);
+});
 test('final photo fills the stage before the closing message appears',()=>{
   assert.equal(futureState(0).expand,0);
   assert.equal(futureState(0).bottom,0);
@@ -82,9 +111,9 @@ test('sentence suffixes disappear before their original keywords start travellin
 });
 
 test('keyword motion is continuous at fade and movement boundaries in both directions',()=>{
-  for(const t of [-.4,0,.1,.5,.6,1,1.1,1.6]){
+  for(const t of [-.4,0,.1,.5,.6,1,1.1,1.2,1.6]){
     const before=keywordState(t-1e-6),after=keywordState(t+1e-6);
-    for(const key of ['reveal','restOpacity','moveX','moveY','baseWeight']){
+    for(const key of ['reveal','restOpacity','moveX','moveY','baseWeight','filmWeight']){
       assert.ok(Math.abs(before[key]-after[key])<.00001,key+' snaps at '+t);
     }
   }
@@ -93,5 +122,5 @@ test('keyword motion is continuous at fade and movement boundaries in both direc
   assert.equal(keywordState(0).restOpacity,1);
   assert.equal(keywordState(0).moveX,0);
   assert.equal(keywordState(0).baseWeight,1,'the full slogan keeps its selected palette');
-  assert.equal(keywordState(.6).baseWeight,0,'the dark film palette is ready before the first film enters');
+  assert.equal(keywordState(.6).baseWeight,0,'the film-stage palette is ready before the first film enters');
 });

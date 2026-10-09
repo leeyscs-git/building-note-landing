@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-08",
+  "date": "2026-10-09",
   "page": "jll-remix-main-v4.html",
   "base": "Original SPS main stories with the shared Hanwha motion engine",
   "decision": "Use the shared white header on both rows. The opening hero uses original still images for tabs 1–3 and the existing Hanwha test film for tab 4.",
@@ -11,13 +11,12 @@
   "mediaManifest": "assets/hanwha-reference/sources.json",
   "layout": "No overlay opt-in or negative header overlap. Shared header colors, logo and menu typography are retained on desktop and mobile.",
   "comparison": "V4 does not load the retired comparison/palette switcher. Original A and V2 B keep comparison links; the separate comparison page retains all variants. V3 redirects to V4.",
-  "playback": "Only tab 4 shows the existing assets/hanwha-reference/hero.mp4. Tabs 1–3 hide and pause it. The shared playback engine also respects section visibility, background tabs and reduced motion. No playback button is added.",
-  "stories": "PERSPECTIVES: four original story labels select headlines and media. The panel retains the original content width, touches the hero bottom, and uses the shared 4px radius only at the upper corners. Its position remains separate from the media parallax.",
-  "headline": "Reuse the Hanwha 1.6s line reveal with 0.45s staggering on entry and tab selection. Remove the SPS 알아보기 CTA. Use the about-page down-arrow glyph in a 48px square with the shared contact-button radius and cool surface. Reduced-motion settings disable animation.",
+  "playback": "Automatically cycle four stories: 7200ms reading time with a progress line, plus the original 950ms image crossfade. Provide an accessible pause/play control. Pause auto-cycle and photo zoom outside the hero, in background tabs, while interacting with stories, while dialogs/menus/tweaks are open, and for reduced motion. Video playback remains handled by the shared engine.",
+  "stories": "Desktop PERSPECTIVES retains four original labels and media. Float 24px above the hero bottom by default (tweak: 0–64px), with the shared --radius-panel on all four corners. Use --body-size for descriptions and --field-font-size for numbers; both can select registered foundation sizes. At responsive widths up to 850px, reuse the same controls as four short progress marks plus play/pause in a centered translucent 232×52px strip. Keep labels accessible but visually hidden and retain 44px touch targets. Touch selection continues automatic playback; visible keyboard focus pauses it. Explicit desktop mode retains the full panel.",
+  "headline": "Use the new --display-title-size foundation style (72px, weight 400, line-height 1.22, tracking -0.045em) with existing 1.6s rising lines. Keep mobile 39px/35px foundation caps. Headline clearance follows story-panel size and inset.",
   "verification": {
-    "automatedTests": "25 passed, including loaded-image motion, video exclusion, background/offscreen pause and reduced motion",
-    "servedFiles": "Updated V4 HTML and controller match the workspace",
-    "visualReview": "Not performed: browser inspection remains unavailable in this session."
+    "automatedTests": "123 tests passed. Added async image-load races, automatic loop, interrupted transitions, media cleanup, pause gates and persisted layout choices.",
+    "visualReview": "Browser and physical-device rendering not performed."
   },
   "mediaByTab": [
     {
@@ -41,18 +40,18 @@
       "source": "assets/hanwha-reference/hero.mp4"
     }
   ],
-  "storyEntry": "PERSPECTIVES has no adjacent arrow. Match the original bar timing: 300ms delay, 800ms duration, cubic-bezier(.22,1,.36,1). Retain the bottom-up entry and 4px upper corners. Reduced motion displays the bar immediately.",
-  "downButton": "Retain the square down link beside or above the PERSPECTIVES bar according to available width. Layout tweaks do not change this button.",
+  "storyEntry": "Retain the original 300ms delay and 800ms panel rise; display immediately for reduced motion. Four equal foundation-radius corners.",
+  "downButton": "Removed the hero down link, its layout calculations, styles, tweak checkbox and saved preference.",
   "photoMotion": "Tabs 1–3 reuse the original photo motion: scale 1.055 to 1 over 8500ms, linear, once per selected photo after loading. Pause outside the hero and in background tabs; cancel for reduced motion or tab 4. The existing video is unchanged.",
   "visionPalettes": {
     "status": "Finalized; palette preview retired",
-    "name": "쿨 화이트",
-    "token": "--surface-cool",
-    "savedValue": "#f1f1f1",
-    "foreground": "--ink",
-    "scope": "V4 vision slogan background. Uses the existing shared foundation value; no global token edit in this change.",
-    "behavior": "The approved surface is defined directly in CSS and remains independent of the retired vision query. Retain the original transition to Ink before the keyword films, and the chosen static surface for reduced motion.",
-    "verification": "26 main, switcher and motion tests passed. V4 creates no tweak UI, and original/V2 comparisons remain usable. Browser visual verification not performed."
+    "name": "소프트 블랙 → 화이트",
+    "token": "--vision-black",
+    "savedValue": "#181818",
+    "foreground": "White on black, neutral black on white, then white over the films",
+    "scope": "V4 vision only. User selected softened neutral black instead of pure #000000 or green-tinted Ink; the destination uses the shared white --surface. No global foundation change.",
+    "behavior": "Scroll opens the black slogan surface to white during t=.1–.6. White film lettering returns at t=1.2–1.6. The last film and caption remain on the stage as it releases at t=6.6; the section ends at t=7.6, removing the former empty trailing screen. Reverse scroll is continuous. Reduced-motion and short static layouts retain black with white lettering, with no sticky runway.",
+    "verification": "Automated motion coverage includes the final-film hold, media stop, reverse scrolling, neutral palette timing and unchanged reference-page exits. Browser visual verification not performed."
   },
   "visionTypography": "Use the existing --hero-title-size foundation token (59px default) for the vision slogan and its hidden keyword guides above 768px and in explicit desktop-canvas mode. Retain the previous small-screen responsive sizing. Recompute motion coordinates on foundation theme changes. The dedicated Hanwha reference page keeps its source-derived scale.",
   "serviceContent": {
@@ -103,7 +102,7 @@
     "archive": "design/jll-remix/archive/vision-particles-2026-10-08",
     "reason": "Restore the original upward slogan reveal; keep the complete scroll-driven particle experiment for later reuse."
   },
-  "tweakVerification": "34 layout, story, navigation and shared archive checks passed, including down-arrow persistence, reset, resizing, older/invalid storage and embed defaults. No browser visual inspection performed.",
+  "tweakVerification": "21 V4 story and layout checks passed; all 123 repository checks passed. Browser rendering not performed.",
   "visionEntry": {
     "effect": "Restore shared keywordState reveal: original lines rise from translateY(110%) to 0 while vision progress advances from -0.4 to 0. Scrolling backward reverses the same motion.",
     "timing": "Remove the particle-only 0.9-stage extension and offset; the vision stage returns to 8.6 heights and subsequent keyword/film timings match the original.",
@@ -115,37 +114,39 @@
     "placement": "Collapsed native details control fixed at the viewport upper-right corner, 16px from top and right, over the white header area. Follow the visible viewport offset in desktop-canvas mode. Hidden in embedded comparison frames.",
     "controls": [
       "Right-side section navigation visibility",
-      "Hero down-arrow visibility",
-      "Hero headline size from existing foundation title tokens",
+      "Hero headline foundation size",
+      "Story description foundation size",
+      "Story number foundation size",
+      "Story panel bottom inset (0–64px, default 24px)",
       "Hero headline vertical position",
-      "Reset controls to default"
+      "Reset controls to defaults"
     ],
     "position": "Signed pixel offset from the original bar + 32px baseline; minimum -20px keeps 12px clear of the bar. Maximum is recalculated from hero, copy and bar layout heights with 24px top clearance. Resize, text wrapping and foundation changes update the limit.",
-    "persistence": "V4-only localStorage key sps-main-v4-layout-tweaks-v1. Save showNav, showDown, offset and fontToken independently. Older settings default the down arrow to visible. Restore with panel collapsed; storage failures keep controls usable. Reset shows both navigation and down arrow and restores the headline defaults.",
-    "foundation": "Approved cool-white vision palette remains fixed; no color or comparison controls.",
+    "persistence": "Keep the V4 localStorage key and migrate its payload to version 2. Preserve saved navigation and vertical position. Adopt the approved 72px display style for older settings. Persist registered fontToken/storyToken/numberToken and clamped barInset; remove showDown. Reset restores display/body/field sizes, visible navigation and 24px inset.",
+    "foundation": "Soft black-to-white vision palette remains fixed; no color or comparison controls.",
     "accessibility": "Native checkbox/range/details semantics, labelled range with directional value, keyboard adjustment, Escape dismissal and focus restoration.",
     "stacking": "Header uses z-index 60 in the shared Hanwha stylesheet. V4 corner tweaks use 70 so they remain visible over the opaque header; shared skip navigation remains above at 100. Menu-open hiding is preserved.",
     "fontChoice": {
       "source": "SPSThemeSchema content/title fields only; show each foundation label and current pixel value.",
       "tokens": [
+        "--display-title-size",
         "--hero-title-size",
         "--hero-title-mobile",
         "--section-title-size",
         "--section-title-mobile",
         "--card-title-size"
       ],
-      "default": "--section-title-size (43px foundation default)",
+      "default": "--display-title-size (72px foundation default)",
       "application": "Hero H1 uses a CSS var reference to the selected token with its schema default fallback. Applies to all four hero story headlines; live foundation edits update both the text and dropdown labels.",
-      "persistence": "Store the selected token name with existing V4 layout settings. Old settings remain compatible. Reject unregistered tokens and arbitrary pixel values.",
+      "persistence": "Save registered token names only. Migrate older settings to the larger display title while preserving navigation and position choices. Reject arbitrary values.",
       "layout": "Recalculate safe vertical movement after selection; existing title/bar ResizeObservers handle wrapping and changed height. Keep shared entry animation and story behavior."
     },
-    "trigger": "44px square icon-only + summary, labelled 화면 조정 for assistive technology; the icon rotates into a close mark while expanded. V4 layout controls remain available independently of the retired archive chip previews.",
-    "downArrow": "아래 화살표 표시 toggles the existing .hw-down anchor through hidden; an explicit V4 [hidden] rule overrides its grid layout. The existing vision anchor, button position, hero media and scroll behavior are retained when shown. Embedded comparisons keep the visible default."
+    "trigger": "44px square icon-only + summary, labelled 화면 조정 for assistive technology; the icon rotates into a close mark while expanded. V4 layout controls remain available independently of the retired archive chip previews."
   },
   "mobileRefinement": {
     "date": "2026-10-09",
     "headerBreakpoint": 850,
-    "scope": "Hide section navigation on mobile and narrow desktop viewports; remove the former bottom rail and its 80px reserved space. Keep stories flush with the hero bottom, mobile foundation title cap, non-overlapping tweaks and controls, stacked service panels, and static scenes on short landscape viewports.",
+    "scope": "Hide section navigation on mobile and narrow desktops. Float compact mobile story progress/playback controls with the chosen inset and safe-area minimum; retain mobile foundation title caps, non-overlapping tweaks, stacked service panels, and static scenes on short landscapes. Headline placement follows the smaller control height through the existing ResizeObserver.",
     "verification": "119 automated checks passed; 29 scripts passed syntax checking; 599 local HTML references resolved. Browser and physical-device visual checks were not performed."
   }
 }

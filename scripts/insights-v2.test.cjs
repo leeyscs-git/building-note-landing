@@ -4,6 +4,7 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 const path = require('node:path');
 const presentation = require('../jll-remix-journal-v2.js');
+const archive = require('../jll-remix-content-archive.js');
 const root = path.resolve(__dirname, '..');
 function articleData() {
   const context = {window:{}};
@@ -52,7 +53,9 @@ function harness(v2=true,search='') {
   if(v2) { delete ids['journal-count']; delete ids['journal-category-note']; }
   const heading=element();ids['journal-article'].querySelector=()=>heading;
   const filters=['all','journal','research'].map(category=>element({category}));
-  const emptyButton=element({category:'journal'});
+  const emptyButton=element(v2?{}:{category:'journal'});
+  ids['journal-empty'].querySelector=()=>emptyButton;
+  ids['journal-empty'].contains=node=>node===emptyButton;
   const document={
     title:'',
     getElementById:id=>ids[id],
@@ -78,6 +81,7 @@ function harness(v2=true,search='') {
   vm.createContext(sandbox);
   vm.runInContext(fs.readFileSync(path.join(sourceRoot,'jll-remix-journal-data.js'),'utf8'),sandbox);
   vm.runInContext(fs.readFileSync(path.join(sourceRoot,'jll-remix-insights.js'),'utf8'),sandbox);
+  if(v2) sandbox.window.SPSContentArchive=archive;
   if(v2) sandbox.window.SPSJournalPresentation={...presentation,cards:(items,category)=>presentation.cards(items,category,sandbox.location.search)};
   vm.runInContext(fs.readFileSync(path.join(sourceRoot,'jll-remix-journal.js'),'utf8'),sandbox);
   function clickLink(id) {
@@ -90,6 +94,8 @@ function harness(v2=true,search='') {
 }
 test('research empty state can return to populated journal with keyboard target retained', () => {
   const h=harness();
+  assert.match(h.ids['journal-empty'].innerHTML,/class="iv2-empty-cta"/);
+  assert.equal(h.emptyButton.dataset.category,'journal');
   h.filters[2].handlers.click();
   assert.equal(h.ids['journal-grid'].hidden,true);
   assert.equal(h.ids['journal-empty'].hidden,false);
@@ -98,6 +104,7 @@ test('research empty state can return to populated journal with keyboard target 
   assert.equal(h.ids['journal-empty'].hidden,true);
   assert.equal(h.ids['journal-grid'].hidden,false);
   assert.equal(h.filters[1].attributes['aria-pressed'],'true');
+  assert.equal(h.filters[1].focused,true);
 });
 test('reading and returning retain V2 path, category and list scroll', () => {
   const h=harness();

@@ -36,10 +36,11 @@ body.sps-menu-open { overflow: hidden; }
 [data-sps-header] .brand { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; white-space: nowrap; flex-shrink: 0; }
 [data-sps-header] .brand-logo { display: block; width: var(--logo-width, 120px); height: auto; object-fit: contain; flex-shrink: 0; }
 [data-sps-header] .nav-tools { display: flex; gap: 12px; align-items: center; }
-[data-sps-header] .header-contact { min-height: var(--contact-height, 44px); display: flex; align-items: center; gap: var(--contact-gap, 24px); padding: 8px var(--contact-padding, 19px); background: var(--rose-soft); font-size: var(--contact-font-size, 13px); border-radius: var(--radius-control); white-space: nowrap; }
-[data-sps-header] .header-contact:hover { background: var(--rose-hover); }
-[data-sps-header] .menu-toggle { width: 44px; height: 44px; padding: 0; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 7px; flex-shrink: 0; border: 1px solid var(--line); border-radius: var(--radius-control); background: transparent; cursor: pointer; }
-[data-sps-header] .menu-toggle:hover { background: var(--surface-cool); }
+[data-sps-header] .header-contact { min-height: var(--contact-height, 44px); display: flex; align-items: center; gap: var(--contact-gap, 24px); padding: 8px var(--contact-padding, 19px); font-size: var(--contact-font-size, 13px); border-radius: var(--radius-control); white-space: nowrap; }
+[data-sps-header] .menu-toggle { width: 44px; height: 44px; padding: 0; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 7px; flex-shrink: 0; border: 1px solid var(--line); border-radius: var(--radius-control); cursor: pointer; }
+[data-sps-header] :is(.header-contact, .menu-toggle) { background: var(--rose-soft); transition: background-color .2s var(--ease-editorial); }
+/* Touch interaction retains the contact button's gray, including after a tap. */
+[data-sps-header] .nav-tools :is(.header-contact, .menu-toggle):is(:hover, :active, :focus-visible) { background: var(--rose-soft); }
 [data-sps-header] .menu-toggle > span { display: block; width: 25px; height: 1px; background: var(--ink); transition: transform .3s; }
 [data-sps-header] .menu-toggle[aria-expanded=true] > span:first-child { transform: translateY(4px) rotate(45deg); }
 [data-sps-header] .menu-toggle[aria-expanded=true] > span:last-child { transform: translateY(-4px) rotate(-45deg); }

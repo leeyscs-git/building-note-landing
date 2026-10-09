@@ -1,12 +1,5 @@
 /* Insights-only article and reading invitation styles.
    Shared title, filters and cards live in jll-remix-content-archive.css. */
-/* Equal side space keeps the label centered independently of the right-hand arrow. */
-.insights-v2 #journal-empty .iv2-empty-cta { position:relative; display:flex; align-items:center; justify-content:center; width:max-content; max-width:100%; margin-inline:auto; padding-inline:40px; text-align:center; }
-.insights-v2 #journal-empty .iv2-empty-cta sps-arrow-up-right { position:absolute; right:0; top:50%; transform:translateY(-50%); }
-.insights-v2 #journal-empty .iv2-empty-cta:hover sps-arrow-up-right { transform:translate(3px,calc(-50% - 3px)); }
-@media(prefers-reduced-motion:reduce) {
-  .insights-v2 #journal-empty .iv2-empty-cta:hover sps-arrow-up-right { transform:translateY(-50%); }
-}
 .iv2-page-nav[data-article-view] { position:sticky; top:var(--sps-header-height,137px); z-index:30; transform:translateY(var(--iv2-nav-shift,0px)); }
 
 /* The row follows the title after its pinned scene releases; its white copy is visual-only. */
@@ -16,7 +9,7 @@
 .iv2-page-nav[data-article-view],.iv2-page-nav[data-article-view]::before { background:transparent; }
 .iv2-page-nav[data-article-view] { pointer-events:none; }
 .iv2-page-nav[data-article-view] > .iv2-page-nav-inner :is(.iv2-article-back,.iv2-breadcrumb) { pointer-events:auto; }
-.iv2-article-back { display:inline-flex; align-items:center; justify-content:flex-start; gap:8px; min-height:44px; flex-shrink:0; color:var(--ink); background:transparent; border-radius:var(--radius-control); font-size:var(--field-font-size,14px); font-weight:500; line-height:1.5; white-space:nowrap; transition:color .2s; }
+.iv2-article-back { display:inline-flex; align-items:center; justify-content:flex-start; gap:8px; min-height:var(--archive-nav-control-height); flex-shrink:0; color:var(--ink); background:transparent; border-radius:var(--radius-control); font-size:var(--field-font-size,14px); font-weight:500; line-height:1.5; white-space:nowrap; transition:color .2s; }
 /* Align the visible arrow tip, excluding the SVG's 4px internal left inset. */
 .iv2-article-back svg { width:24px; height:24px; flex:none; margin-left:-4px; }
 .iv2-article-back:hover { color:var(--red); }
@@ -55,7 +48,7 @@ html[data-iv2-route-flight="out"] #journal-index { opacity:0; }
 @media(prefers-reduced-motion:reduce) {
   .iv2-first-read-panel,.iv2-first-read-arrow { transition:none; }
 }
-.insights-v2 .journal-article { padding-top:48px; }
+.insights-v2 .journal-article { padding-top:calc(48px + var(--archive-mobile-top-space)); }
 .insights-v2 .journal-article-head { text-align:center; max-width:100%; }
 .insights-v2 .journal-article-head .journal-meta { justify-content:center; }
 .insights-v2 .journal-article-head h1 { text-wrap:balance; }
@@ -109,7 +102,7 @@ html[data-iv2-route-flight="out"] #journal-index { opacity:0; }
 
 /* Article layout at narrow responsive widths. */
 @media(max-width:600px) {
-  :where(html:not([data-sps-desktop])) .insights-v2 .journal-article { padding-top:40px; }
+  :where(html:not([data-sps-desktop])) .insights-v2 .journal-article { padding-top:calc(40px + var(--archive-mobile-top-space)); }
   :where(html:not([data-sps-desktop])) .iv2-article-intro { --iv2-hero-gap:40px; }
   :where(html:not([data-sps-desktop])) .iv2-article-content { padding-top:48px; }
   :where(html:not([data-sps-desktop])) .iv2-overlay-heading { font-size:var(--hero-title-mobile,39px); }

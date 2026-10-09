@@ -61,20 +61,20 @@ test('the shared tab underline follows selection in scaled and horizontally scro
 
 test('service filters retain URL state, update inquiry context and restore with Back',()=>{
   const h=fixture({search:'?category=management&layout=desktop&embed=1#archive'});cases.start(h.win);
-  assert.equal(h.status.textContent,'부동산 자산관리');assert.equal(h.inquiry.dataset.inquiryService,'management');
+  assert.match(h.empty.innerHTML,/부동산 자산관리 사례를 준비하고 있습니다./);assert.equal(h.inquiry.dataset.inquiryService,'management');
   assert.equal(h.buttons[1].active,true);assert.equal(h.indicator.style.transform,'translateX(120px)');
   h.buttons[2].listeners.click();
   assert.equal(h.win.location.searchParams.get('category'),'marketing');
   assert.equal(h.win.location.searchParams.get('layout'),'desktop');
   assert.equal(h.win.location.searchParams.get('embed'),'1');assert.equal(h.win.location.hash,'#archive');
-  assert.equal(h.title.textContent,'임대 마케팅 사례를 준비하고 있습니다.');
+  assert.match(h.empty.innerHTML,/임대 마케팅 사례를 준비하고 있습니다./);
   assert.equal(h.inquiry.dataset.inquiryService,'marketing');
   assert.equal(h.motions.length,3,'filtering does not repeat page entry');
   h.buttons[2].listeners.click();assert.equal(h.states.length,1,'same tab adds no history');
   h.buttons[0].listeners.click();assert.equal(h.win.location.searchParams.has('category'),false);
   assert.equal(h.inquiry.dataset.inquiryService,undefined);
   h.win.location=new URL('http://localhost/jll-remix-cases.html?category=interior');h.events.popstate();
-  assert.equal(h.buttons[3].active,true);assert.equal(h.status.textContent,'실내건축');
+  assert.equal(h.buttons[3].active,true);assert.match(h.empty.innerHTML,/실내건축 사례를 준비하고 있습니다./);
   assert.equal(h.inquiry.dataset.inquiryService,'interior');
   assert.equal(cases.categoryFor('?category=unknown'),'all');
   assert.equal(cases.categoryFor('?category=__proto__'),'all');
@@ -92,9 +92,11 @@ test('service samples use the shared card renderer and show only the selected ca
   h.buttons[2].listeners.click();assert.equal(count(),2);
   assert.match(h.grid.innerHTML,/sample-marketing-office/);assert.doesNotMatch(h.grid.innerHTML,/sample-management/);
   h.buttons[3].listeners.click();assert.equal(count(),0);assert.equal(h.grid.hidden,true);assert.equal(h.empty.hidden,false);
+  assert.match(h.empty.innerHTML,/<a class="iv2-empty-cta" href="jll-remix.html#services">서비스 안내 보기/);
+  assert.doesNotMatch(h.empty.innerHTML,/<p\b|cases-status|작업 범위|지금은 서비스 안내/);
   h.buttons[4].listeners.click();assert.equal(h.win.location.searchParams.get('category'),'other');
   assert.equal(h.buttons[4].active,true);assert.equal(count(),0);assert.equal(h.empty.hidden,false);
-  assert.equal(h.title.textContent,'기타 사례를 준비하고 있습니다.');assert.equal(h.inquiry.dataset.inquiryService,'undecided');
+  assert.match(h.empty.innerHTML,/기타 사례를 준비하고 있습니다./);assert.equal(h.inquiry.dataset.inquiryService,'undecided');
   h.win.location=new URL('http://localhost/jll-remix-cases.html?category=management');h.events.popstate();
   assert.equal(count(),2);assert.equal(h.empty.hidden,true);assert.equal(h.inquiry.dataset.inquiryService,'management');
 });
@@ -162,4 +164,16 @@ test('narrow category rails reveal direct and history selections without vertica
     assert.equal(h.indicator.style.transform,'translateX(360px)');
     assert.equal(h.buttons[3].attributes['aria-pressed'],'true');
   }
+});
+
+test('shared empty states support native links or buttons and escape variable content',()=>{
+  const link=archive.emptyState({title:'실내건축 사례를 준비하고 있습니다.',actionLabel:'서비스 안내 보기',href:'jll-remix.html#services'});
+  const button=archive.emptyState({title:'아직 공개된 리서치가 없습니다.',actionLabel:'CEO 저널 살펴보기'});
+  assert.match(link,/<h2 aria-live="polite" aria-atomic="true">실내건축 사례를 준비하고 있습니다.<\/h2>/);
+  assert.match(link,/<a class="iv2-empty-cta" href="jll-remix.html#services">/);
+  assert.match(button,/<button class="iv2-empty-cta" type="button">CEO 저널 살펴보기/);
+  for(const html of [link,button])assert.equal((html.match(/<sps-arrow-up-right>/g)||[]).length,1);
+  const escaped=archive.emptyState({title:'<script>bad()</script>',actionLabel:'A & B',href:'page.html?x="bad"'});
+  assert.doesNotMatch(escaped,/<script>|href="page.html\?x="bad/);
+  assert.match(escaped,/&lt;script&gt;/);assert.match(escaped,/A &amp; B/);assert.match(escaped,/&quot;bad&quot;/);
 });

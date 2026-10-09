@@ -26,11 +26,12 @@ test('compact service cards keep every detail reachable through selection and ro
 test('short landscape view releases sticky scenes and restores motion without losing the media preference',()=>{
   const element=()=>({cleared:0,removeAttribute(){this.cleared++;},classList:{remove(){},add(){}}});
   const animated=Array.from({length:14},element);
+  const clearedProperties=[];
   let starts=0,stops=0,desktop=false;
   const context={mode:true,userPaused:false,reduced:{matches:false},shortViewport:{matches:false},
     root:{Lenis:class{constructor(){starts++;}destroy(){stops++;}}},lenis:null,
     doc:{documentElement:{hasAttribute:()=>desktop,classList:{toggle(){}}},querySelectorAll:()=>[]},
-    vision:{style:{removeProperty(){}}},slogan:{classList:{remove(){}}},
+    vision:{style:{removeProperty(name){clearedProperties.push(name);}}},slogan:{classList:{remove(){}}},
     sloganLines:[],sloganInner:[],sloganRest:[],from:[],scenes:[],mountains:[],
     setPauseLabel(){},wake(){},layoutPending:false,paintPending:false
   };
@@ -40,6 +41,7 @@ test('short landscape view releases sticky scenes and restores motion without lo
   context.shortViewport.matches=true;context.configure();
   assert.equal(context.mode,false);assert.equal(stops,1);assert.equal(context.lenis,null);
   assert.ok(animated.slice(0,11).every(node=>node.cleared===1));
+  assert.deepEqual(clearedProperties,['--hw-vision-base-weight','--hw-vision-film-weight']);
   assert.equal(context.userPaused,false,'rotation does not overwrite the user media choice');
   context.shortViewport.matches=false;context.configure();
   assert.equal(context.mode,true);assert.equal(starts,2);

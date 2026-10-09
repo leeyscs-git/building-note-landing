@@ -4,6 +4,14 @@
   const list = document.getElementById('journal-grid');
   const index = document.getElementById('journal-index');
   const detail = document.getElementById('journal-article');
+  if (window.SPSContentArchive) {
+    const empty = document.getElementById('journal-empty');
+    empty.innerHTML = window.SPSContentArchive.emptyState({
+      title:'아직 공개된 리서치가 없습니다.', actionLabel:'CEO 저널 살펴보기'
+    });
+    // Bind the shared action to the existing in-page category navigation below.
+    empty.querySelector('.iv2-empty-cta').dataset.category = 'journal';
+  }
   const categories = new Set(['all','journal','research']);
   const escape = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   let category = 'all';
@@ -67,10 +75,12 @@
   }
   document.querySelectorAll('[data-category]').forEach(button => button.addEventListener('click', () => {
     window.SPSJournalTransition?.cancel();
+    const fromEmpty = document.getElementById('journal-empty').contains(button);
     category = button.dataset.category;
     const url = new URL(journalUrl(), location.href);
     history.replaceState({...history.state, category}, '', url);
     renderList();
+    if (fromEmpty) document.querySelector(`.journal-filters [data-category="${category}"]`)?.focus({preventScroll:true});
   }));
   function restoreList(scroll, focusId) {
     renderRoute();

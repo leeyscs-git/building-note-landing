@@ -66,6 +66,7 @@
     document.querySelector('#ds-contrast').textContent='이 두 색의 계산 대비 '+((Math.max(inkNow,roseNow)+.05)/(Math.min(inkNow,roseNow)+.05)).toFixed(2)+' : 1';
     const mobile=document.querySelector('.ds-type-board').dataset.size==='mobile';
     const value=(token,fallback)=>window.SPSTheme?.value(token)??fallback;
+    document.querySelector('[data-type-size="display"]').textContent=value(mobile?'--hero-title-mobile':'--display-title-size',mobile?39:72)+'px / 1.22';
     document.querySelector('[data-type-size="hero"]').textContent=value(mobile?'--hero-title-mobile':'--hero-title-size',mobile?39:59)+'px / '+(mobile?'1.28':'1.23');
     document.querySelector('[data-type-size="section"]').textContent=value(mobile?'--section-title-mobile':'--section-title-size',mobile?35:43)+'px / 1.3';
     document.querySelector('.ds-type-row:nth-child(3) b').textContent=value('--card-title-size',24)+'px / 1.4';

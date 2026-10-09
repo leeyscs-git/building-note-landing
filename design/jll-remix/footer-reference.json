@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-09",
+  "component": {
+    "host": "footer.sps-footer[data-sps-footer][data-sps-layout]",
+    "script": "jll-remix-footer.js",
+    "stylesheet": "jll-remix-footer.css",
+    "specimen": "jll-remix-design-system.html#footer-component"
+  },
+  "design": {
+    "surface": "--surface-cool; current saved foundation #f1f1f1",
+    "foreground": "--ink, --muted, --line; --red is reserved for the consultation arrow and focus",
+    "statement": "공간을 이해합니다. 가능성을 연결합니다.",
+    "type": "Foundation section-title-size on desktop, section-title-mobile on tablet, card-title-size on phone; body-size for navigation and field-font-size for supporting information",
+    "layout": "Shared header content-max and layout-gutter. Statement and consultation action above a brand/company column and three navigation groups. Quiet separators, no outer rounding; consultation uses radius-control.",
+    "mobile": "850px and below stacks the lead and company/navigation; 600px and below uses two menu columns and a full-width consultation action. Minimum link hit height 44px; bottom safe-area padding and wrapping retained. Explicit desktop-canvas mode preserves the desktop composition.",
+    "telephone": "Use card-title-size (24px) and weight 550 for the number, body-size for the representative-phone label. Preserve the native telephone link and flexible wrapping on narrow screens."
+  },
+  "content": {
+    "company": "주식회사 신의프라퍼티솔루션",
+    "telephone": "02 2247 5799",
+    "telephoneSource": "Existing jll-remix-support.html and jll-remix-contact.js",
+    "groups": [
+      "서비스",
+      "SPS 알아보기",
+      "고객지원"
+    ],
+    "legal": "Dynamic copyright year; no invented address, registration number or unavailable privacy-policy link."
+  },
+  "behavior": {
+    "routing": "Home/about/insights follow the shared header's variant and explicit destinations. Three service links use existing canonical service URLs. Consultation opens the existing inquiry dialog, with the support URL as fallback. Telephone remains a native tel link.",
+    "top": "Scroll to the document top and return focus to the first header link. Respect reduced motion and leave modified clicks native.",
+    "theme": "Root-scoped pages inherit foundation values. About variants copy header-scoped foundation values initially and on sps-theme-change.",
+    "integration": "Render before the Hanwha scroll controller measures the page. Keep hw-footer fragment IDs and measure the shared host, with the old class retained as an archived-page fallback. Footer sits outside main so the existing header focus trap includes it.",
+    "notes": "Move remaining page-authored data-footer-note nodes into the shared layout without cloning them. Remove journal draft/photo notes and the Main V4 Hanwha comparison note at the user’s request. Retain the notes on dedicated comparison pages, including Samsung related-sites behavior.",
+    "bottom": "Copyright on the left and back-to-top link on the right. Remove the country/language text from the shared footer; wrap naturally on small screens."
+  },
+  "pages": [
+    "jll-remix.html",
+    "jll-remix-v2.html",
+    "jll-remix-v3.html",
+    "jll-remix-v4.html",
+    "jll-remix-main-v2.html",
+    "jll-remix-main-v4.html",
+    "jll-remix-about.html",
+    "jll-remix-v2-about.html",
+    "jll-remix-v3-about.html",
+    "jll-remix-v4-about.html",
+    "jll-remix-about-v2.html",
+    "jll-remix-journal.html",
+    "jll-remix-journal-v2.html",
+    "jll-remix-cases.html",
+    "jll-remix-support.html",
+    "jll-remix-hanwha.html",
+    "jll-remix-samsung.html"
+  ],
+  "preservation": "Historical A–G designs, archived source copies, redirect pages and comparison shells are preserved. Comparison frames automatically show the new footer on current pages. Legacy footer CSS is still available to archived pages that import it.",
+  "verification": {
+    "automated": "76 related tests passed, including page coverage, URL targets, reference-node preservation, single mounting, scoped foundation updates, accessible top navigation, motion, header, inquiry and archive regressions.",
+    "visual": "Browser and physical-device rendering were not inspected in this session."
+  }
+}

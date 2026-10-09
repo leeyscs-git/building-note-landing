@@ -1,0 +1,61 @@
+/* One footer for the current SPS pages; colors and typography follow Foundation. */
+.sps-footer {
+  display:block; width:100%; margin:0; padding:0; border:0; border-radius:0;
+  background:var(--surface-cool); color:var(--ink); font:450 var(--body-size,16px)/1.65 var(--font);
+  word-break:keep-all; overflow-wrap:anywhere;
+}
+.sps-footer,.sps-footer * { box-sizing:border-box; }
+.sps-footer :is(h2,h3,p) { margin:0; }
+.sps-footer a { color:inherit; text-decoration:none; }
+.sps-footer a:focus-visible { outline:2px solid var(--red); outline-offset:5px; border-radius:var(--radius-control); }
+.sps-footer .sps-footer-inner { width:calc(100% - var(--layout-gutter)*2); max-width:var(--content-max); margin-inline:auto; }
+.sps-footer .sps-footer-lead { display:flex; align-items:center; justify-content:space-between; gap:40px; padding-block:64px 48px; }
+.sps-footer .sps-footer-statement { font-size:var(--section-title-size,43px); font-weight:500; line-height:1.4; letter-spacing:-.045em; }
+.sps-footer .sps-footer-consult { display:inline-flex; align-items:center; justify-content:space-between; flex-shrink:0; gap:40px; min-height:var(--button-height,49px); padding:16px 24px; border-radius:var(--radius-control); background:var(--surface); font-size:var(--body-size,16px); font-weight:500; transition:background .25s; }
+.sps-footer .sps-footer-consult sps-arrow-up-right { color:var(--red); font-size:24px; transition:transform .25s var(--ease-editorial); }
+.sps-footer .sps-footer-consult:hover { background:color-mix(in srgb,var(--surface) 65%,var(--line)); }
+.sps-footer .sps-footer-consult:hover sps-arrow-up-right { transform:translate(2px,-2px); }
+.sps-footer .sps-footer-directory { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.65fr); gap:64px; padding-block:48px 56px; border-top:1px solid var(--line); }
+.sps-footer .sps-footer-company { min-width:0; }
+.sps-footer .sps-footer-logo { display:inline-flex; align-items:center; min-height:44px; }
+.sps-footer .sps-footer-logo img { display:block; width:var(--logo-width,120px); max-width:100%; height:auto; }
+.sps-footer .sps-footer-company p { margin-top:24px; font-size:var(--field-font-size,14px); }
+.sps-footer .sps-footer-phone { display:flex; flex-wrap:wrap; align-items:center; width:fit-content; gap:8px 16px; min-height:44px; margin-top:8px; font-size:var(--card-title-size,24px); font-weight:550; line-height:1.4; font-variant-numeric:tabular-nums; }
+.sps-footer .sps-footer-phone span { color:var(--muted); font-size:var(--body-size,16px); font-weight:450; }
+.sps-footer .sps-footer-nav { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; min-width:0; }
+.sps-footer .sps-footer-group { min-width:0; }
+.sps-footer .sps-footer-group h3 { margin-bottom:16px; font-size:var(--field-font-size,14px); font-weight:500; line-height:1.65; letter-spacing:0; color:var(--muted); }
+.sps-footer .sps-footer-group a { display:flex; align-items:center; min-height:44px; width:fit-content; max-width:100%; padding-block:8px; font-size:var(--body-size,16px); line-height:1.5; }
+.sps-footer :is(.sps-footer-group a,.sps-footer-phone):hover { text-decoration:underline; text-underline-offset:6px; text-decoration-color:var(--muted); }
+.sps-footer .sps-footer-bottom { display:flex; align-items:center; gap:24px; padding-block:20px max(24px,env(safe-area-inset-bottom)); border-top:1px solid var(--line); color:var(--muted); font-size:var(--field-font-size,14px); }
+.sps-footer .sps-footer-top { display:inline-flex; align-items:center; gap:12px; min-height:44px; margin-left:auto; color:var(--ink); white-space:nowrap; }
+.sps-footer .sps-footer-top svg { width:20px; height:20px; transition:transform .25s var(--ease-editorial); }
+.sps-footer .sps-footer-top:hover svg { transform:translateY(-3px); }
+.sps-footer [data-footer-note] { margin:0; padding-block:0 24px; color:var(--muted); font-size:var(--field-font-size,14px); line-height:1.75; }
+.sps-footer [data-footer-note] a { text-decoration:underline; text-underline-offset:4px; }
+.sps-footer [data-footer-note] .sc-footer-main { margin-bottom:16px; }
+.sps-footer [data-footer-note] nav { display:flex; flex-wrap:wrap; gap:16px 24px; }
+.sps-footer-fallback { display:block; padding:40px var(--layout-gutter); }
+/* The live specimen is constrained by the design-system column, not the viewport. */
+.sps-footer[data-footer-preview] { --layout-gutter:24px; }
+.sps-footer[data-footer-preview] .sps-footer-directory { grid-template-columns:1fr; gap:32px; }
+.sps-footer[data-footer-preview] .sps-footer-lead { flex-wrap:wrap; }
+@media(max-width:1100px) {
+  :where(html:not([data-sps-desktop])) .sps-footer .sps-footer-directory { gap:40px; grid-template-columns:minmax(0,1fr) minmax(0,2fr); }
+}
+@media(max-width:850px) {
+  :where(html:not([data-sps-desktop])) .sps-footer .sps-footer-lead { align-items:flex-start; flex-direction:column; gap:24px; padding-block:48px 40px; }
+  :where(html:not([data-sps-desktop])) .sps-footer .sps-footer-statement { font-size:var(--section-title-mobile,35px); }
+  :where(html:not([data-sps-desktop])) .sps-footer .sps-footer-directory { grid-template-columns:1fr; gap:36px; padding-block:36px 40px; }
+  :where(html:not([data-sps-desktop])) .sps-footer .sps-footer-bottom { flex-wrap:wrap; gap:8px 24px; }
+}
+@media(max-width:600px) {
+  :where(html:not([data-sps-desktop])) .sps-footer .sps-footer-logo img { width:var(--logo-width-mobile,105px); }
+  :where(html:not([data-sps-desktop])) .sps-footer .sps-footer-nav { grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px 20px; }
+  :where(html:not([data-sps-desktop])) .sps-footer .sps-footer-consult { width:100%; gap:24px; padding-inline:20px; }
+  :where(html:not([data-sps-desktop])) .sps-footer .sps-footer-statement { font-size:var(--card-title-size,24px); }
+}
+@media(prefers-reduced-motion:reduce) {
+  .sps-footer .sps-footer-consult,.sps-footer .sps-footer-consult sps-arrow-up-right,.sps-footer .sps-footer-top svg { transition:none; transform:none; }
+  .sps-footer .sps-footer-consult:hover sps-arrow-up-right,.sps-footer .sps-footer-top:hover svg { transform:none; }
+}

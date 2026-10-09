@@ -6,6 +6,12 @@
 })(typeof window==='undefined'?null:window,function(){
   'use strict';
   const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  function emptyState({title, actionLabel, href} = {}) {
+    const tag = href ? 'a' : 'button';
+    const action = href ? `href="${escape(href)}"` : 'type="button"';
+    return `<h2 aria-live="polite" aria-atomic="true">${escape(title)}</h2>
+      <${tag} class="iv2-empty-cta" ${action}>${escape(actionLabel)}<sps-arrow-up-right></sps-arrow-up-right></${tag}>`;
+  }
   function cards(items, {hrefFor, labelFor, readLabel = '읽기', linkAttribute = 'data-article'} = {}) {
     return items.map((article, index) => `
       <article class="iv2-post" data-iv2-reveal>
@@ -146,5 +152,5 @@
     win.addEventListener('sps-theme-change',positionIndicator);
     return {refresh(){positionIndicator();observeContent();}};
   }
-  return {cards,breadcrumbMotion,start};
+  return {cards,emptyState,breadcrumbMotion,start};
 });

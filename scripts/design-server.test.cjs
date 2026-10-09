@@ -7,6 +7,8 @@ const {createDesignServer,validateValues}=require('./design-server.cjs');
 
 test('only declared, bounded style values are accepted',()=>{
   assert.deepEqual(validateValues({'--rose-soft':'#AABBCC','--radius-control':12}),{'--rose-soft':'#aabbcc','--radius-control':12});
+  assert.deepEqual(validateValues({'--display-title-size':72}),{'--display-title-size':72});
+  for(const value of [59,89,'72px'])assert.throws(()=>validateValues({'--display-title-size':value}));
   for(const bad of [{'--unknown':'x'},{'--rose-soft':'url(https://example.com)'},{'--hero-title-size':999},{'--hero-title-size':'59px'}])assert.throws(()=>validateValues(bad));
 });
 

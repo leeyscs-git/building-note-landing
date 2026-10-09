@@ -75,3 +75,7 @@ html{scroll-padding-top:0}
   padding-block:calc(var(--sps-nav-indicator-gap) + var(--sps-nav-indicator-size)) var(--sps-nav-indicator-gap);
   border-bottom-width:var(--sps-nav-indicator-size);
 }
+
+/* V4 display scale, selectable with the other foundation title sizes. */
+.ds-type-display{font-size:var(--display-title-size,72px);font-weight:400;line-height:1.22;letter-spacing:-.045em;overflow-wrap:anywhere}
+.ds-type-board[data-size="mobile"] .ds-type-display{font-size:var(--hero-title-mobile,39px)}

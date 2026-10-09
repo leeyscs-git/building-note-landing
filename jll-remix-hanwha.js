@@ -5,10 +5,12 @@
   const clamp = (n, min = 0, max = 1) => Math.max(min, Math.min(max, n));
   const mix = (a, b, p) => a + (b - a) * clamp(p);
   const range = (n, a, b) => clamp((n - a) / (b - a));
-  function sceneState(t, index) {
+  function sceneState(t, index, exitWithFinalScene = false) {
     const start = 1.6 + index * 2;
+    const holdForExit = exitWithFinalScene && index === 2;
     const enter = range(t, start - 1, start);
-    const leave = range(t, start + 1, start + 2);
+    // V4 releases the sticky stage with the last film still covering it.
+    const leave = holdForExit ? 0 : range(t, start + 1, start + 2);
     return {
       visible: t > start - 1 && t < start + 2,
       enter, leave,
@@ -16,8 +18,8 @@
       radius: 4.25 * (1 - enter + (index < 2 ? leave : 0)),
       y: 1 - enter - leave,
       innerY: -90 * (1 - enter) + 40 * leave,
-      text: range(t, start - .05, start + .3) * (1 - range(t, start + .9, start + 1.25)),
-      active: t >= start - .7 && t < start + 1.3,
+      text: range(t, start - .05, start + .3) * (holdForExit ? 1 : 1 - range(t, start + .9, start + 1.25)),
+      active: t >= start - .7 && (holdForExit || t < start + 1.3),
       rocket: range(t, start - 1, start + 1)
     };
   }
@@ -26,6 +28,7 @@
       reveal: range(t, -.4, 0),
       restOpacity: 1 - range(t, 0, .5),
       baseWeight: 1 - range(t, .1, .6),
+      filmWeight: range(t, 1.2, 1.6),
       moveX: range(t, .5, 1),
       moveY: range(t, 1.1, 1.6),
       travel: t >= 0,
@@ -79,7 +82,7 @@
   const nav = doc.querySelector('.hw-section-nav');
   const navLinks = [...nav.querySelectorAll('a')];
   const sections = navLinks.map(a => doc.querySelector(a.getAttribute('href')));
-  const footer = doc.querySelector('.hw-footer');
+  const footer = doc.querySelector('[data-sps-footer]') || doc.querySelector('.hw-footer');
   const videos = [...doc.querySelectorAll('[data-video]')];
   const heroVideo = doc.querySelector('.hw-hero-video');
   const videoButton = doc.querySelector('.hw-video-toggle');
@@ -99,6 +102,7 @@
     }
     if (!mode) {
       vision.style.removeProperty('--hw-vision-base-weight');
+      vision.style.removeProperty('--hw-vision-film-weight');
       const animated = [heroMedia, ...sloganLines, ...sloganInner, ...sloganRest, ...from, keyList, ...scenes.flatMap(s => [s.el, s.frame, s.content, s.copy]), rocket, smoke, sky, ...mountains, rocketWorld, futurePicture, futureImage, futureHeading, futureTop, futureBottom];
       animated.forEach(el => el.removeAttribute('style'));
       slogan.classList.remove('is-keyword-travel', 'is-keyword-list');
@@ -176,12 +180,15 @@
     const t = (y - metrics.visionTop) / h;
     const ft = (y - metrics.futureTop) / h;
     const inHero = scrollY < metrics.visionTop;
+    const keyword = keywordState(t);
     setVideo(heroVideo, inHero);
     if (mode) {
       // Fixed-reference hero rises at half the native scroll speed.
       heroMedia.style.transform = 'translateY(' + heroOffset(scrollY, metrics.heroTop, headerH, page.hasAttribute('data-overlay-header')) + 'px)';
-      const keyword = keywordState(t);
-      if (vision.hasAttribute('data-vision-palette')) vision.style.setProperty('--hw-vision-base-weight', (keyword.baseWeight * 100) + '%');
+      if (vision.hasAttribute('data-vision-palette')) {
+        vision.style.setProperty('--hw-vision-base-weight', (keyword.baseWeight * 100) + '%');
+        vision.style.setProperty('--hw-vision-film-weight', (keyword.filmWeight * 100) + '%');
+      }
       slogan.classList.toggle('is-keyword-travel', keyword.travel);
       slogan.classList.toggle('is-keyword-list', keyword.list);
       sloganRest.forEach(el => { el.style.opacity = keyword.restOpacity; });
@@ -192,7 +199,7 @@
         el.style.transform = 'translate(' + ((c.toX-c.x)*keyword.moveX) + 'px,' + ((c.toY-c.y)*keyword.moveY) + 'px)';
       });
       scenes.forEach((s, i) => {
-        const state = sceneState(t, i);
+        const state = sceneState(t, i, vision.dataset.visionExit === 'with-last-scene');
         s.el.style.visibility = state.visible ? 'visible' : 'hidden';
         s.el.style.transform = 'translateY(' + (state.y * h) + 'px)';
         const inset = (100 - state.size) / 2;
@@ -246,7 +253,9 @@
         else a.removeAttribute('aria-current');
       });
     }
-    const lightVision = !['v1','v2','v4'].includes(vision.dataset.visionPalette) || (mode && keywordState(t).baseWeight < .5);
+    const lightVision = vision.dataset.visionPalette === 'black-white'
+      ? !mode || keyword.baseWeight > .5 || keyword.filmWeight > .5
+      : !['v1','v2','v4'].includes(vision.dataset.visionPalette) || (mode && keyword.baseWeight < .5);
     nav.classList.toggle('is-light', index === 0 || (index === 1 && lightVision) || (index === 4 && ft > 1));
     const footerVisible = scrollY + innerHeight > metrics.footerTop + 50;
     nav.style.opacity = footerVisible ? '0' : '1';

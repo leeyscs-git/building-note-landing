@@ -1,5 +1,4 @@
 /* Service-specific content; layout and motion live in the shared archive component. */
-.cases-v2 .cases-status { color:var(--red); font-size:var(--field-font-size,14px); margin:0 0 16px; }
 @media(max-width:850px) {
   :where(html:not([data-sps-desktop])) .cases-v2 .iv2-filters { width:100%; justify-content:flex-start; gap:28px; overflow-x:auto; scrollbar-width:thin; padding-bottom:8px; }
   :where(html:not([data-sps-desktop])) .cases-v2 .iv2-filters button { white-space:nowrap; }

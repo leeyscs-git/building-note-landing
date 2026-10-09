@@ -27,11 +27,13 @@
         button.setAttribute('aria-pressed',String(selected));
         button.classList.toggle('active',selected);
       });
-      doc.getElementById('cases-status').textContent=categories[category];
-      doc.getElementById('cases-empty-title').textContent=category==='all'?'공개할 사례를 준비하고 있습니다.':categories[category]+' 사례를 준비하고 있습니다.';
       grid.hidden=!shown.length;
       empty.hidden=Boolean(shown.length);
       if(renderedCategory!==category){
+        empty.innerHTML=archive.emptyState({
+          title:category==='all'?'공개할 사례를 준비하고 있습니다.':categories[category]+' 사례를 준비하고 있습니다.',
+          actionLabel:'서비스 안내 보기',href:'jll-remix.html#services'
+        });
         grid.innerHTML=archive.cards(shown,{
           hrefFor:()=> 'jll-remix.html#services',
           labelFor:item=>categories[item.category]+(item.sample?' · 샘플':''),

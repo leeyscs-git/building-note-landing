@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-08",
+  "date": "2026-10-09",
   "pages": [
     "jll-remix-journal-v2.html",
     "jll-remix-cases.html"
@@ -16,7 +16,16 @@
       "Category filters and empty-state layout"
     ],
     "compatibility": "Existing iv2 DOM hooks remain stable for article photo transitions. Insights owns its article routing, hero and manual first-read card; cases owns service filtering and inquiry context.",
-    "emptyState": "Research and every service category use the same .iv2-empty component. Both top and bottom borders are removed in the shared stylesheet; title size, weight, line height, spacing and responsive padding are shared. No service-specific empty-state border or title override remains.",
+    "emptyState": {
+      "component": "SPSContentArchive.emptyState({title, actionLabel, href})",
+      "parameters": {
+        "title": "Empty-state heading, including service category when relevant",
+        "actionLabel": "Visible action text",
+        "href": "Optional destination; renders a native anchor when supplied, otherwise a button for local category navigation"
+      },
+      "layout": "One shared markup and CSS for research and all empty service categories. Title and CTA only: no repeated category label or description. Borderless, centered title and independent centered CTA text, right-positioned 1em arrow, 16px title-to-action spacing and shared responsive padding.",
+      "interaction": "Cases retains its service destination; research binds the generated button to the existing journal filter and restores focus to that filter. Category URLs, Back, sample cards and inquiry context remain intact."
+    },
     "breadcrumbMotion": "Shared breadcrumbMotion controller animates an optional data-breadcrumb-step from zero width, compensating the flex gap, so right-aligned ancestor items move left continuously as the new reading step appears. Reverse navigation contracts the step and then hides it. Photo-backed copies share the same motion. Use foundation reveal duration/easing; initial/direct loads and reduced motion settle immediately. Rapid reversals resume at the current width; resize, theme changes and backgrounding clean up animations.",
     "categoryHelp": {
       "enabled": false,
@@ -66,7 +75,7 @@
     ]
   },
   "verification": {
-    "tests": "57 passed: component/reveal/filter/archive checks plus Insights route, tooltip, hero, image-transition, manual-card and inquiry regression checks.",
+    "tests": "27 related checks passed: shared empty-state markup and escaping, category URLs, direct entry, Back, research action/focus, sample cards, archived service page and Insights transitions.",
     "visual": "No browser visual inspection performed."
   },
   "labelTweak": {
@@ -74,11 +83,12 @@
     "removedOn": "2026-10-09",
     "decision": "Remove the INSIGHTS and OUR WORK heading chips and their icon-only chip controls. Remove the shared preview controller and CSS, so former per-page saved choices no longer restore either chip. V4 layout tweaks are independent."
   },
-  "breadcrumbAlignment": "Desktop uses shared 12px top/bottom padding with 44px link height across archive lists and article view. In responsive layouts up to 850px, hide the entire shared utility row (breadcrumb and top return link) with no reserved height. Article photo geometry measures the row as zero and recalculates when returning to desktop width.",
+  "breadcrumbAlignment": "Desktop uses shared --archive-nav-padding (12px top/bottom) and --archive-nav-control-height (44px) across archive lists and article view. Their sum, --archive-nav-height (68px), becomes --archive-mobile-top-space at responsive widths up to 850px. The hidden breadcrumb/back row still measures zero; list headings and article padding reserve its former height instead. Article photo geometry includes this computed padding and recalculates on desktop resize. Explicit desktop mode receives no extra space.",
   "mobileRefinement": {
     "date": "2026-10-09",
     "headerBreakpoint": 850,
-    "scope": "Compact title/filter layout without help icons or chips, selected-category horizontal reveal, left-aligned mobile prose, bounded first-read panel, and hidden mobile breadcrumb/top return row.",
+    "scope": "Compact title/filter layout without help icons or chips, selected-category horizontal reveal, left-aligned mobile prose, bounded first-read panel, and hidden mobile breadcrumb/top return row with shared 68px top-space compensation in the scrolling list/article content.",
+    "topSpaceVerification": "36 archive, article geometry and routing checks passed, including compensated mobile padding and return to desktop sizing. No browser visual inspection performed.",
     "verification": "119 automated checks passed; 29 scripts passed syntax checking; 599 local HTML references resolved. Browser and physical-device visual checks were not performed."
   }
 }

@@ -21,6 +21,7 @@
     font('--contact-font-size','문의 버튼',13,12,16,'header'),
     font('--locale-font-size','국가·언어 선택',12,10,16,'header'),
     font('--page-tab-size','콘텐츠 분류 탭 · 데스크톱',21,16,30,'pages'),
+    font('--display-title-size','디스플레이 제목 · 데스크톱',72,60,88,'content'),
     font('--hero-title-size','히어로 제목 · 데스크톱',59,36,76,'content'),
     font('--hero-title-mobile','히어로 제목 · 모바일',39,28,48,'content'),
     font('--section-title-size','서비스 제목 · 데스크톱',43,28,56,'content'),
