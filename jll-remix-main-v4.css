@@ -1,16 +1,28 @@
 /* V4 uses the shared solid header, three original stills and a fourth video. */
 .hw-main-v4 [data-sps-header] { background:var(--surface); }
-/* A softened neutral black opens to white before the films enter. */
+/* Fill the visible viewport while keeping scroll timing tied to the stable small viewport. */
+.hw-main-v4 { --hw-stage-height:var(--hw-height); }
+:where(html:not([data-sps-desktop])) .hw-main-v4 { --hw-stage-height:calc(100dvh - var(--sps-header-height,140px)); }
+.hw-motion .hw-main-v4 :is(.hw-vision-stage,.hw-future-stage) { height:var(--hw-stage-height); }
+.hw-motion .hw-main-v4 .hw-slogan { min-height:var(--hw-stage-height); }
+.hw-motion .hw-main-v4 .hw-future { height:calc(var(--hw-height) * 2.8 + var(--hw-stage-height)); }
+.hw-motion .hw-main-v4 .hw-future-picture img { height:var(--hw-stage-height); }
+/* A solid white surface sits behind an independent black layer that fades away. */
 .hw-main-v4 .hw-vision {
   --vision-black:#181818;
   --vision-foreground:color-mix(in srgb,var(--surface) var(--hw-vision-base-weight,100%),var(--vision-black));
-  background:color-mix(in srgb,var(--vision-black) var(--hw-vision-base-weight,100%),var(--surface));
+  background:var(--surface);
   color:var(--vision-foreground);
+}
+.hw-main-v4 .hw-vision-stage { isolation:isolate; }
+.hw-main-v4 .hw-vision-stage::before {
+  content:''; position:absolute; inset:0; z-index:-1; pointer-events:none;
+  background:var(--vision-black); opacity:var(--hw-vision-base-weight,100%);
 }
 .hw-main-v4 .hw-slogan { color:color-mix(in srgb,var(--surface) var(--hw-vision-film-weight,0%),var(--vision-foreground)); }
 .hw-main-v4 .hw-scene-frame { background:var(--vision-black); }
 /* Release the stage as the last film finishes its hold, without a blank trailing screen. */
-.hw-motion .hw-main-v4 .hw-vision[data-vision-exit="with-last-scene"] { height:calc(var(--hw-height) * 7.6); }
+.hw-motion .hw-main-v4 .hw-vision[data-vision-exit="with-last-scene"] { height:calc(var(--hw-height) * 6.6 + var(--hw-stage-height)); }
 .hw-motion .hw-main-v4 .hw-scene-descriptions { color:var(--surface); }
 .hw-main-v4 .hw-business-panels { gap:4px; }
 .hw-main-v4 .hw-hero-image { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 55%; filter:saturate(.9); }

@@ -1,6 +1,39 @@
 const {test}=require('node:test');
 const assert=require('node:assert/strict');
-const {sceneState,futureState,keywordState,heroOffset}=require('../jll-remix-hanwha.js');
+const {sceneState,futureState,keywordState,heroOffset,scrollUnit}=require('../jll-remix-hanwha.js');
+
+test('mobile toolbar resizing fills the visible stage without rewinding the film timeline',()=>{
+  const header=77,smallViewport=695,base=smallViewport-header;
+  for(const viewport of [695,740,830,740,695]){
+    const stage=viewport-header;
+    const section=base*6.6+stage;
+    const unit=scrollUnit(section,stage,6.6);
+    assert.ok(Math.abs(unit-base)<.001);
+    assert.equal(stage+header,viewport);
+    const scroll=base*5.9;
+    assert.ok(Math.abs(scroll/unit-5.9)<.001,'browser chrome must not change the active scene');
+    const scene=sceneState(scroll/unit,2,true,stage/unit);
+    assert.equal(scene.size,100);
+    assert.equal(scene.y,0);
+    assert.equal(scene.text,1);
+    // The final film stays visible until the *taller* stage has completely left.
+    const end=6.6+stage/unit;
+    for(let t=6.6;t<end;t+=.007){
+      const leaving=sceneState(t,2,true,stage/unit);
+      assert.equal(leaving.visible,true);
+      assert.equal(leaving.y,0);
+    }
+    assert.equal(sceneState(end+1e-6,2,true,stage/unit).visible,false);
+  }
+});
+
+test('desktop/reference scroll proportions and static fallback remain valid',()=>{
+  for(const height of [320,618,800]){
+    assert.ok(Math.abs(scrollUnit(height*8.6,height,7.6)-height)<.001);
+    assert.equal(scrollUnit(height,height,0),height);
+  }
+  assert.equal(scrollUnit(0,0,6.6),1);
+});
 
 test('film covers the transparent header without an initial parallax gap; study offset stays unchanged',()=>{
   for(const headerHeight of [76,137,153]){

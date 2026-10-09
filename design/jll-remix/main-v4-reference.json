@@ -45,12 +45,12 @@
   "photoMotion": "Tabs 1–3 reuse the original photo motion: scale 1.055 to 1 over 8500ms, linear, once per selected photo after loading. Pause outside the hero and in background tabs; cancel for reduced motion or tab 4. The existing video is unchanged.",
   "visionPalettes": {
     "status": "Finalized; palette preview retired",
-    "name": "소프트 블랙 → 화이트",
+    "name": "흰 배경 위 블랙 레이어 페이드",
     "token": "--vision-black",
     "savedValue": "#181818",
     "foreground": "White on black, neutral black on white, then white over the films",
-    "scope": "V4 vision only. User selected softened neutral black instead of pure #000000 or green-tinted Ink; the destination uses the shared white --surface. No global foundation change.",
-    "behavior": "Scroll opens the black slogan surface to white during t=.1–.6. White film lettering returns at t=1.2–1.6. The last film and caption remain on the stage as it releases at t=6.6; the section ends at t=7.6, removing the former empty trailing screen. Reverse scroll is continuous. Reduced-motion and short static layouts retain black with white lettering, with no sticky runway.",
+    "scope": "V4 vision only. A constant shared white --surface backs a separate #181818 stage pseudo-element. The black layer changes only opacity; the background color is no longer interpolated. No global foundation change.",
+    "behavior": "The decorative black layer fades from 100% to 0% opacity during t=.1–.6, revealing the white surface behind it. Its isolated negative stacking level stays behind lettering and films and never intercepts input. White film lettering returns at t=1.2–1.6. The last film and caption remain on the stage as it releases at t=6.6; the section then scrolls away over one actual visible stage height. Reverse scroll restores opacity continuously. Reduced-motion and short static layouts retain an opaque black layer with white lettering, with no sticky runway.",
     "verification": "Automated motion coverage includes the final-film hold, media stop, reverse scrolling, neutral palette timing and unchanged reference-page exits. Browser visual verification not performed."
   },
   "visionTypography": "Use the existing --hero-title-size foundation token (59px default) for the vision slogan and its hidden keyword guides above 768px and in explicit desktop-canvas mode. Retain the previous small-screen responsive sizing. Recompute motion coordinates on foundation theme changes. The dedicated Hanwha reference page keeps its source-derived scale.",
@@ -123,7 +123,7 @@
     ],
     "position": "Signed pixel offset from the original bar + 32px baseline; minimum -20px keeps 12px clear of the bar. Maximum is recalculated from hero, copy and bar layout heights with 24px top clearance. Resize, text wrapping and foundation changes update the limit.",
     "persistence": "Keep the V4 localStorage key and migrate its payload to version 2. Preserve saved navigation and vertical position. Adopt the approved 72px display style for older settings. Persist registered fontToken/storyToken/numberToken and clamped barInset; remove showDown. Reset restores display/body/field sizes, visible navigation and 24px inset.",
-    "foundation": "Soft black-to-white vision palette remains fixed; no color or comparison controls.",
+    "foundation": "A fixed soft-black layer fades over the shared white surface; no color or comparison controls.",
     "accessibility": "Native checkbox/range/details semantics, labelled range with directional value, keyboard adjustment, Escape dismissal and focus restoration.",
     "stacking": "Header uses z-index 60 in the shared Hanwha stylesheet. V4 corner tweaks use 70 so they remain visible over the opaque header; shared skip navigation remains above at 100. Menu-open hiding is preserved.",
     "fontChoice": {
@@ -147,6 +147,7 @@
     "date": "2026-10-09",
     "headerBreakpoint": 850,
     "scope": "Hide section navigation on mobile and narrow desktops. Float compact mobile story progress/playback controls with the chosen inset and safe-area minimum; retain mobile foundation title caps, non-overlapping tweaks, stacked service panels, and static scenes on short landscapes. Headline placement follows the smaller control height through the existing ResizeObserver.",
+    "pinnedViewport": "Responsive V4 uses --hw-stage-height (100dvh minus header) for vision/future stages; the original --hw-height (100svh minus header) remains the stable scroll unit. Vision height is 6.6 stable units plus one live stage; future height is 2.8 stable units plus one live stage. Measure scroll units from the runway, observe stage resize, and keep the last film alive for live-stage/stable-unit duration. Browser chrome can collapse without leaving a bottom strip or rewinding film progress. Explicit desktop mode and non-motion layouts retain their existing sizing.",
     "verification": "119 automated checks passed; 29 scripts passed syntax checking; 599 local HTML references resolved. Browser and physical-device visual checks were not performed."
   }
 }

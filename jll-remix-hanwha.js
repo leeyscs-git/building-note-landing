@@ -5,14 +5,14 @@
   const clamp = (n, min = 0, max = 1) => Math.max(min, Math.min(max, n));
   const mix = (a, b, p) => a + (b - a) * clamp(p);
   const range = (n, a, b) => clamp((n - a) / (b - a));
-  function sceneState(t, index, exitWithFinalScene = false) {
+  function sceneState(t, index, exitWithFinalScene = false, finalExitDuration = 1) {
     const start = 1.6 + index * 2;
     const holdForExit = exitWithFinalScene && index === 2;
     const enter = range(t, start - 1, start);
     // V4 releases the sticky stage with the last film still covering it.
     const leave = holdForExit ? 0 : range(t, start + 1, start + 2);
     return {
-      visible: t > start - 1 && t < start + 2,
+      visible: t > start - 1 && t < start + (holdForExit ? 1 + finalExitDuration : 2),
       enter, leave,
       size: 66 + 34 * enter - (index < 2 ? 34 * leave : 0),
       radius: 4.25 * (1 - enter + (index < 2 ? leave : 0)),
@@ -41,7 +41,11 @@
   function heroOffset(scroll, heroTop, headerHeight, overlayHeader = false) {
     return Math.max(0, (scroll + (overlayHeader ? heroTop : headerHeight) - heroTop) * .5);
   }
-  if (typeof module !== 'undefined' && module.exports) module.exports = { clamp, mix, range, sceneState, futureState, keywordState, heroOffset };
+  function scrollUnit(sectionHeight, stageHeight, screens) {
+    const travel = sectionHeight - stageHeight;
+    return travel > 0 && screens > 0 ? travel / screens : Math.max(1, stageHeight);
+  }
+  if (typeof module !== 'undefined' && module.exports) module.exports = { clamp, mix, range, sceneState, futureState, keywordState, heroOffset, scrollUnit };
   if (!root.document) return;
 
   const doc = root.document;
@@ -150,6 +154,7 @@
   function measure() {
     const headerH = header.getBoundingClientRect().height;
     const height = mode ? stage.clientHeight : Math.max(1, innerHeight - headerH);
+    const scrollHeight = mode ? scrollUnit(vision.clientHeight, height, vision.dataset.visionExit === 'with-last-scene' ? 6.6 : 7.6) : height;
     const width = doc.documentElement.clientWidth;
     page.style.setProperty('--hw-width', width + 'px');
     const rect = stage.getBoundingClientRect();
@@ -163,7 +168,7 @@
     });
     measured.forEach((el, i) => { el.style.transform = savedTransforms[i]; });
     metrics = {
-      headerH, height, width, coordinates,
+      headerH, height, scrollHeight, width, coordinates,
       heroTop: hero.getBoundingClientRect().top + scrollY,
       visionTop: vision.getBoundingClientRect().top + scrollY,
       futureTop: future.getBoundingClientRect().top + scrollY,
@@ -175,10 +180,10 @@
   }
   function paint() {
     if (!metrics) return;
-    const {headerH, height: h, width: w} = metrics;
+    const {headerH, height: h, scrollHeight, width: w} = metrics;
     const y = scrollY + headerH;
-    const t = (y - metrics.visionTop) / h;
-    const ft = (y - metrics.futureTop) / h;
+    const t = (y - metrics.visionTop) / scrollHeight;
+    const ft = (y - metrics.futureTop) / scrollHeight;
     const inHero = scrollY < metrics.visionTop;
     const keyword = keywordState(t);
     setVideo(heroVideo, inHero);
@@ -199,7 +204,7 @@
         el.style.transform = 'translate(' + ((c.toX-c.x)*keyword.moveX) + 'px,' + ((c.toY-c.y)*keyword.moveY) + 'px)';
       });
       scenes.forEach((s, i) => {
-        const state = sceneState(t, i, vision.dataset.visionExit === 'with-last-scene');
+        const state = sceneState(t, i, vision.dataset.visionExit === 'with-last-scene', h / scrollHeight);
         s.el.style.visibility = state.visible ? 'visible' : 'hidden';
         s.el.style.transform = 'translateY(' + (state.y * h) + 'px)';
         const inset = (100 - state.size) / 2;
@@ -287,6 +292,8 @@
   const layoutObserver = new ResizeObserver(() => { layoutPending = paintPending = true; wake(); });
   layoutObserver.observe(header, {box:'border-box'});
   layoutObserver.observe(hero, {box:'border-box'});
+  // Mobile browser chrome changes dvh without consistently firing window.resize.
+  layoutObserver.observe(stage, {box:'border-box'});
   doc.fonts?.ready.then(() => { layoutPending = paintPending = true; wake(); });
   vision.addEventListener('pointermove', event => {
     if (!mode || !finePointer.matches || portrait.matches) return;

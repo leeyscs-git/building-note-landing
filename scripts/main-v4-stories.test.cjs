@@ -210,7 +210,7 @@ test('V4 uses the neutral black-to-white vision without loading the old palette 
   assert.doesNotMatch(html,/jll-remix-main-switcher/);
   assert.match(html,/id="hw-vision"[^>]*data-vision-palette="black-white"[^>]*data-vision-exit="with-last-scene"/);
   assert.match(css,/--vision-black:#181818/);
-  assert.match(css,/data-vision-exit="with-last-scene"[^}]*height:calc\(var\(--hw-height\) \* 7\.6\)/);
+  assert.match(css,/data-vision-exit="with-last-scene"[^}]*height:calc\(var\(--hw-height\) \* 6\.6 \+ var\(--hw-stage-height\)\)/);
   assert.doesNotMatch(css,/data-vision-palette="v[234]"/);
 });
 
