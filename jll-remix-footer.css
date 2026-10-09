@@ -22,6 +22,12 @@
 .sps-footer .sps-footer-company p { margin-top:24px; font-size:var(--field-font-size,14px); }
 .sps-footer .sps-footer-phone { display:flex; flex-wrap:wrap; align-items:center; width:fit-content; gap:8px 16px; min-height:44px; margin-top:8px; font-size:var(--card-title-size,24px); font-weight:550; line-height:1.4; font-variant-numeric:tabular-nums; }
 .sps-footer .sps-footer-phone span { color:var(--muted); font-size:var(--body-size,16px); font-weight:450; }
+/* One definition list for footer and About-page business information. */
+.sps-company-details { display:grid; gap:8px; margin:16px 0 0; color:var(--ink); font:450 var(--field-font-size,14px)/1.75 var(--font); word-break:keep-all; overflow-wrap:anywhere; }
+.sps-company-details > div { display:grid; grid-template-columns:7em minmax(0,1fr); gap:12px; }
+.sps-company-details > div:last-child { grid-template-columns:1fr; gap:2px; }
+.sps-company-details dt { color:var(--muted); font-weight:450; }
+.sps-company-details dd { min-width:0; margin:0; }
 .sps-footer .sps-footer-nav { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; min-width:0; }
 .sps-footer .sps-footer-group { min-width:0; }
 .sps-footer .sps-footer-group h3 { margin-bottom:16px; font-size:var(--field-font-size,14px); font-weight:500; line-height:1.65; letter-spacing:0; color:var(--muted); }

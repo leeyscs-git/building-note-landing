@@ -17,6 +17,10 @@
   },
   "content": {
     "company": "주식회사 신의프라퍼티솔루션",
+    "representative": "이영수",
+    "businessRegistration": "219-87-04014",
+    "address": "서울특별시 동대문구 장한로 85, 20층 2007호 (장안동, 장안현대벤처빌)",
+    "businessSource": "User-provided business registration certificate image, issued 2025-03-26. Publish the transcribed company details, not the source screenshot or a purported PDF download. Footer and About pages render the same companyDetails component from jll-remix-footer.js.",
     "telephone": "02 2247 5799",
     "telephoneSource": "Existing jll-remix-support.html and jll-remix-contact.js",
     "groups": [
@@ -24,7 +28,7 @@
       "SPS 알아보기",
       "고객지원"
     ],
-    "legal": "Dynamic copyright year; no invented address, registration number or unavailable privacy-policy link."
+    "legal": "Dynamic copyright year and the user-supplied business details. No unavailable privacy-policy link; no unverified license or corporate-registration claims."
   },
   "behavior": {
     "routing": "Home/about/insights follow the shared header's variant and explicit destinations. Three service links use existing canonical service URLs. Consultation opens the existing inquiry dialog, with the support URL as fallback. Telephone remains a native tel link.",

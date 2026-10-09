@@ -104,6 +104,8 @@
     if (mode && root.Lenis) {
       lenis = new root.Lenis();
     }
+    // A viewport/motion change may replace Lenis while a menu or dialog is open.
+    syncOverlays();
     if (!mode) {
       vision.style.removeProperty('--hw-vision-base-weight');
       vision.style.removeProperty('--hw-vision-film-weight');
@@ -125,7 +127,7 @@
   }
   function setVideo(video, active) {
     const deviceVisible = !(video.hasAttribute('data-mobile') && !portrait.matches) && !(video.hasAttribute('data-desktop') && portrait.matches);
-    const shouldPlay = Boolean(active && deviceVisible && !video.hidden && !userPaused && !doc.hidden && !video.dataset.unavailable);
+    const shouldPlay = Boolean(active && deviceVisible && !video.hidden && !userPaused && !overlayBlocked && !doc.hidden && !video.dataset.unavailable);
     if (activeVideo.get(video) === shouldPlay) return;
     activeVideo.set(video, shouldPlay);
     if (shouldPlay) {
@@ -400,12 +402,16 @@
 
   // Pause smooth scrolling while shared menus/dialogs own the screen.
   let overlayBlocked = false;
-  const overlays = new MutationObserver(() => {
+  function syncOverlays() {
     const blocked = Boolean(doc.querySelector('dialog[open]')) || doc.body.classList.contains('sps-menu-open');
-    if (blocked === overlayBlocked) return;
     overlayBlocked = blocked;
     if (lenis) blocked ? lenis.stop() : lenis.start();
-  });
+    if (blocked) videos.forEach(video => setVideo(video,false));
+    paintPending = true;
+    wake();
+  }
+  const overlays = new MutationObserver(syncOverlays);
+  addEventListener('pageshow', syncOverlays);
   overlays.observe(doc.body,{attributes:true,attributeFilter:['class']});
   doc.querySelectorAll('dialog').forEach(el => {
     el.setAttribute('data-lenis-prevent','');

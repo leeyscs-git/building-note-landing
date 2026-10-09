@@ -22,12 +22,11 @@
     { label: '인사이트', href: header.dataset.journalHref || 'jll-remix-journal-v2.html', current: isJournal, section: null },
     { label: '고객지원', href: 'jll-remix-support.html', current: isSupport },
   ];
-  function renderLink(link, index, expanded = false) {
+  function renderLink(link, expanded = false) {
     if (link.section === 'services') return `<sps-service-menu${expanded ? ' data-mobile' : ''}></sps-service-menu>`;
     const current = link.current ? ' class="current" aria-current="page"' : '';
     const section = link.section ? ` data-header-section="${link.section}"` : '';
-    const extra = expanded ? `<span aria-hidden="true">${String(index + 1).padStart(2, '0')}</span>` : '';
-    return `<a href="${link.href}" target="_top"${current}${section}>${link.label}${extra}</a>`;
+    return `<a href="${link.href}" target="_top"${current}${section}>${link.label}</a>`;
   }
   function renderLocale(mobile = false) {
     // Only offer locales backed by an actual SPS page.
@@ -49,11 +48,11 @@
       </div>
     </div>
     <nav class="nav wrap" aria-label="주 메뉴">
-      <div class="nav-links" id="nav-links">${links.map((link, i) => renderLink(link, i)).join('')}</div>
+      <div class="nav-links" id="nav-links">${links.map(link => renderLink(link)).join('')}</div>
       ${renderLocale()}
     </nav>
     <nav class="sps-header-menu" id="sps-header-menu" aria-label="전체 메뉴" hidden>
-      ${links.map((link, i) => renderLink(link, i, true)).join('')}
+      ${links.map(link => renderLink(link, true)).join('')}
       <a href="jll-remix-support.html#inquiry" data-inquiry aria-haspopup="dialog">문의하기 <span aria-hidden="true">↗</span></a>
       ${renderLocale(true)}
     </nav>`;
@@ -71,10 +70,12 @@
     if (open) {
       previousInert = background.map(element => element.inert);
       background.forEach(element => { element.inert = true; });
-      menu.querySelector('a').focus();
+      menu.scrollTop = 0;
+      menu.querySelector('a')?.focus({preventScroll:true});
     } else {
+      header.querySelectorAll('sps-service-menu').forEach(item => item.close?.());
       background.forEach((element, index) => { element.inert = previousInert[index]; });
-      if (returnFocus || menu.contains(document.activeElement)) button.focus();
+      if (returnFocus || menu.contains(document.activeElement)) button.focus({preventScroll:true});
     }
   }
   button.addEventListener('click', () => setMenu(menu.hidden));
@@ -88,18 +89,18 @@
     if (menu.hidden) return;
     if (event.key === 'Escape' && !event.defaultPrevented) { event.preventDefault(); setMenu(false, true); }
     if (event.key === 'Tab') {
-      const focusable = [...header.querySelectorAll('a,button,select')].filter(element => element.getClientRects().length);
+      const focusable = [...header.querySelectorAll('a,button,select')].filter(element => element.getClientRects().length && !element.closest('[inert]'));
       const first = focusable[0], last = focusable.at(-1);
-      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
-      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus({preventScroll:true}); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus({preventScroll:true}); }
     }
   });
   const mobileLayout = matchMedia('(max-width: 850px)');
   mobileLayout.addEventListener('change', event => {
-    header.querySelectorAll('sps-service-menu').forEach(item => item.close());
+    header.querySelectorAll('sps-service-menu').forEach(item => item.close?.());
     if (event.matches || menu.hidden) return;
     setMenu(false);
-    header.querySelector('.brand').focus();
+    header.querySelector('.brand').focus({preventScroll:true});
   });
   const updateHeight = () => document.documentElement.style.setProperty('--sps-header-height', `${header.offsetHeight}px`);
   // Saved top padding changes the border box without resizing its content box.
@@ -129,7 +130,7 @@
     });
   }
   window.SPSHeader = { home, about, close: () => {
-    header.querySelectorAll('sps-service-menu').forEach(item => item.close(true));
+    header.querySelectorAll('sps-service-menu').forEach(item => item.close?.(true));
     setMenu(false);
   } };
 
@@ -178,5 +179,6 @@
     // A missing image must not prevent navigation indefinitely.
     (link.target === '_top' ? window.top : window).location.assign(url.href);
   });
-  window.addEventListener('pageshow', () => { navigating = false; });
+  window.addEventListener('pagehide', () => setMenu(false));
+  window.addEventListener('pageshow', () => { navigating = false; setMenu(false); });
 })();

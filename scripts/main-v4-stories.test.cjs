@@ -165,7 +165,7 @@ test('the title follows the measured floating bar on mobile, resizing, theme edi
 test('shared playback respects tab visibility together with background, motion and viewport pause gates',()=>{
   const source=fs.readFileSync(require.resolve('../jll-remix-hanwha.js'),'utf8');
   const fn=source.slice(source.indexOf('  function setVideo('),source.indexOf("  videoButton?.addEventListener('click'"));
-  const context={portrait:{matches:false},userPaused:false,doc:{hidden:false},activeVideo:new WeakMap()};
+  const context={portrait:{matches:false},userPaused:false,overlayBlocked:false,doc:{hidden:false},activeVideo:new WeakMap()};
   vm.runInNewContext(fn+';this.updateVideo=setVideo;',context);
   const video={hidden:true,dataset:{},hasAttribute:()=>false,plays:0,pauses:0,play(){this.plays++;return Promise.resolve();},pause(){this.pauses++;}};
   context.updateVideo(video,true);assert.equal(video.plays,0);
@@ -176,6 +176,9 @@ test('shared playback respects tab visibility together with background, motion a
   context.doc.hidden=false;context.userPaused=true;context.updateVideo(video,true);assert.equal(video.plays,1);
   context.userPaused=false;context.updateVideo(video,false);assert.equal(video.plays,1);
   context.updateVideo(video,true);assert.equal(video.plays,2);
+  context.overlayBlocked=true;context.updateVideo(video,true);assert.equal(video.pauses,3);
+  context.updateVideo(video,true);assert.equal(video.plays,2,'scroll repaint cannot restart video under a menu');
+  context.overlayBlocked=false;context.updateVideo(video,true);assert.equal(video.plays,3);
 });
 
 test('the retired comparison/palette switcher skips V4; other drafts retain their comparison links',()=>{

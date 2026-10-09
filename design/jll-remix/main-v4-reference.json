@@ -90,12 +90,19 @@
       "비전",
       "서비스",
       "인사이트",
-      "지속가능경영"
+      "고객지원"
     ],
     "content": "Remove 01–05 from visible and accessible labels. Rename 처음 to 소개. Keep the five existing anchor targets; the shared scroll engine colors the active section label red.",
     "interaction": "All names remain visible without hovering, on desktop and narrow screens. Clicking a label keeps the existing section scroll behavior.",
     "fallback": "Hide at 850px and below, or whenever the viewport is narrower than the desktop header foundation width (--content-max + twice --page-gutter; currently 1392px). Re-evaluate on resize and theme changes without overwriting the saved visibility choice. Also hide during menus, dialogs, background tabs and footer, and while the layout tweak disables the rail. Start hidden until the first width check to avoid flashing on narrow screens.",
     "verification": "10 existing navigation and shared motion checks passed. All five text-only links and section targets checked. Browser visual verification not performed."
+  },
+  "customerSupport": {
+    "section": "#hw-future",
+    "heading": "어떤 도움이 필요하신가요?",
+    "image": "assets/landing/workplace.jpg",
+    "destination": "jll-remix-support.html",
+    "behavior": "Replace sustainability copy and the external Hanwha link with SPS consultation guidance. Keep the shared expanding-photo animation and existing anchor; shade the workplace photo behind white animated copy. The section navigation reads 고객지원."
   },
   "visionParticles": {
     "enabled": false,

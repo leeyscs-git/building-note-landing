@@ -25,6 +25,8 @@
 .hw-motion .hw-main-v4 .hw-vision[data-vision-exit="with-last-scene"] { height:calc(var(--hw-height) * 6.6 + var(--hw-stage-height)); }
 .hw-motion .hw-main-v4 .hw-scene-descriptions { color:var(--surface); }
 .hw-main-v4 .hw-business-panels { gap:4px; }
+/* Keep support copy readable as the workplace photo expands behind it. */
+.hw-motion .hw-main-v4 .hw-future-picture::after { content:''; position:absolute; inset:0; background:linear-gradient(#0009,#0005 50%,#000a); pointer-events:none; }
 .hw-main-v4 .hw-hero-image { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 55%; filter:saturate(.9); }
 .hw-main-v4 .hw-hero-video { position:absolute; inset:0; }
 .hw-main-v4 .hw-hero-shade { background:linear-gradient(90deg,color-mix(in srgb,var(--ink) 65%,transparent),color-mix(in srgb,var(--ink) 32%,transparent) 52%,color-mix(in srgb,var(--ink) 8%,transparent)); }
@@ -106,6 +108,14 @@
 /* Keep the floating panel and headline within the mobile content rails. */
 @media(max-width:850px) {
   .hw-main-v4 .main-v4-page-nav { display:none; }
+  /* Keep related card content close and give successive stories a clear break. */
+  :where(html:not([data-sps-desktop])) .hw-main-v4 .hw-news { padding-block:64px; }
+  :where(html:not([data-sps-desktop])) .hw-main-v4 .hw-news-heading { gap:12px; margin-bottom:24px; }
+  :where(html:not([data-sps-desktop])) .hw-main-v4 .hw-news-heading a { min-height:44px; gap:8px; }
+  :where(html:not([data-sps-desktop])) .hw-main-v4 .hw-news-grid { row-gap:40px; }
+  :where(html:not([data-sps-desktop])) .hw-main-v4 .hw-news-grid small { margin:16px 0 8px; }
+  :where(html:not([data-sps-desktop])) .hw-main-v4 .hw-news-grid h3 { line-height:1.35; }
+  :where(html:not([data-sps-desktop])) .hw-main-v4 .hw-news-grid a > span { margin-top:12px; }
   :where(html:not([data-sps-desktop])) .hw-main-v4 .hw-hero-copy h1 { font-size:min(var(--main-title-size,var(--display-title-size,72px)),var(--hero-title-mobile,39px)); overflow-wrap:anywhere; }
   /* Reuse the desktop slide buttons as compact progress marks, with full touch targets. */
   :where(html:not([data-sps-desktop])) .hw-main-v4 .main-v4-stories { width:max-content; max-width:calc(100% - var(--layout-gutter)*2); background:color-mix(in srgb,var(--ink) 65%,transparent); color:var(--surface); }

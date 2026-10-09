@@ -52,7 +52,7 @@ function fixture({variant='',header={},scoped=false,reduced=false}={}){
     set innerHTML(value){this.html=value;this.renders++;}};
   const values={'--surface-cool':'#f1f1f1','--body-size':'18px','--content-max':'1200px'};
   const doc={body:{dataset:{themeScope:scoped?'header':''}},documentElement:{dataset:{serviceMenu:variant}},
-    getElementById:()=>({}),querySelectorAll:()=>[host],
+    getElementById:()=>({}),querySelectorAll:selector=>selector==='[data-sps-footer]'?[host]:[],
     querySelector:selector=>selector==='[data-sps-header]'?{dataset:header}:{focus:options=>focused.push(options)}};
   const win={document:doc,scrollTo:options=>scrolled.push(options),matchMedia:()=>({matches:reduced}),
     SPSThemeSchema:Object.keys(values).map(token=>({token})),

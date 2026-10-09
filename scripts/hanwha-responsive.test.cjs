@@ -33,7 +33,7 @@ test('short landscape view releases sticky scenes and restores motion without lo
     doc:{documentElement:{hasAttribute:()=>desktop,classList:{toggle(){}}},querySelectorAll:()=>[]},
     vision:{style:{removeProperty(name){clearedProperties.push(name);}}},slogan:{classList:{remove(){}}},
     sloganLines:[],sloganInner:[],sloganRest:[],from:[],scenes:[],mountains:[],
-    setPauseLabel(){},wake(){},layoutPending:false,paintPending:false
+    setPauseLabel(){},syncOverlays(){},wake(){},layoutPending:false,paintPending:false
   };
   ['heroMedia','keyList','rocket','smoke','sky','rocketWorld','futurePicture','futureImage','futureHeading','futureTop','futureBottom'].forEach((key,index)=>context[key]=animated[index]);
   vm.runInNewContext(source.slice(source.indexOf('  function configure()'),source.indexOf('  function setPauseLabel()'))+';this.configure=configure;',context);
@@ -49,4 +49,32 @@ test('short landscape view releases sticky scenes and restores motion without lo
   assert.equal(context.mode,true,'explicit desktop composition remains available');
   context.reduced.matches=true;context.configure();
   assert.equal(context.mode,false);assert.equal(context.userPaused,true);
+});
+
+test('menu and dialog locks survive scroll-engine replacement and release only after both close',()=>{
+  let menu=false,dialog=false,wakes=0;
+  const instances=[];
+  const context={mode:true,userPaused:false,reduced:{matches:false},shortViewport:{matches:false},
+    root:{Lenis:class{
+      constructor(){this.isStopped=false;instances.push(this);}
+      stop(){this.isStopped=true;} start(){this.isStopped=false;} destroy(){this.destroyed=true;}
+    }},lenis:null,overlayBlocked:false,videos:[{}],
+    doc:{documentElement:{hasAttribute:()=>false,classList:{toggle(){}}},
+      body:{classList:{contains:()=>menu}},querySelector:()=>dialog?{}:null},
+    setVideo(video,active){video.active=active;},setPauseLabel(){},wake(){wakes++;},
+    layoutPending:false,paintPending:false};
+  const configure=source.slice(source.indexOf('  function configure()'),source.indexOf('  function setPauseLabel()'));
+  const sync=source.slice(source.indexOf('  function syncOverlays()'),source.indexOf('  const overlays ='));
+  vm.runInNewContext(configure+sync+';this.configure=configure;this.sync=syncOverlays;',context);
+  context.configure();assert.equal(context.lenis.isStopped,false);
+  menu=true;context.sync();assert.equal(context.lenis.isStopped,true);
+  assert.equal(context.videos[0].active,false);
+  context.configure();assert.equal(instances[0].destroyed,true);
+  assert.equal(context.lenis.isStopped,true,'new engine inherits the open menu lock');
+  dialog=true;menu=false;context.sync();assert.equal(context.lenis.isStopped,true);
+  context.configure();assert.equal(context.lenis.isStopped,true,'dialog survives orientation changes');
+  dialog=false;context.sync();assert.equal(context.lenis.isStopped,false);
+  assert.equal(context.overlayBlocked,false);
+  assert.equal(context.userPaused,false);
+  assert.ok(context.paintPending&&wakes>0,'resuming schedules a fresh frame');
 });

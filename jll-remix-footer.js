@@ -1,4 +1,4 @@
-/* Shared SPS footer. Page-specific reference notes remain authored in the host. */
+/* Shared SPS footer and business details. Page-specific notes remain in the host. */
 (function(root,factory){
   const api=factory();
   if(typeof module==='object'&&module.exports)module.exports=api;
@@ -7,6 +7,17 @@
   'use strict';
   const escape=value=>String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   const arrow='<sps-arrow-up-right></sps-arrow-up-right>';
+  // Transcribed from the business registration certificate supplied by the user.
+  const company=Object.freeze({
+    name:'주식회사 신의프라퍼티솔루션',
+    representative:'이영수',
+    registration:'219-87-04014',
+    address:'서울특별시 동대문구 장한로 85, 20층 2007호 (장안동, 장안현대벤처빌)'
+  });
+  function companyDetails(includeName=false){
+    const rows=[...(includeName?[['상호',company.name]]:[]),['대표자',company.representative],['사업자등록번호',company.registration],['주소',company.address]];
+    return `<dl class="sps-company-details">${rows.map(([label,value])=>`<div><dt>${escape(label)}</dt><dd>${escape(value)}</dd></div>`).join('')}</dl>`;
+  }
   function routes(win){
     const doc=win.document;
     const header=doc.querySelector('[data-sps-header]');
@@ -29,8 +40,9 @@
       <div class="sps-footer-directory">
         <div class="sps-footer-company">
           <a class="sps-footer-logo" href="${escape(paths.home)}" target="_top" aria-label="SPS 홈"><img src="assets/logo.svg" alt="SPS" width="120" height="40" loading="lazy"></a>
-          <p>주식회사 신의프라퍼티솔루션</p>
+          <p>${escape(company.name)}</p>
           <a class="sps-footer-phone" href="tel:0222475799"><span>대표전화</span>02 2247 5799</a>
+          ${companyDetails()}
         </div>
         <nav class="sps-footer-nav" aria-label="하단 메뉴">
           <div class="sps-footer-group"><h3>서비스</h3>
@@ -58,6 +70,7 @@
   }
   function mount(win){
     const doc=win.document;
+    doc.querySelectorAll('[data-sps-company-details]').forEach(host=>{host.innerHTML=companyDetails(true);});
     const hosts=[...doc.querySelectorAll('[data-sps-footer]')].filter(host=>!host.hasAttribute('data-footer-ready'));
     if(!hosts.length)return;
     const paths=routes(win);
@@ -90,5 +103,5 @@
       syncTheme();
     }
   }
-  return {routes,markup,mount};
+  return {routes,markup,mount,company,companyDetails};
 });

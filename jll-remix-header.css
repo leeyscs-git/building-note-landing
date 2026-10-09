@@ -16,7 +16,10 @@
 
 /* One H header: shared logo, navigation, contact CTA and locale selectors. */
 html { scroll-padding-top: calc(var(--sps-header-height, 137px) + 12px); }
-body.sps-menu-open { overflow: hidden; }
+/* Keep the viewport as the only page scroll container. Locking body as well as
+   Lenis's root moves the sticky header offscreen after scrolling. */
+html:has(body.sps-menu-open, dialog[open]) { overflow:hidden; overscroll-behavior:none; }
+body:has(> [data-sps-header]):is(.sps-menu-open,.sps-inquiry-open,.modal-open) { overflow:visible; }
 [data-sps-header] {
   position: sticky; top: 0; z-index: 40;
   min-height: calc(var(--header-height, 87px) + 50px + var(--header-top-space, 16px));
@@ -58,7 +61,7 @@ body.sps-menu-open { overflow: hidden; }
 [data-sps-header] .locale-field select:focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
 [data-sps-header] .locale-field option { color: var(--ink); background: var(--surface); }
 [data-sps-header] .locale-divider { width: 1px; height: 13px; background: var(--line); margin-inline: 2px; }
-[data-sps-header] .header-locale-mobile { justify-content: flex-start; padding-top: 18px; max-width: 1000px; margin: auto; }
+[data-sps-header] .header-locale-mobile { justify-content: flex-end; padding-top: 18px; max-width: 1000px; margin: auto; }
 [data-sps-header] .sps-header-menu { position: absolute; top: 100%; left: 0; right: 0; max-height: calc(calc(100 * var(--sps-vh,1dvh)) - var(--sps-header-height, 137px)); overflow-y: auto; overscroll-behavior: contain; padding: 24px 11% 40px; background: var(--surface); border-bottom: 1px solid var(--line); box-shadow: 0 25px 40px #0001; }
 [data-sps-header] .sps-header-menu[hidden] { display: none; }
 [data-sps-header] .sps-header-menu > a { display: flex; justify-content: space-between; align-items: center; gap: 24px; font-size: 30px; min-height: 76px; border-bottom: 1px solid var(--line); max-width: 1000px; margin: auto; }
